@@ -1,0 +1,9 @@
+Storage account
+Disassociate public IP address from resource group
+Delete public IP address
+Delete virtual machine
+Delete disk 0
+Delete any other disks
+Delete network interface
+Delete network security group
+Delete virtual network

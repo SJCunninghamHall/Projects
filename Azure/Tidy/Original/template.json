@@ -1,0 +1,93 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_CSI_W10Pro_name": {
+            "defaultValue": "CSI-W10Pro",
+            "type": "String"
+        },
+        "disks_CSI_W10Pro_OsDisk_1_6a4f7ddde1f849e5aab018365dd484b0_externalid": {
+            "defaultValue": "/subscriptions/7d69fcd7-fcfc-41e1-a5a9-cdcba1efce6f/resourceGroups/IPSL_CSI/providers/Microsoft.Compute/disks/CSI-W10Pro_OsDisk_1_6a4f7ddde1f849e5aab018365dd484b0",
+            "type": "String"
+        },
+        "disks_CSI_W10Pro_DataDisk_0_externalid": {
+            "defaultValue": "/subscriptions/7d69fcd7-fcfc-41e1-a5a9-cdcba1efce6f/resourceGroups/IPSL_CSI/providers/Microsoft.Compute/disks/CSI-W10Pro_DataDisk_0",
+            "type": "String"
+        },
+        "networkInterfaces_csi_w10pro86_externalid": {
+            "defaultValue": "/subscriptions/7d69fcd7-fcfc-41e1-a5a9-cdcba1efce6f/resourceGroups/IPSL_CSI/providers/Microsoft.Network/networkInterfaces/csi-w10pro86",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_CSI_W10Pro_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B1s"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsDesktop",
+                        "offer": "Windows-10",
+                        "sku": "rs5-pro",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_CSI_W10Pro_name'), '_OsDisk_1_6a4f7ddde1f849e5aab018365dd484b0')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS",
+                            "id": "[parameters('disks_CSI_W10Pro_OsDisk_1_6a4f7ddde1f849e5aab018365dd484b0_externalid')]"
+                        },
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_CSI_W10Pro_name'), '_DataDisk_0')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Standard_LRS",
+                                "id": "[parameters('disks_CSI_W10Pro_DataDisk_0_externalid')]"
+                            },
+                            "diskSizeGB": 1023
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_CSI_W10Pro_name')]",
+                    "adminUsername": "CSI-SJC",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_csi_w10pro86_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://ipslcsidiag.blob.core.windows.net/"
+                    }
+                },
+                "licenseType": "Windows_Client"
+            }
+        }
+    ]
+}
