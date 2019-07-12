@@ -26,11 +26,6 @@ namespace BulkCopy
             DisplayMessage("Getting connection string...");
             string connString = GetConnectionString();
 
-
-            DateTime myDateTime;
-            string sqlFormattedDate;
-
-
             var dt = new DataTable();
 
             dt.Columns.Add("ColdRoomTemperatureID");
@@ -39,7 +34,6 @@ namespace BulkCopy
             dt.Columns.Add("Temperature");
             dt.Columns.Add("ValidFrom");
             dt.Columns.Add("ValidTo");
-
 
             using (SqlConnection sqlSourceConn = new SqlConnection(connString))
             {
@@ -66,11 +60,11 @@ namespace BulkCopy
 
                 DisplayMessage("Reader executed");
 
-                DisplayMessage("Loading data table");
+                //DisplayMessage("Loading data table");
 
-                dt.Load(sqlReader);
+                //dt.Load(sqlReader);
 
-                DisplayMessage("Data table loaded");
+                //DisplayMessage("Data table loaded");
 
                 using (SqlConnection sqlDestConn = new SqlConnection(connString))
                 {
@@ -87,15 +81,17 @@ namespace BulkCopy
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlDestConn))
                     {
                         bulkCopy.DestinationTableName = "dbo.CRT_BC_Demo";
-                        bulkCopy.BatchSize = 5000;
-                        bulkCopy.NotifyAfter = 20000;
-                        bulkCopy.SqlRowsCopied += (sender, eventArgs) => Console.WriteLine("Transferred " + eventArgs.RowsCopied + " records.");
+                        bulkCopy.BatchSize = 200000;
+                        bulkCopy.NotifyAfter = 500000;
+                        // bulkCopy.SqlRowsCopied += (sender, eventArgs) => Console.WriteLine("Transferred " + eventArgs.RowsCopied + " records.");
+                        bulkCopy.SqlRowsCopied += (sender, eventArgs) => DisplayMessage("Transferred " + eventArgs.RowsCopied + " records.");
 
                         // bulkCopy.BulkCopyTimeout = 60;
 
                         DisplayMessage("Bulk copy started");
 
-                        bulkCopy.WriteToServer(dt);
+                        // bulkCopy.WriteToServer(dt);
+                        bulkCopy.WriteToServer(sqlReader);
 
                         DisplayMessage("Bulk copy finished");
                     }
