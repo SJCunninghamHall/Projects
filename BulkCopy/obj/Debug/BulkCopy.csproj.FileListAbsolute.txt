@@ -1,0 +1,7 @@
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\bin\Debug\BulkCopy.exe.config
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\bin\Debug\BulkCopy.exe
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\bin\Debug\BulkCopy.pdb
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\obj\Debug\BulkCopy.csprojAssemblyReference.cache
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\obj\Debug\BulkCopy.csproj.CoreCompileInputs.cache
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\obj\Debug\BulkCopy.exe
+C:\Users\DevAdmin\Documents\Projects\SQL\BulkCopy\BulkCopy\obj\Debug\BulkCopy.pdb
