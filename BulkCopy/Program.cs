@@ -114,21 +114,26 @@ namespace BulkCopy
         {
 
             string retCon;
+            string connToUse;
+            string DBToUse;
 
             switch (location.ToUpper())
             {
                 case "SOURCE":
-                    retCon = ConfigurationManager.AppSettings["ConnectionSource"];
+                    connToUse = ConfigurationManager.AppSettings["ConnectionSource"];
+                    DBToUse = ConfigurationManager.AppSettings["DatabaseSource"];
                     break;
                 case "DESTINATION":
-                    retCon = ConfigurationManager.AppSettings["ConnectionDestination"];
+                    connToUse = ConfigurationManager.AppSettings["ConnectionDestination"];
+                    DBToUse = ConfigurationManager.AppSettings["DatabaseDestination"];
                     break;
                 default:
-                    retCon = ConfigurationManager.AppSettings["ConnectionSource"];
+                    connToUse = ConfigurationManager.AppSettings["ConnectionSource"];
+                    DBToUse = ConfigurationManager.AppSettings["DatabaseSource"];
                     break;
             }
 
-            return retCon;
+            return retCon = string.Format("{0}{1};", connToUse, DBToUse);
         }
     }
 }
