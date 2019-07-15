@@ -26,6 +26,9 @@ namespace BulkCopy
             DisplayMessage("Getting connection string...");
             string connString = GetConnectionString("SOURCE");
 
+            string tableSource = ConfigurationManager.AppSettings["TableSource"];
+            string tableDestination = ConfigurationManager.AppSettings["TableDestination"];
+
             //var dt = new DataTable();
 
             //dt.Columns.Add("ColdRoomTemperatureID");
@@ -45,14 +48,14 @@ namespace BulkCopy
                 //long countStart = System.Convert.ToInt32(sqlSourceCount.ExecuteScalar());
                 //Console.WriteLine("Initial count is {0}", countStart);
 
-                SqlCommand sqlSourceData = new SqlCommand("SELECT " +
+                SqlCommand sqlSourceData = new SqlCommand(string.Format("SELECT " +
                                                                 "[ColdRoomTemperatureID]" + 
                                                                 ",[ColdRoomSensorNumber]" +
                                                                 ",[RecordedWhen]" + 
                                                                 ",[Temperature]" + 
                                                                 ",[ValidFrom]" + 
                                                                 ",[ValidTo] " + 
-                                                                "FROM [Warehouse].[ColdRoomTemperatures_Archive]", sqlSourceConn);
+                                                                "FROM {0}", tableSource), sqlSourceConn);
 
                 DisplayMessage("Executing reader");
 
@@ -68,7 +71,7 @@ namespace BulkCopy
                 {
                     sqlDestConn.Open();
 
-                    SqlCommand sqlClearDestTable = new SqlCommand("TRUNCATE TABLE [dbo].[CRT_BC_Demo]", sqlDestConn);
+                    SqlCommand sqlClearDestTable = new SqlCommand(string.Format("TRUNCATE TABLE {0}", tableDestination), sqlDestConn);
 
                     DisplayMessage("Clearing source table");
 
@@ -78,7 +81,7 @@ namespace BulkCopy
 
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlDestConn))
                     {
-                        bulkCopy.DestinationTableName = "dbo.CRT_BC_Demo";
+                        bulkCopy.DestinationTableName = tableDestination;
                         bulkCopy.BatchSize = 200000;
                         bulkCopy.NotifyAfter = 500000;
                         // bulkCopy.SqlRowsCopied += (sender, eventArgs) => Console.WriteLine("Transferred " + eventArgs.RowsCopied + " records.");
