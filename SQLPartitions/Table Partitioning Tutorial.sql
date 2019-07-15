@@ -181,10 +181,17 @@ GO
 
 --Create the partition function: dailyPF
 DECLARE @StartDay DATE=DATEADD(dd,-3,CAST(SYSDATETIME() AS DATE));
-CREATE PARTITION FUNCTION DailyPF (DATETIME2(0))
-    AS RANGE RIGHT FOR VALUES
-    (@StartDay, DATEADD(dd,1,@StartDay), DATEADD(dd,2,@StartDay),  
-		DATEADD(dd,3,@StartDay), DATEADD(dd,4,@StartDay) );
+
+CREATE PARTITION FUNCTION 
+	DailyPF (DATETIME2(0))
+AS RANGE RIGHT FOR VALUES
+    (
+		@StartDay, 
+		DATEADD(dd,1,@StartDay), 
+		DATEADD(dd,2,@StartDay),  
+		DATEADD(dd,3,@StartDay), 
+		DATEADD(dd,4,@StartDay) 
+	);
 GO
 
 --When typing dates to create a partition, use ODBC standard date format 
