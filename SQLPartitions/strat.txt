@@ -1,0 +1,12 @@
+1) we need to create 3 partitions with 2 dummy value one old date say 01-01-1991, one future date say 01-01-2020 and one to hold actual data say getdate()+1
+2) we need to create a dummy table with exact skeleton 
+3) switch the actual partition data to dummy table
+since we are using Switch partition its just a pointer regerence change
+
+4) then apply the index changes and switch back data to original and use the split function to do the necessary partitions
+	
+	or 
+
+5) apply the index changes, create the required partitions and then switch the data to the original table
+not sure whether it will work... just a thought :)
+ 
