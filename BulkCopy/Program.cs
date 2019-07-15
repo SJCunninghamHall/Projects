@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Data.SqlClient;
@@ -8,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace BulkCopy
 {
-
 
     class Program
     {
@@ -24,16 +24,16 @@ namespace BulkCopy
         {
 
             DisplayMessage("Getting connection string...");
-            string connString = GetConnectionString();
+            string connString = GetConnectionString("SOURCE");
 
-            var dt = new DataTable();
+            //var dt = new DataTable();
 
-            dt.Columns.Add("ColdRoomTemperatureID");
-            dt.Columns.Add("ColdRoomSensorNumber");
-            dt.Columns.Add("RecordedWhen");
-            dt.Columns.Add("Temperature");
-            dt.Columns.Add("ValidFrom");
-            dt.Columns.Add("ValidTo");
+            //dt.Columns.Add("ColdRoomTemperatureID");
+            //dt.Columns.Add("ColdRoomSensorNumber");
+            //dt.Columns.Add("RecordedWhen");
+            //dt.Columns.Add("Temperature");
+            //dt.Columns.Add("ValidFrom");
+            //dt.Columns.Add("ValidTo");
 
             using (SqlConnection sqlSourceConn = new SqlConnection(connString))
             {
@@ -61,9 +61,7 @@ namespace BulkCopy
                 DisplayMessage("Reader executed");
 
                 //DisplayMessage("Loading data table");
-
                 //dt.Load(sqlReader);
-
                 //DisplayMessage("Data table loaded");
 
                 using (SqlConnection sqlDestConn = new SqlConnection(connString))
@@ -115,5 +113,25 @@ namespace BulkCopy
         private static string GetConnectionString() => "Data Source=(local); " +
                     "Integrated Security=true; " +
                     "Initial Catalog=WideWorldImporters;";
+        private static string GetConnectionString(string location)
+        {
+
+            string retCon;
+
+            switch (location.ToUpper())
+            {
+                case "SOURCE":
+                    retCon = ConfigurationManager.AppSettings["ConnectionSource"];
+                    break;
+                case "DESTINATION":
+                    retCon = ConfigurationManager.AppSettings["ConnectionDestination"];
+                    break;
+                default:
+                    retCon = ConfigurationManager.AppSettings["ConnectionSource"];
+                    break;
+            }
+
+            return retCon;
+        }
     }
 }
