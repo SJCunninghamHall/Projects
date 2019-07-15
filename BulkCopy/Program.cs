@@ -110,9 +110,6 @@ namespace BulkCopy
             throw new NotImplementedException();
         }
 
-        private static string GetConnectionString() => "Data Source=(local); " +
-                    "Integrated Security=true; " +
-                    "Initial Catalog=WideWorldImporters;";
         private static string GetConnectionString(string location)
         {
 
