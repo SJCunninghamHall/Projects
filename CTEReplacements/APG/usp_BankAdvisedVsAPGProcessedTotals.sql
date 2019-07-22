@@ -46,6 +46,10 @@ AS
 				GROUP BY
 					SCC.Channel;
 
+
+				CREATE CLUSTERED INDEX ci_Source
+				ON #Processed (source);
+
 				SELECT
 					SCC.Channel				AS Source,
 					SUM(CSV.CreditCount)	AS AdvisedCreditCount,
@@ -64,6 +68,10 @@ AS
 					CSV.Businessdate = @BusinessDate
 				GROUP BY
 					SCC.Channel;
+
+
+				CREATE CLUSTERED INDEX ci_Source
+				ON #Advised (source);
 
 				SELECT
 					AD	.Source,
@@ -84,14 +92,14 @@ AS
 				UNION ALL
 				SELECT
 					AD	.Source,
-					NULL				AS ProcessedCreditCount,
-					NULL				AS ProcessedCreditTotal,
-					NULL				AS ProcessedDebitCount,
-					NULL				AS ProcessedDebitTotal,
-					AdvisedCreditCount,
-					AdvisedCreditTotal,
-					AdvisedDebitCount,
-					AdvisedDebitTotal
+					NULL	AS ProcessedCreditCount,
+					NULL	AS ProcessedCreditTotal,
+					NULL	AS ProcessedDebitCount,
+					NULL	AS ProcessedDebitTotal,
+					[AD].[AdvisedCreditCount],
+					[AD].[AdvisedCreditTotal],
+					[AD].[AdvisedDebitCount],
+					[AD].[AdvisedDebitTotal]
 				FROM
 					#Advised AS AD
 				WHERE
@@ -105,10 +113,10 @@ AS
 				UNION ALL
 				SELECT
 					PD	.Source,
-					ProcessedCreditCount,
-					ProcessedCreditTotal,
-					ProcessedDebitCount,
-					ProcessedDebitTotal,
+					[PD].[ProcessedCreditCount],
+					[PD].[ProcessedCreditTotal],
+					[PD].[ProcessedDebitCount],
+					[PD].[ProcessedDebitTotal],
 					NULL	AS AdvisedCreditCount,
 					NULL	AS AdvisedCreditTotal,
 					NULL	AS AdvisedDebitCount,
