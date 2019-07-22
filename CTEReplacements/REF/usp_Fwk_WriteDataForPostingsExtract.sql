@@ -1,13 +1,13 @@
 CREATE PROCEDURE [Base].[usp_Fwk_WriteDataForPostingsExtract]
-(
-	@ActivityId VARCHAR(60),
-	@Source [Base].[udt_Source] READONLY,
-	@Item [Base].[udt_Item] READONLY,
-	@postingEntryState [Base].[udt_PostingEntryState] READONLY,
-	@PostingEntry [Base].[udt_PostingEntry] READONLY,
-	@PreviousState [Base].[udt_WithTwoStringColumns] READONLY, --NOT USED
-	@TransactionSet [Base].[udt_TransactionSet] READONLY --NOT USED
-)
+	(
+		@ActivityId			VARCHAR(60),
+		@Source				[Base].[udt_Source]					READONLY,
+		@Item				[Base].[udt_Item]					READONLY,
+		@postingEntryState	[Base].[udt_PostingEntryState]		READONLY,
+		@PostingEntry		[Base].[udt_PostingEntry]			READONLY,
+		@PreviousState		[Base].[udt_WithTwoStringColumns]	READONLY,	--NOT USED
+		@TransactionSet		[Base].[udt_TransactionSet]			READONLY	--NOT USED
+	)
 /*****************************************************************************************************
 * Name				: [Base].[usp_Fwk_WriteDataForPostingsExtract]
 * Description		: Stored Procedure to save data into the MO database
@@ -49,691 +49,794 @@ CREATE PROCEDURE [Base].[usp_Fwk_WriteDataForPostingsExtract]
 * 1.0.9						010         08-Apr-2019			    Populated @item with Window2BusinessDate #200277 
 *******************************************************************************************************/
 AS
-BEGIN
+	BEGIN
 
-	SET NOCOUNT ON;
+		SET NOCOUNT ON;
 
-	SET XACT_ABORT ON;
+		SET XACT_ABORT ON;
 
-	BEGIN TRY
+		BEGIN TRY
 
-		DECLARE @configPERMNoExtract VARCHAR(50)
-				= [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PERMNoExtract', 'PERM01');
+			DECLARE @configPERMNoExtract VARCHAR(50) = [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PERMNoExtract', 'PERM01');
 
-		--Checking for no extract at document level
-		IF EXISTS (SELECT 1 FROM @Source WHERE SourceState =  @configPERMNoExtract)
-			BEGIN		
-				BEGIN TRANSACTION
-					UPDATE PostingEntryState
-						SET PostingState = @configPERMNoExtract
-					WHERE SourceID = (SELECT SourceId FROM @Source WHERE SourceState = @configPERMNoExtract)
-				COMMIT TRANSACTION
-			END 
-		ELSE
-			BEGIN
+			--Checking for no extract at document level
+			IF EXISTS
+				(
+					SELECT
+						1
+					FROM
+						@Source
+					WHERE
+						SourceState = @configPERMNoExtract
+				)
+				BEGIN
+					BEGIN TRANSACTION;
+					UPDATE
+						PostingEntryState
+					SET
+					PostingState	= @configPERMNoExtract
+					WHERE
+						SourceID =
+						(
+							SELECT
+								SourceId
+							FROM
+								@Source
+							WHERE
+								SourceState = @configPERMNoExtract
+						);
+					COMMIT TRANSACTION;
+				END;
+			ELSE
+				BEGIN
 
-				DECLARE @sourceSkId BIGINT
+					DECLARE @sourceSkId BIGINT;
 
-				DECLARE @configPTMATrigger VARCHAR(50)
-					= [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PTMATrigger', 'PTMA01'),
-				 @configPTMARetrigger VARCHAR(50)
-					= [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PTMARetrigger', 'PTMA01'),
-				 @configPERMFailure VARCHAR(50)
-					= [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PERMFailure', 'PERM01'),
-				 @configPERMAggregateState VARCHAR(50)
-					= [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PostingState', 'PERMAggregateState')
+					DECLARE
+						@configPTMATrigger			VARCHAR(50) = [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PTMATrigger', 'PTMA01'),
+						@configPTMARetrigger		VARCHAR(50) = [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PTMARetrigger', 'PTMA01'),
+						@configPERMFailure			VARCHAR(50) = [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PERMFailure', 'PERM01'),
+						@configPERMAggregateState	VARCHAR(50) = [$(MoConfigDatabase)].[config].sfn_ReadScalarConfigEAVValue('PostingState', 'PERMAggregateState');
 
-				CREATE TABLE #configPTMATrigger 
-					(
-						 PostingItemState smallint
-					);
+					CREATE TABLE #configPTMATrigger
+						(
+							PostingItemState	SMALLINT
+						);
 
-				INSERT INTO 
-					#configPTMATrigger
-				SELECT	
-					VALUE AS StringColumn
-				FROM 
-					STRING_SPLIT(@configPTMATrigger, ',');
+					INSERT INTO
+						#configPTMATrigger
+					SELECT
+						value	AS StringColumn
+					FROM
+						STRING_SPLIT(@configPTMATrigger, ',');
 
-				DECLARE @ExtractId VARCHAR(MAX) =	(
-														SELECT 
-															source.SourceID 
-														FROM 
-															@Source source
-														WHERE 
-															source.OperationType  = 1
-													)
+					DECLARE @ExtractId VARCHAR(MAX) =
+								(
+									SELECT
+										source	.SourceID
+									FROM
+										@Source AS source
+									WHERE
+										source.OperationType = 1
+								);
 
-				DECLARE @ExtractSourceSkId BIGINT =	(
-														SELECT 
-															SourceSKID 
-														FROM 
-															[Base].Source 
-														WHERE 
-															SourceID  = @ExtractId
-													)
+					DECLARE @ExtractSourceSkId BIGINT =
+								(
+									SELECT
+										SourceSKID
+									FROM
+										[Base].Source
+									WHERE
+										SourceID = @ExtractId
+								);
 
-		--Making Temp table for PostingEntry with a column storing substring 
-		CREATE TABLE #PostingEntry
-		(
-		    [PostingEntryID]	 VARCHAR(30)  NULL,
-			[ItemID]			 CHAR(25)     NULL,
-			[SourceSKID]		 BIGINT       NULL,
-			[MessageType]		 VARCHAR(6)   NULL,
-			[Amount]			 MONEY        NULL,
-			[State]				 SMALLINT     NULL,
-			[ICNContent]		 VARCHAR(MAX) NULL,
-			[OperationType]		 INT          NULL,
-			[SortCode]           INT          NULL,
-			[AccountNumber]      INT          NULL,
-			[SubPostingEntryID]  VARCHAR(25)  NULL,
-			INDEX idx_PostingEntryID_SubPostingEntryID NONCLUSTERED ([SubPostingEntryID],[PostingEntryID])
-		);
+					--Making Temp table for PostingEntry with a column storing substring 
+					CREATE TABLE #PostingEntry
+						(
+							[PostingEntryID]	VARCHAR(30)		NULL,
+							[ItemID]			CHAR(25)		NULL,
+							[SourceSKID]		BIGINT			NULL,
+							[MessageType]		VARCHAR(6)		NULL,
+							[Amount]			MONEY			NULL,
+							[State]				SMALLINT		NULL,
+							[ICNContent]		VARCHAR(MAX)	NULL,
+							[OperationType]		INT				NULL,
+							[SortCode]			INT				NULL,
+							[AccountNumber]		INT				NULL,
+							[SubPostingEntryID] VARCHAR(25)		NULL,
+							INDEX idx_PostingEntryID_SubPostingEntryID NONCLUSTERED ([SubPostingEntryID], [PostingEntryID])
+						);
 
-		INSERT INTO 
-			#PostingEntry
-		SELECT 
-			[PostingEntryID],
-			[ItemID],
-			[SourceSKID],
-			[MessageType],
-			[Amount],
-			[State],
-			[ICNContent],
-			[OperationType],
-			[SortCode],
-			[AccountNumber],
-			SUBSTRING(PostingEntryID,1,25)
-		FROM 
-			@PostingEntry
-		
-		--Inserting Records in @CopyItem From Input Item andPostingEntryState table
-		DECLARE @CopyItem [Base].[udt_Item]
+					INSERT INTO
+						#PostingEntry
+					SELECT
+						[PostingEntryID],
+						[ItemID],
+						[SourceSKID],
+						[MessageType],
+						[Amount],
+						[State],
+						[ICNContent],
+						[OperationType],
+						[SortCode],
+						[AccountNumber],
+						SUBSTRING(PostingEntryID, 1, 25)
+					FROM
+						@PostingEntry;
 
-		INSERT INTO 
-			@CopyItem
-		SELECT 
-			item.[ISOContent],
-			item.[ICNContent],
-			item.[ItemID],
-			item.[SourceSKID],
-			item. [TsetID],
-			item.[OperationType],
-			item.[NodeType],
-			item.[InternalMessageType],
-			item.[State],
-			item.[StateRevision],
-			item.[Window2BusinessDate]        		             
-		FROM 
-			@Item item
-		INNER JOIN 
-			@postingEntryState pstState
-		ON 
-			item.ItemID = pstState.ItemID
+					--Inserting Records in @CopyItem From Input Item andPostingEntryState table
+					DECLARE @CopyItem [Base].[udt_Item];
 
-		-- Get TransactionSetId for all the items from the Item table
-		UPDATE 
-			@CopyItem
-		SET 
-			TsetID = itemState.TsetID,
-			Window2BusinessDate = itemState.Window2BusinessDate
-		FROM 
-			@CopyItem copyItem
-		LEFT JOIN 
-			[Base].ItemState itemState
-		ON 
-			itemState.ItemID = copyItem.ItemID
+					INSERT INTO
+						@CopyItem
+					SELECT
+						item.[ISOContent],
+						item.[ICNContent],
+						item.[ItemID],
+						item.[SourceSKID],
+						item.[TsetID],
+						item.[OperationType],
+						item.[NodeType],
+						item.[InternalMessageType],
+						item.[State],
+						item.[StateRevision],
+						item.[Window2BusinessDate]
+					FROM
+						@Item				AS item
+					INNER JOIN
+						@postingEntryState	AS pstState
+					ON
+						item.ItemID = pstState.ItemID;
 
-		--------
-		DECLARE @CopyPostingEntity [Base].[udt_PostingEntry]
+					-- Get TransactionSetId for all the items from the Item table
+					UPDATE
+						@CopyItem
+					SET
+					TsetID	= itemState.TsetID,
+						Window2BusinessDate = itemState.Window2BusinessDate
+					FROM
+						@CopyItem			AS copyItem
+					LEFT JOIN
+						[Base].ItemState	AS itemState
+					ON
+						itemState.ItemID = copyItem.ItemID;
 
-		INSERT INTO @CopyPostingEntity
-			(
-				[PostingEntryID]
-				,[ItemID]
-				,[SourceSKID]
-				,[MessageType]
-				,[Amount]
-				,[State]
-				,[ICNContent]
-				,[OperationType]
-				,[SortCode]
-				,[AccountNumber]
-			)
-		SELECT  
-			[PostingEntryID]
-			,[ItemID]
-			,[SourceSKID]
-			,[MessageType]
-			,[Amount]
-			,[State]
-			,[ICNContent]
-			,[OperationType]
-			,[SortCode]
-			,[AccountNumber] 	
-		FROM 
-			#PostingEntry
+					--------
+					DECLARE @CopyPostingEntity [Base].[udt_PostingEntry];
 
-	   ------ Get the Operation and Posting Entry in PostingEntryState table
-		DECLARE @CopyPostingEntryState [Base].[udt_PostingEntryState]
-		DECLARE @CopyPostingEntryStateDebit [Base].[udt_PostingEntryState]
-		DECLARE @CopyPostingEntryStateCredit [Base].[udt_PostingEntryState]
-		DECLARE @CopyPostingEntryStateFinal [Base].[udt_PostingEntryState]
+					INSERT INTO
+						@CopyPostingEntity
+						(
+							[PostingEntryID],
+							[ItemID],
+							[SourceSKID],
+							[MessageType],
+							[Amount],
+							[State],
+							[ICNContent],
+							[OperationType],
+							[SortCode],
+							[AccountNumber]
+						)
+					SELECT
+						[PostingEntryID],
+						[ItemID],
+						[SourceSKID],
+						[MessageType],
+						[Amount],
+						[State],
+						[ICNContent],
+						[OperationType],
+						[SortCode],
+						[AccountNumber]
+					FROM
+						#PostingEntry;
 
-		INSERT INTO @CopyPostingEntryState
-		(
-			[ItemID], 
-			[TsetID],
-			[InternalMessageType],
-			[PostingState] ,
-			[OperationType],
-			[PostingSourceDateTime],
-			[ClearingState],
-			[Window1BusinessDate],
-			[Window2BusinessDate],
-			[PostingDirtyFlag],
-			[RowId],
-			[PostingEntryStateSKID]
-		)
-		SELECT 
-			pp.[ItemID],
-			itmState.TsetID,
-			pp.[InternalMessageType], 
-			pp.[PostingState] ,
-			pp.[OperationType],
-			pp.[PostingSourceDateTime],
-			pst.ClearingState,
-			pst.Window1BusinessDate,
-			pst.Window2BusinessDate,
-			pst.PostingDirtyFlag,
-			ROW_NUMBER() OVER(ORDER BY (SELECT 0)) AS 'RowId',
-			pst.[PostingEntryStateSKID]
-		FROM
-			@postingEntryState pp
-		INNER JOIN 
-			[Base].PostingEntryState pst
-		ON 
-			pp.ItemID = pst.ItemID 
-		INNER JOIN 
-			[Base].ItemState itmState
-		ON
-			itmState.ItemID = pst.ItemID
-		WHERE 
-			(
-				EXISTS	(
-							SELECT 
-								1 
-							FROM 
-								#configPTMATrigger 
-							WHERE 
+					------ Get the Operation and Posting Entry in PostingEntryState table
+					DECLARE @CopyPostingEntryState [Base].[udt_PostingEntryState];
+					DECLARE @CopyPostingEntryStateDebit [Base].[udt_PostingEntryState];
+					DECLARE @CopyPostingEntryStateCredit [Base].[udt_PostingEntryState];
+					DECLARE @CopyPostingEntryStateFinal [Base].[udt_PostingEntryState];
+
+					INSERT INTO
+						@CopyPostingEntryState
+						(
+							[ItemID],
+							[TsetID],
+							[InternalMessageType],
+							[PostingState],
+							[OperationType],
+							[PostingSourceDateTime],
+							[ClearingState],
+							[Window1BusinessDate],
+							[Window2BusinessDate],
+							[PostingDirtyFlag],
+							[RowId],
+							[PostingEntryStateSKID]
+						)
+					SELECT
+						pp	.[ItemID],
+						itmState.TsetID,
+						pp.[InternalMessageType],
+						pp.[PostingState],
+						pp.[OperationType],
+						pp.[PostingSourceDateTime],
+						pst.ClearingState,
+						pst.Window1BusinessDate,
+						pst.Window2BusinessDate,
+						pst.PostingDirtyFlag,
+						ROW_NUMBER() OVER (ORDER BY
+											(
+												SELECT
+													0
+											)
+										) AS RowId,
+						pst.[PostingEntryStateSKID]
+					FROM
+						@postingEntryState			AS pp
+					INNER JOIN
+						[Base].PostingEntryState	AS pst
+					ON
+						pp.ItemID = pst.ItemID
+					INNER JOIN
+						[Base].ItemState			AS itmState
+					ON
+						itmState.ItemID = pst.ItemID
+					WHERE
+						(
+							EXISTS
+						(
+							SELECT
+								1
+							FROM
+								#configPTMATrigger
+							WHERE
 								PostingItemState = pst.PostingState
 						)
-			AND
-				pst.SourceID IN	(
-									SELECT 
-										SourceID 
-									FROM 
-										@Source 
-									WHERE 
+					AND		pst.SourceID IN
+								(
+									SELECT
+										SourceID
+									FROM
+										@Source
+									WHERE
 										OperationType = 1
 								)
-			)
-		OR 
-			pst.PostingState = @configPERMAggregateState -- Todo Check later how aggregation will impact parallel trigerring
+						)
+					OR	pst.PostingState = @configPERMAggregateState;	-- Todo Check later how aggregation will impact parallel trigerring
 
-		UPDATE 
-			@CopyPostingEntryState 
-		SET 
-			SourceID =	(
-							SELECT 
-								SourceID 
-							FROM 
-								@Source 
-							WHERE 
-								MessageType ='PERM01'
-						)	
+					UPDATE
+						@CopyPostingEntryState
+					SET
+					SourceID	=
+							(
+								SELECT
+									SourceID
+								FROM
+									@Source
+								WHERE
+									MessageType = 'PERM01'
+							);
 
-		IF EXISTS	(
-						SELECT
-							*
-						FROM
-							@CopyPostingEntryState
-						WHERE
-							PostingState IN (@configPTMARetrigger,@configPERMFailure,@configPERMNoExtract, @configPERMAggregateState)
-						AND 
-							PostingEntryID IS NULL
-			  )
-		BEGIN
-			INSERT INTO 
-				@CopyPostingEntryStateFinal
-					(
-						[SourceID],
-						[ItemID], 
-						[TsetID],
-						[InternalMessageType],
-						[PostingEntryID],
-						[ClearingState],
-						[PostingState] ,
-						[OperationType],
-						[PostingSourceDateTime],
-						[Window1BusinessDate],
-						[Window2BusinessDate],
-						[PostingDirtyFlag],
-						[RowId],
-						[PostingEntryStateSKID]
-					)
-			SELECT 
-				copyState.SourceID,
-				copyState.ItemID,
-				copyState.TsetID,
-				copyState.InternalMessageType,
-				copyState.PostingEntryID,
-				copyState.ClearingState,
-				copyState.PostingState,
-				copyState.OperationType,
-				copyState.PostingSourceDateTime,
-				copyState.Window1BusinessDate,
-				copyState.Window2BusinessDate,
-				copyState.PostingDirtyFlag,
-				ROW_NUMBER() OVER(ORDER BY (SELECT 0)) AS 'RowId',
-				copyState.PostingEntryStateSKID
-			FROM
-				@CopyPostingEntryState copyState
-			WHERE 
-				PostingState IN (@configPTMARetrigger,@configPERMFailure,@configPERMNoExtract, @configPERMAggregateState)
-			AND 
-				PostingEntryID IS NULL
+					IF EXISTS
+						(
+							SELECT
+								*
+							FROM
+								@CopyPostingEntryState
+							WHERE
+								PostingState IN ( @configPTMARetrigger,
+													@configPERMFailure,
+													@configPERMNoExtract,
+													@configPERMAggregateState
+												)
+							AND PostingEntryID IS NULL
+						)
+						BEGIN
+							INSERT	INTO
+								@CopyPostingEntryStateFinal
+								(
+									[SourceID],
+									[ItemID],
+									[TsetID],
+									[InternalMessageType],
+									[PostingEntryID],
+									[ClearingState],
+									[PostingState],
+									[OperationType],
+									[PostingSourceDateTime],
+									[Window1BusinessDate],
+									[Window2BusinessDate],
+									[PostingDirtyFlag],
+									[RowId],
+									[PostingEntryStateSKID]
+								)
+							SELECT
+								copyState.SourceID,
+								copyState.ItemID,
+								copyState.TsetID,
+								copyState.InternalMessageType,
+								copyState.PostingEntryID,
+								copyState.ClearingState,
+								copyState.PostingState,
+								copyState.OperationType,
+								copyState.PostingSourceDateTime,
+								copyState.Window1BusinessDate,
+								copyState.Window2BusinessDate,
+								copyState.PostingDirtyFlag,
+								ROW_NUMBER() OVER (ORDER BY
+													(
+														SELECT
+															0
+													)
+												) AS RowId,
+								copyState.PostingEntryStateSKID
+							FROM
+								@CopyPostingEntryState AS copyState
+							WHERE
+								PostingState IN ( @configPTMARetrigger,
+													@configPERMFailure,
+													@configPERMNoExtract,
+													@configPERMAggregateState
+												)
+							AND PostingEntryID IS NULL;
 
-		END
+						END;
 
-		-- Get the final count in the credit items table variable.
-		DECLARE @EntryStateFinalCount INT = @@ROWCOUNT
+					-- Get the final count in the credit items table variable.
+					DECLARE @EntryStateFinalCount INT = @@ROWCOUNT;
 
-		--Added Join on ItemState and Gender so that only Debit Items are selected
-		SELECT 
-			ROW_NUMBER() OVER (PARTITION BY copyPst.ItemID ORDER BY (SELECT 0)) AS 'SNo',
-			copyPst.ItemID,
-			pst.PostingEntryID
-		INTO
-			#Temp
-		FROM 
-			#PostingEntry pst
-		INNER JOIN 
-			@CopyPostingEntryState copyPst
-		ON 
-			copyPst.ItemID = pst.SubPostingEntryID
-		INNER JOIN 
-			Base.ItemState ist
-		ON 
-			ist.ItemID = copyPst.ItemID
-		WHERE 
-			ist.Gender=1
+					--Added Join on ItemState and Gender so that only Debit Items are selected
+					SELECT
+						ROW_NUMBER	() OVER (PARTITION BY
+											copyPst.ItemID
+											ORDER BY
+											(
+												SELECT
+													0
+											)
+										) AS SNo,
+						copyPst.ItemID,
+						[pst].[PostingEntryID]
+					INTO
+						#Temp
+					FROM
+						#PostingEntry			AS pst
+					INNER JOIN
+						@CopyPostingEntryState	AS copyPst
+					ON
+						copyPst.ItemID = [pst].[SubPostingEntryID]
+					INNER JOIN
+						Base.ItemState			AS ist
+					ON
+						ist.ItemID = copyPst.ItemID
+					WHERE
+						ist.Gender = 1;
 
-		CREATE CLUSTERED INDEX ci_ItemID ON #Temp(ItemID)
+					CREATE CLUSTERED INDEX ci_ItemID
+					ON #Temp (ItemID);
 
-		INSERT INTO 
-			@CopyPostingEntryStateDebit
-			(
-				[SourceID],
-				[ItemID], 
-				[TsetID],
-				[InternalMessageType],
-				[PostingEntryID],
-				[ClearingState],
-				[PostingState] ,
-				[OperationType],
-				[PostingSourceDateTime],
-				[Window1BusinessDate],
-				[Window2BusinessDate],
-				[PostingDirtyFlag],
-				[RowId],
-				[PostingEntryStateSKID]
-			)
-		SELECT 
-			copyState.SourceID,
-			copyState.ItemID,
-			copyState.TsetID,
-			copyState.InternalMessageType,
-			tem.PostingEntryID,
-			copyState.ClearingState,
-			copyState.PostingState,
-			copyState.OperationType,
-			copyState.PostingSourceDateTime,
-			copyState.Window1BusinessDate,
-			copyState.Window2BusinessDate,
-			copyState.PostingDirtyFlag,
-			ROW_NUMBER() OVER(ORDER BY (SELECT 0)) AS 'RowId',
-			copyState.PostingEntryStateSKID
-		FROM
-			@CopyPostingEntryState copyState
-		INNER JOIN 
-			#Temp tem
-		ON 
-			copyState.ItemID = tem.ItemID
+					INSERT INTO
+						@CopyPostingEntryStateDebit
+						(
+							[SourceID],
+							[ItemID],
+							[TsetID],
+							[InternalMessageType],
+							[PostingEntryID],
+							[ClearingState],
+							[PostingState],
+							[OperationType],
+							[PostingSourceDateTime],
+							[Window1BusinessDate],
+							[Window2BusinessDate],
+							[PostingDirtyFlag],
+							[RowId],
+							[PostingEntryStateSKID]
+						)
+					SELECT
+						copyState.SourceID,
+						copyState.ItemID,
+						copyState.TsetID,
+						copyState.InternalMessageType,
+						[tem].[PostingEntryID],
+						copyState.ClearingState,
+						copyState.PostingState,
+						copyState.OperationType,
+						copyState.PostingSourceDateTime,
+						copyState.Window1BusinessDate,
+						copyState.Window2BusinessDate,
+						copyState.PostingDirtyFlag,
+						ROW_NUMBER() OVER (ORDER BY
+											(
+												SELECT
+													0
+											)
+										) AS RowId,
+						copyState.PostingEntryStateSKID
+					FROM
+						@CopyPostingEntryState	AS copyState
+					INNER JOIN
+						#Temp					AS tem
+					ON
+						copyState.ItemID = [tem].[ItemID];
 
-		--Updated the condition to select the Items where we get Extracts for Credit Items. 
-		SELECT 
-			ROW_NUMBER() OVER (PARTITION BY copyPst.ItemID ORDER BY (SELECT 0)) AS 'SNo',
-			copyPst.ItemID,
-			pst.PostingEntryID
-		INTO
-			#TA
-		FROM 
-			#PostingEntry pst
-		INNER JOIN 
-			Base.ItemState ist
-		ON 
-			ist.ItemID = pst.SubPostingEntryID
-		INNER JOIN 
-			@CopyPostingEntryState copyPst
-		ON 
-			copyPst.ItemID = ist.ItemID
-		WHERE 
-			ist.Gender=0
-		AND 
-			EXISTS	(
-						SELECT 
-							1 
-						FROM 
-							#PostingEntry 
-						WHERE 
-							SubPostingEntryID = copyPst.ItemID
-					)
+					--Updated the condition to select the Items where we get Extracts for Credit Items. 
+					SELECT
+						ROW_NUMBER	() OVER (PARTITION BY
+											copyPst.ItemID
+											ORDER BY
+											(
+												SELECT
+													0
+											)
+										) AS SNo,
+						copyPst.ItemID,
+						[pst].[PostingEntryID]
+					INTO
+						#TA
+					FROM
+						#PostingEntry			AS pst
+					INNER JOIN
+						Base.ItemState			AS ist
+					ON
+						ist.ItemID = [pst].[SubPostingEntryID]
+					INNER JOIN
+						@CopyPostingEntryState	AS copyPst
+					ON
+						copyPst.ItemID = ist.ItemID
+					WHERE
+						ist.Gender = 0
+					AND EXISTS
+						(
+							SELECT
+								1
+							FROM
+								#PostingEntry
+							WHERE
+								SubPostingEntryID = copyPst.ItemID
+						);
 
-		CREATE CLUSTERED INDEX ci_ItemID ON #TA(ItemID)
+					CREATE CLUSTERED INDEX ci_ItemID
+					ON #TA (ItemID);
 
-		INSERT INTO @CopyPostingEntryStateCredit
-		(
-			[SourceID],
-			[ItemID], 
-			[TsetID],
-			[InternalMessageType],
-			[PostingEntryID],
-			[ClearingState],
-			[PostingState] ,
-			[OperationType],
-			[PostingSourceDateTime],
-			[Window1BusinessDate],
-			[Window2BusinessDate],
-			[PostingDirtyFlag],
-			[RowId],
-			[PostingEntryStateSKID]
-		)
-		SELECT 
-			copyState.SourceID,
-			copyState.ItemID,
-			copyState.TsetID,
-			copyState.InternalMessageType,
-			tem.PostingEntryID,
-			copyState.ClearingState,
-			copyState.PostingState,
-			copyState.OperationType,
-			copyState.PostingSourceDateTime,
-			copyState.Window1BusinessDate,
-			copyState.Window2BusinessDate,
-			copyState.PostingDirtyFlag,
-			ROW_NUMBER() OVER(ORDER BY (SELECT 0)) AS 'RowId',
-			copyState.PostingEntryStateSKID
-		FROM 
-			@CopyPostingEntryState copyState
-		INNER JOIN 
-			#TA tem
-		ON 
-			copyState.ItemID = tem.ItemID
-			
-		-- Get the final count in the credit items table variable.
-		DECLARE @creditItemCount INT = @@ROWCOUNT
+					INSERT INTO
+						@CopyPostingEntryStateCredit
+						(
+							[SourceID],
+							[ItemID],
+							[TsetID],
+							[InternalMessageType],
+							[PostingEntryID],
+							[ClearingState],
+							[PostingState],
+							[OperationType],
+							[PostingSourceDateTime],
+							[Window1BusinessDate],
+							[Window2BusinessDate],
+							[PostingDirtyFlag],
+							[RowId],
+							[PostingEntryStateSKID]
+						)
+					SELECT
+						copyState.SourceID,
+						copyState.ItemID,
+						copyState.TsetID,
+						copyState.InternalMessageType,
+						[tem].[PostingEntryID],
+						copyState.ClearingState,
+						copyState.PostingState,
+						copyState.OperationType,
+						copyState.PostingSourceDateTime,
+						copyState.Window1BusinessDate,
+						copyState.Window2BusinessDate,
+						copyState.PostingDirtyFlag,
+						ROW_NUMBER() OVER (ORDER BY
+											(
+												SELECT
+													0
+											)
+										) AS RowId,
+						copyState.PostingEntryStateSKID
+					FROM
+						@CopyPostingEntryState	AS copyState
+					INNER JOIN
+						#TA						AS tem
+					ON
+						copyState.ItemID = [tem].[ItemID];
 
-		--Added new selection to select Credit Item Extracts against Debits ( for Single Debit Multi Credit scenario in Beneficiary)
-		SELECT 
-			ItemId, 
-			PostingEntryId ,
-			[State]
-		INTO
-			#TA2
-		FROM 
-			(
-				SELECT 
-					copyPst.ItemID,
-					pst.PostingEntryID,
-					pst.[State],
-					ROW_NUMBER() OVER (PARTITION BY (pst.PostingEntryID) ORDER BY (SELECT 0)) RowId
-				FROM 
-					#PostingEntry pst
-				INNER JOIN 
-					Base.ItemState ist
-				ON 
-					ist.ItemID = pst.SubPostingEntryID
-				INNER JOIN 
-					@CopyPostingEntryState copyPst
-				ON 
-					copyPst.TsetID = ist.TsetID
-				WHERE 
-					ist.Gender = 0
-			) rankedTable
-		WHERE 
-			RowId = 1
-			
-		CREATE CLUSTERED INDEX ci_ItemID ON #TA2(ItemID)
+					-- Get the final count in the credit items table variable.
+					DECLARE @creditItemCount INT = @@ROWCOUNT;
 
-		INSERT INTO 
-			@CopyPostingEntryStateCredit
-			(
-				[SourceID],
-				[ItemID], 
-				[TsetID],
-				[InternalMessageType],
-				[PostingEntryID],
-				[ClearingState],
-				[PostingState] ,
-				[OperationType],
-				[PostingSourceDateTime],
-				[Window1BusinessDate],
-				[Window2BusinessDate],
-				[PostingDirtyFlag],
-				[RowId],
-				[PostingEntryStateSKID]
-			)
-		SELECT 
-			copyState.SourceID,
-			copyState.ItemID,
-			copyState.TsetID,
-			copyState.InternalMessageType,
-			tem.PostingEntryID,
-			copyState.ClearingState,
-			tem.[State],
-			copyState.OperationType,
-			copyState.PostingSourceDateTime,
-			copyState.Window1BusinessDate,
-			copyState.Window2BusinessDate,
-			copyState.PostingDirtyFlag,
-			@creditItemCount + ROW_NUMBER() OVER(ORDER BY (SELECT 0)) AS 'RowId',
-			copyState.PostingEntryStateSKID
-		FROM 
-			@CopyPostingEntryState copyState
-		INNER JOIN 
-			#TA2 tem
-		ON 
-			copyState.ItemID = tem.ItemID
+					--Added new selection to select Credit Item Extracts against Debits ( for Single Debit Multi Credit scenario in Beneficiary)
+					SELECT
+						[rankedTable].[ItemID],
+						[rankedTable].[PostingEntryID],
+						[rankedTable].[State]
+					INTO
+						#TA2
+					FROM
+						(
+							SELECT
+								copyPst.ItemID,
+								[pst].[PostingEntryID],
+								[pst].[State],
+								ROW_NUMBER() OVER (PARTITION BY ([pst].[PostingEntryID])
+													ORDER BY
+													(
+														SELECT
+															0
+													)
+												) AS RowId
+							FROM
+								#PostingEntry			AS pst
+							INNER JOIN
+								Base.ItemState			AS ist
+							ON
+								ist.ItemID = [pst].[SubPostingEntryID]
+							INNER JOIN
+								@CopyPostingEntryState	AS copyPst
+							ON
+								copyPst.TsetID = ist.TsetID
+							WHERE
+								ist.Gender = 0
+						) AS rankedTable
+					WHERE
+						[rankedTable].[RowId] = 1;
 
-		INSERT INTO 
-			@CopyPostingEntryStateFinal
-		(
-			[SourceID],
-			[ItemID], 
-			[TsetID],
-			[InternalMessageType],
-			[PostingEntryID],
-			[ClearingState],
-			[PostingState] ,
-			[OperationType],
-			[PostingSourceDateTime],
-			[Window1BusinessDate],
-			[Window2BusinessDate],
-			[PostingDirtyFlag],
-			[RowId],
-			[PostingEntryStateSKID]
-		)
-		SELECT 
-			copyStateFinal.SourceID,
-			copyStateFinal.ItemID,
-			copyStateFinal.TsetID,
-			copyStateFinal.InternalMessageType,
-			copyStateFinal.PostingEntryID,
-			copyStateFinal.ClearingState,
-			copyStateFinal.PostingState,
-			copyStateFinal.OperationType,
-			copyStateFinal.PostingSourceDateTime,
-			copyStateFinal.Window1BusinessDate,
-			copyStateFinal.Window2BusinessDate,
-			copyStateFinal.PostingDirtyFlag,
-			@EntryStateFinalCount + ROW_NUMBER() OVER(ORDER BY (SELECT 0)) AS 'RowId',
-			copyStateFinal.PostingEntryStateSKID
-		FROM 
-			(
-				SELECT DISTINCT
-					copyStateDebit.SourceID,
-					copyStateDebit.ItemID,
-					copyStateDebit.TsetID,
-					copyStateDebit.InternalMessageType,
-					copyStateDebit.PostingEntryID,
-					copyStateDebit.ClearingState,
-					copyStateDebit.PostingState,
-					copyStateDebit.OperationType,
-					copyStateDebit.PostingSourceDateTime,
-					copyStateDebit.Window1BusinessDate,
-					copyStateDebit.Window2BusinessDate,
-					copyStateDebit.PostingDirtyFlag,
-					copyStateDebit.PostingEntryStateSKID
-					@CopyPostingEntryStateDebit copyStateDebit
-				FROM 
-				INNER JOIN 
-					[Base].PostingEntryState postState
-				ON 
-					copyStateDebit.ItemID = postState.ItemID
-				UNION ALL
-					SELECT DISTINCT
-						copyStateCredit.SourceID,
-						copyStateCredit.ItemID,
-						copyStateCredit.TsetID,
-						copyStateCredit.InternalMessageType,
-						copyStateCredit.PostingEntryID,
-						copyStateCredit.ClearingState,
-						copyStateCredit.PostingState,
-						copyStateCredit.OperationType,
-						copyStateCredit.PostingSourceDateTime,
-						copyStateCredit.Window1BusinessDate,
-						copyStateCredit.Window2BusinessDate,
-						copyStateCredit.PostingDirtyFlag,
-						copyStateCredit.PostingEntryStateSKID
-					FROM 
-						@CopyPostingEntryStateCredit copyStateCredit
-					INNER JOIN 
-						[Base].PostingEntryState postState
-					ON 
-						copyStateCredit.ItemID = postState.ItemID
-			) copyStateFinal
+					CREATE CLUSTERED INDEX ci_ItemID
+					ON #TA2 (ItemID);
 
-		;WITH CTE AS
-		(		
-		
-			SELECT 
-				ROW_NUMBER () OVER(PARTITION BY CP.ItemID ORDER BY (SELECT 0)) AS RowNum,
-				CP.OperationType
-			FROM 
-				@CopyPostingEntryStateFinal cp
-		)
-		UPDATE 
-			CTE 
-		SET 
-			OperationType =0
-		WHERE 
-			RowNum >1
+					INSERT INTO
+						@CopyPostingEntryStateCredit
+						(
+							[SourceID],
+							[ItemID],
+							[TsetID],
+							[InternalMessageType],
+							[PostingEntryID],
+							[ClearingState],
+							[PostingState],
+							[OperationType],
+							[PostingSourceDateTime],
+							[Window1BusinessDate],
+							[Window2BusinessDate],
+							[PostingDirtyFlag],
+							[RowId],
+							[PostingEntryStateSKID]
+						)
+					SELECT
+						copyState.SourceID,
+						copyState.ItemID,
+						copyState.TsetID,
+						copyState.InternalMessageType,
+						[tem].[PostingEntryID],
+						copyState.ClearingState,
+						[tem].[State],
+						copyState.OperationType,
+						copyState.PostingSourceDateTime,
+						copyState.Window1BusinessDate,
+						copyState.Window2BusinessDate,
+						copyState.PostingDirtyFlag,
+						@creditItemCount + ROW_NUMBER() OVER (ORDER BY
+																(
+																	SELECT
+																		0
+																)
+															) AS RowId,
+						copyState.PostingEntryStateSKID
+					FROM
+						@CopyPostingEntryState	AS copyState
+					INNER JOIN
+						#TA2					AS tem
+					ON
+						copyState.ItemID = [tem].[ItemID];
 
-		BEGIN TRANSACTION
+					INSERT INTO
+						@CopyPostingEntryStateFinal
+						(
+							[SourceID],
+							[ItemID],
+							[TsetID],
+							[InternalMessageType],
+							[PostingEntryID],
+							[ClearingState],
+							[PostingState],
+							[OperationType],
+							[PostingSourceDateTime],
+							[Window1BusinessDate],
+							[Window2BusinessDate],
+							[PostingDirtyFlag],
+							[RowId],
+							[PostingEntryStateSKID]
+						)
+					SELECT
+						copyStateFinal	.SourceID,
+						copyStateFinal.ItemID,
+						copyStateFinal.TsetID,
+						copyStateFinal.InternalMessageType,
+						copyStateFinal.PostingEntryID,
+						copyStateFinal.ClearingState,
+						copyStateFinal.PostingState,
+						copyStateFinal.OperationType,
+						copyStateFinal.PostingSourceDateTime,
+						copyStateFinal.Window1BusinessDate,
+						copyStateFinal.Window2BusinessDate,
+						copyStateFinal.PostingDirtyFlag,
+						@EntryStateFinalCount + ROW_NUMBER() OVER (ORDER BY
+																	(
+																		SELECT
+																			0
+																	)
+																) AS RowId,
+						copyStateFinal.PostingEntryStateSKID
+					FROM
+						(
+							SELECT	DISTINCT
+									copyStateDebit.SourceID,
+									copyStateDebit.ItemID,
+									copyStateDebit.TsetID,
+									copyStateDebit.InternalMessageType,
+									copyStateDebit.PostingEntryID,
+									copyStateDebit.ClearingState,
+									copyStateDebit.PostingState,
+									copyStateDebit.OperationType,
+									copyStateDebit.PostingSourceDateTime,
+									copyStateDebit.Window1BusinessDate,
+									copyStateDebit.Window2BusinessDate,
+									copyStateDebit.PostingDirtyFlag,
+									copyStateDebit.PostingEntryStateSKID
+							FROM
+									@CopyPostingEntryStateDebit AS copyStateDebit
+							INNER JOIN
+									[Base]	.PostingEntryState	AS postState
+							ON
+								copyStateDebit.ItemID = postState.ItemID
+							UNION ALL
+							SELECT	DISTINCT
+									copyStateCredit.SourceID,
+									copyStateCredit.ItemID,
+									copyStateCredit.TsetID,
+									copyStateCredit.InternalMessageType,
+									copyStateCredit.PostingEntryID,
+									copyStateCredit.ClearingState,
+									copyStateCredit.PostingState,
+									copyStateCredit.OperationType,
+									copyStateCredit.PostingSourceDateTime,
+									copyStateCredit.Window1BusinessDate,
+									copyStateCredit.Window2BusinessDate,
+									copyStateCredit.PostingDirtyFlag,
+									copyStateCredit.PostingEntryStateSKID
+							FROM
+									@CopyPostingEntryStateCredit	AS copyStateCredit
+							INNER JOIN
+									[Base]	.PostingEntryState		AS postState
+							ON
+								copyStateCredit.ItemID = postState.ItemID
+						) AS copyStateFinal;
+					WITH
+						CTE
+					AS
+						(
+							SELECT
+								ROW_NUMBER	() OVER (PARTITION BY
+													cp.ItemID
+													ORDER BY
+													(
+														SELECT
+															0
+													)
+												) AS RowNum,
+								cp.OperationType
+							FROM
+								@CopyPostingEntryStateFinal AS cp
+						)
+					UPDATE
+						CTE
+					SET
+					OperationType	= 0
+					WHERE
+						[CTE].[RowNum] > 1;
 
-			--Upsert data into Source table
-			EXEC [Base].[usp_Fwk_UpsertSource] 
-				@Source
-				,@ActivityId
-				,@sourceSkId OUTPUT
+					BEGIN TRANSACTION;
 
-			UPDATE 
-				@CopyItem
-			SET 
-				SourceSKID = @sourceSkId
+					--Upsert data into Source table
+					EXEC [Base].[usp_Fwk_UpsertSource]
+						@Source,
+						@ActivityId,
+						@sourceSkId OUTPUT;
 
-			EXEC [Base].[usp_Fwk_UpsertItem] 
-				@CopyItem
-				,@ActivityId
+					UPDATE
+						@CopyItem
+					SET
+					SourceSKID	= @sourceSkId;
 
-			UPDATE 
-				@CopyPostingEntity
-			SET 
-				SourceSKID = @sourceSkId
+					EXEC [Base].[usp_Fwk_UpsertItem]
+						@CopyItem,
+						@ActivityId;
 
-			EXEC [Base].[usp_Fwk_UpsertPostingEntry] 
-				@CopyPostingEntity
-				,@ActivityId
+					UPDATE
+						@CopyPostingEntity
+					SET
+					SourceSKID	= @sourceSkId;
 
-			--Update SourceTracker to processed
-			EXEC [Base].[usp_Fwk_UpdateSourceTracker] 
-				@ActivityId = @ActivityId
-				,@Processed=1
-				,@SourceSkid = @sourceSkId
+					EXEC [Base].[usp_Fwk_UpsertPostingEntry]
+						@CopyPostingEntity,
+						@ActivityId;
 
-			EXEC [Base].[usp_Fwk_UpsertPostingEntryState] 
-				@CopyPostingEntryStateFinal
-				,@ActivityId
-					
-		COMMIT TRANSACTION;	
-	END
-END TRY
+					--Update SourceTracker to processed
+					EXEC [Base].[usp_Fwk_UpdateSourceTracker]
+						@ActivityId = @ActivityId,
+						@Processed = 1,
+						@SourceSkid = @sourceSkId;
 
-BEGIN CATCH
-	DECLARE @ErrorMessage NVARCHAR(4000);
-	DECLARE @ErrorSeverity INT;
-	DECLARE @ErrorState INT;
-	DECLARE @ErrorLine INT;
+					EXEC [Base].[usp_Fwk_UpsertPostingEntryState]
+						@CopyPostingEntryStateFinal,
+						@ActivityId;
 
-	SELECT 		
-		@ErrorSeverity = ERROR_SEVERITY(),
-		@ErrorState = ERROR_STATE(),
-		@ErrorLine = ERROR_LINE(),
-		@ErrorMessage = ERROR_MESSAGE();
-	
-	--If transaction fails, roll back insert			
-	IF XACT_STATE() <> 0
-		ROLLBACK TRANSACTION;
-	EXEC [Logging].[usp_LogError] NULL,@ActivityId;
-	RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState, @ErrorLine);
+					COMMIT TRANSACTION;
+				END;
+		END TRY
+		BEGIN CATCH
+			DECLARE @ErrorMessage NVARCHAR(4000);
+			DECLARE @ErrorSeverity INT;
+			DECLARE @ErrorState INT;
+			DECLARE @ErrorLine INT;
 
-END CATCH
-    --deleting the temp table
-	IF OBJECT_ID('tempdb..#PostingEntry') IS NOT NULL
-	          DROP TABLE #PostingEntry
+			SELECT
+				@ErrorSeverity	= ERROR_SEVERITY(),
+				@ErrorState		= ERROR_STATE(),
+				@ErrorLine		= ERROR_LINE(),
+				@ErrorMessage	= ERROR_MESSAGE();
 
-SET NOCOUNT OFF;
-END
+			--If transaction fails, roll back insert			
+			IF XACT_STATE() <> 0
+				ROLLBACK TRANSACTION;
+			EXEC [Logging].[usp_LogError]
+				NULL,
+				@ActivityId;
+			RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState, @ErrorLine);
+
+		END CATCH;
+		--deleting the temp table
+		IF OBJECT_ID('tempdb..#PostingEntry') IS NOT NULL
+			DROP TABLE #PostingEntry;
+
+		SET NOCOUNT OFF;
+	END;
 GO
 
-EXEC [sys].[sp_addextendedproperty] @name = N'Component',
-    @value = N'iPSL.ICS.MO.DB',
-    @level0type = N'SCHEMA', @level0name = N'Base', @level1type = N'PROCEDURE',
-    @level1name = N'usp_Fwk_WriteDataForPostingsExtract';
+EXEC [sys].[sp_addextendedproperty]
+	@name = N'Component',
+	@value = N'iPSL.ICS.MO.DB',
+	@level0type = N'SCHEMA',
+	@level0name = N'Base',
+	@level1type = N'PROCEDURE',
+	@level1name = N'usp_Fwk_WriteDataForPostingsExtract';
 GO
 
-EXEC [sys].[sp_addextendedproperty] @name = N'MS_Description',
-    @value = N'Stored Procedure to save data into the MO database',
-    @level0type = N'SCHEMA', @level0name = N'Base', @level1type = N'PROCEDURE',
-    @level1name = N'usp_Fwk_WriteDataForPostingsExtract';
+EXEC [sys].[sp_addextendedproperty]
+	@name = N'MS_Description',
+	@value = N'Stored Procedure to save data into the MO database',
+	@level0type = N'SCHEMA',
+	@level0name = N'Base',
+	@level1type = N'PROCEDURE',
+	@level1name = N'usp_Fwk_WriteDataForPostingsExtract';
 GO
 
-EXEC [sys].[sp_addextendedproperty] @name = N'Version', @value = [$(Version)],
-   @level0type = N'SCHEMA', @level0name = N'Base', @level1type = N'PROCEDURE',
-    @level1name = N'usp_Fwk_WriteDataForPostingsExtract';
+EXEC [sys].[sp_addextendedproperty]
+	@name = N'Version',
+	@value = [$(Version)],
+	@level0type = N'SCHEMA',
+	@level0name = N'Base',
+	@level1type = N'PROCEDURE',
+	@level1name = N'usp_Fwk_WriteDataForPostingsExtract';
 GO
 
-GRANT EXECUTE ON OBJECT:: [Base].[usp_Fwk_WriteDataForPostingsExtract] TO [WebRole]
-AS [dbo]
+GRANT
+	EXECUTE
+ON OBJECT::[Base].[usp_Fwk_WriteDataForPostingsExtract]
+TO
+	[WebRole]
+AS [dbo];
 GO

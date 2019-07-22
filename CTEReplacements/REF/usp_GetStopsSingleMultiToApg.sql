@@ -32,166 +32,203 @@
 ******************************************************************************************************/
 CREATE PROCEDURE [RefOut].[usp_GetStopsSingleMultiToApg]
 AS
-BEGIN
-	SET NOCOUNT ON;
-      
-	DECLARE @ErrorNumber INT;
-	DECLARE @ErrorMessage VARCHAR(4000);     
-	DECLARE @Severity INT;
-	DECLARE @State INT;
-	DECLARE @Procedure VARCHAR(128);
-	DECLARE @Line INT;
-	DECLARE @Tries INT = 1;
-	DECLARE @TriesVal INT;
-	DECLARE @BusinessDate DATETIME;
-	SET @TriesVal = (SELECT [Value] FROM Base.ConfigSettings WHERE [Name] = 'DeadLockRetry')
-	SET @BusinessDate = (SELECT [BusinessDate] FROM [Base].[BusinessDate])
-	
-	WHILE @Tries <= @TriesVal
 	BEGIN
+		SET NOCOUNT ON;
 
-		BEGIN TRY
-
-			SELECT 
-				StartSortCode
-				,StartAccountNumber
-				,IntStartChequeNumber
-				,EndSortCode
-				,EndAccountNumber
-				,IntEndChequeNumber
-				,ParticipantId
-				,StopStatus
-			INTO
-				#CTE
-			FROM
+		DECLARE @ErrorNumber INT;
+		DECLARE @ErrorMessage VARCHAR(4000);
+		DECLARE @Severity INT;
+		DECLARE @State INT;
+		DECLARE @Procedure VARCHAR(128);
+		DECLARE @Line INT;
+		DECLARE @Tries INT = 1;
+		DECLARE @TriesVal INT;
+		DECLARE @BusinessDate DATETIME;
+		SET @TriesVal =
 			(
-				SELECT 
-					RIGHT('000000'   + [SD].[SortCode] ,6)StartSortCode
-					,RIGHT('00000000' + [SD].[AccountNumber],8) StartAccountNumber
-					,[StartChequeNumber] AS IntStartChequeNumber
-					,RIGHT('000000' +   [SD].[SortCode],6) EndSortCode
-					,RIGHT('000000' +   [SD].[AccountNumber],8) EndAccountNumber
-					,CASE 
-						WHEN [EndChequeNumber] ='000000' 
-						THEN [StartChequeNumber] 
-						ELSE [EndChequeNumber]  
-					END AS IntEndChequeNumber
-					,[SD].ParticipantId
-					,CASE 
-						WHEN [SD].SortCode = ST.SortCode 
-						THEN 1 
-						ELSE 2 
-					END AS StopStatus
-				FROM 
-					[Base].[StopsDetail] SD
-				INNER JOIN 
-					[Base].[StopsHeader] SH 
-				ON 
-					[SD].[HeaderId]=[SH].[HeaderId]	
-				LEFT JOIN 
-					[Manual].LBGStopTypes ST 
-				ON 
-					ST.SortCode = RIGHT('000000' + CONVERT(VARCHAR(6), [SD].SortCode),6)
-				WHERE 
-					StopType IN ('S','M') 
-				AND 
-					(
-						[SH].[FileSource] = 'NCA' 
-					OR 
-						[SH].[FileSource] ='RCBS' 
-					OR 
-						[SH].[FileSource] = 'CS'
-					)
-				AND 
-					ISNUMERIC([StartChequeNumber]) = 1 
-				AND 
-					ISNUMERIC([EndChequeNumber]) = 1
+				SELECT
+					[Value]
+				FROM
+					Base.ConfigSettings
+				WHERE
+					[Name]	= 'DeadLockRetry'
+			);
+		SET @BusinessDate =
+			(
+				SELECT
+					[BusinessDate]
+				FROM
+					[Base].[BusinessDate]
+			);
 
-				UNION ALL
-
-					SELECT 
-						RIGHT('000000'   + [SD].[SortCode] ,6)StartSortCode
-						,RIGHT('00000000' + [SD].[AccountNumber],8) StartAccountNumber
-						,[StartChequeNumber] AS IntStartChequeNumber
-						,RIGHT('000000' +   [SD].[SortCode],6) EndSortCode
-						,RIGHT('000000' +   [SD].[AccountNumber],8) EndAccountNumber
-						,CASE WHEN [EndChequeNumber] ='000000' THEN [StartChequeNumber] ELSE [EndChequeNumber]  END AS IntEndChequeNumber
-						,[SD].ParticipantId
-						,CASE 
-							WHEN [SD].SortCode = ST.SortCode 
-							THEN 1 
-							ELSE 2 
-						END AS StopStatus
-					FROM 
-						[Base].[StopsDetail] SD
-					LEFT JOIN 
-						[Manual].LBGStopTypes ST 
-					ON 
-						ST.SortCode = RIGHT('000000' + CONVERT(VARCHAR(6), [SD].SortCode),6)
-					WHERE 
-						[SD].[HeaderId] IS NULL 
-					AND 
-						StopType IN ('S','M')
-					AND 
-						ISNUMERIC([StartChequeNumber]) = 1 
-					AND 
-						ISNUMERIC([EndChequeNumber]) = 1
-					AND 
-						[SD].[EffectiveFrom] <= @BusinessDate
-					AND 
-						[SD].[IsDeleted] = 0
-			) AS BaseData
-		
-
-			SELECT	   
-				StartSortCode
-				,StartAccountNumber
-				,IntStartChequeNumber
-				,EndSortCode
-				,EndAccountNumber
-				,IntEndChequeNumber
-				,ParticipantId
-				,StopStatus
-			FROM 
-				#CTE
-			ORDER BY   
-				StartSortCode
-				,StartAccountNumber
-				,IntStartChequeNumber
-			
-			OPTION (MAXRECURSION 0)
-			BREAK
-		END TRY
-		BEGIN CATCH				
-			IF(ERROR_NUMBER() =1205)
+		WHILE @Tries <= @TriesVal
 			BEGIN
-				SET @Tries = @Tries + 1
-				IF @Tries <= @TriesVal
-				CONTINUE	
-				ELSE 
-				THROW;
-			END
-			ELSE
-			SET @ErrorNumber = ERROR_NUMBER();
-			SET @ErrorMessage = ERROR_MESSAGE();		
-			SET @Severity = ERROR_SEVERITY();
-			SET @State = ERROR_STATE();
-			SET @Line = ERROR_LINE();
-			SET @Procedure = ERROR_PROCEDURE();
-			EXEC [Base].[usp_SqlErrorLog] @ErrorNumber,@Severity,@State, @Procedure,@Line,@ErrorMessage;
-			THROW;
-		END CATCH;
-	END
-END
+
+				BEGIN TRY
+
+					SELECT
+						[BaseData]	.[StartSortCode],
+						[BaseData].[StartAccountNumber],
+						IntStartChequeNumber,
+						[BaseData].[EndSortCode],
+						[BaseData].[EndAccountNumber],
+						[BaseData].[IntEndChequeNumber],
+						ParticipantId,
+						[BaseData].[StopStatus]
+					INTO
+						#CTE
+					FROM
+						(
+							SELECT
+								RIGHT('000000' + [SD].[SortCode], 6)		AS StartSortCode,
+								RIGHT('00000000' + [SD].[AccountNumber], 8) AS StartAccountNumber,
+								[StartChequeNumber]							AS IntStartChequeNumber,
+								RIGHT('000000' + [SD].[SortCode], 6)		AS EndSortCode,
+								RIGHT('000000' + [SD].[AccountNumber], 8) AS EndAccountNumber,
+								CASE
+									WHEN [EndChequeNumber] = '000000'
+									THEN [StartChequeNumber]
+									ELSE [EndChequeNumber]
+								END											AS IntEndChequeNumber,
+								[SD].ParticipantId,
+								CASE
+									WHEN [SD].SortCode = ST.SortCode
+									THEN 1
+									ELSE 2
+								END											AS StopStatus
+							FROM
+								[Base].[StopsDetail]	AS SD
+							INNER JOIN
+								[Base].[StopsHeader]	AS SH
+							ON
+								[SD].[HeaderId] = [SH].[HeaderId]
+							LEFT JOIN
+								[Manual].LBGStopTypes	AS ST
+							ON
+								ST.SortCode = RIGHT('000000' + CONVERT(VARCHAR(6), [SD].SortCode), 6)
+							WHERE
+								StopType IN ( 'S',
+												'M'
+											)
+							AND
+							(
+									[SH].[FileSource] = 'NCA'
+							OR		[SH].[FileSource] = 'RCBS'
+							OR		[SH].[FileSource] = 'CS'
+								)
+							AND ISNUMERIC([StartChequeNumber]) = 1
+							AND ISNUMERIC([EndChequeNumber]) = 1
+							UNION ALL
+							SELECT
+								RIGHT('000000' + [SD].[SortCode], 6)		AS StartSortCode,
+								RIGHT('00000000' + [SD].[AccountNumber], 8) AS StartAccountNumber,
+								[StartChequeNumber]							AS IntStartChequeNumber,
+								RIGHT('000000' + [SD].[SortCode], 6)		AS EndSortCode,
+								RIGHT('000000' + [SD].[AccountNumber], 8) AS EndAccountNumber,
+								CASE
+									WHEN [EndChequeNumber] = '000000'
+									THEN [StartChequeNumber]
+									ELSE [EndChequeNumber]
+								END											AS IntEndChequeNumber,
+								[SD].ParticipantId,
+								CASE
+									WHEN [SD].SortCode = ST.SortCode
+									THEN 1
+									ELSE 2
+								END											AS StopStatus
+							FROM
+								[Base].[StopsDetail]	AS SD
+							LEFT JOIN
+								[Manual].LBGStopTypes	AS ST
+							ON
+								ST.SortCode = RIGHT('000000' + CONVERT(VARCHAR(6), [SD].SortCode), 6)
+							WHERE
+								[SD].[HeaderId] IS NULL
+							AND StopType IN ( 'S',
+												'M'
+											)
+							AND ISNUMERIC([StartChequeNumber]) = 1
+							AND ISNUMERIC([EndChequeNumber]) = 1
+							AND [SD].[EffectiveFrom] <= @BusinessDate
+							AND [SD].[IsDeleted] = 0
+						) AS BaseData;
+
+
+					SELECT
+						StartSortCode,
+						StartAccountNumber,
+						IntStartChequeNumber,
+						EndSortCode,
+						EndAccountNumber,
+						IntEndChequeNumber,
+						ParticipantId,
+						StopStatus
+					FROM
+						#CTE
+					ORDER BY
+						StartSortCode,
+						StartAccountNumber,
+						IntStartChequeNumber
+					OPTION (MAXRECURSION 0);
+					BREAK;
+				END TRY
+				BEGIN CATCH
+					IF (ERROR_NUMBER() = 1205)
+						BEGIN
+							SET @Tries = @Tries + 1;
+							IF @Tries <= @TriesVal
+								CONTINUE;
+							ELSE
+								THROW;
+						END;
+					ELSE
+						SET @ErrorNumber = ERROR_NUMBER();
+					SET @ErrorMessage = ERROR_MESSAGE();
+					SET @Severity = ERROR_SEVERITY();
+					SET @State = ERROR_STATE();
+					SET @Line = ERROR_LINE();
+					SET @Procedure = ERROR_PROCEDURE();
+					EXEC [Base].[usp_SqlErrorLog]
+						@ErrorNumber,
+						@Severity,
+						@State,
+						@Procedure,
+						@Line,
+						@ErrorMessage;
+					THROW;
+				END CATCH;
+			END;
+	END;
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'Component ', @value=N'iPSL.ReferenceDataDB' , @level0type=N'SCHEMA',@level0name=N'RefOut', @level1type=N'PROCEDURE',@level1name=N'usp_GetStopsSingleMultiToApg'
+EXEC [sys].[sp_addextendedproperty]
+	@name = N'Component ',
+	@value = N'iPSL.ReferenceDataDB',
+	@level0type = N'SCHEMA',
+	@level0name = N'RefOut',
+	@level1type = N'PROCEDURE',
+	@level1name = N'usp_GetStopsSingleMultiToApg';
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description ', @value=N'This Stored Procedure will fetch the records from [Base].StopsDetail table.' , @level0type=N'SCHEMA',@level0name=N'RefOut', @level1type=N'PROCEDURE',@level1name=N'usp_GetStopsSingleMultiToApg'
+EXEC [sys].[sp_addextendedproperty]
+	@name = N'MS_Description ',
+	@value = N'This Stored Procedure will fetch the records from [Base].StopsDetail table.',
+	@level0type = N'SCHEMA',
+	@level0name = N'RefOut',
+	@level1type = N'PROCEDURE',
+	@level1name = N'usp_GetStopsSingleMultiToApg';
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'Version ', @value=N'$(Version)' , @level0type=N'SCHEMA',@level0name=N'RefOut', @level1type=N'PROCEDURE',@level1name=N'usp_GetStopsSingleMultiToApg'
+EXEC [sys].[sp_addextendedproperty]
+	@name = N'Version ',
+	@value = N'$(Version)',
+	@level0type = N'SCHEMA',
+	@level0name = N'RefOut',
+	@level1type = N'PROCEDURE',
+	@level1name = N'usp_GetStopsSingleMultiToApg';
 GO
-GRANT EXECUTE
-    ON OBJECT::[RefOut].[usp_GetStopsSingleMultiToApg] TO [Reference_Lloyds_Access];
+GRANT
+	EXECUTE
+ON OBJECT::[RefOut].[usp_GetStopsSingleMultiToApg]
+TO
+	[Reference_Lloyds_Access];
