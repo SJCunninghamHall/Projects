@@ -202,7 +202,7 @@ AS
 			FinalItemsOuter.UniqueItemIdentifier,
 			FinalItemsOuter.TransactionSetIdentifier,
 			FinalItemsOuter.CoreId								AS CoreId
-		INTO
+		INTO 
 			#FinalItms
 		FROM
 			#FinalItemsOuter						AS FinalItemsOuter WITH (SNAPSHOT)
