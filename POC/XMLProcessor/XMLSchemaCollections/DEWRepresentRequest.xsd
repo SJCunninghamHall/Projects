@@ -1,0 +1,54 @@
+﻿<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+  <xs:annotation>
+    <xs:appinfo>DEW Represent Request Schema</xs:appinfo>
+    <xs:documentation>
+      This Schema defines the structure of the request message that comes from the DEW
+    </xs:documentation>
+  </xs:annotation>
+  <!--Types--> 
+  <xs:simpleType name="IIC010Serial">
+    <xs:restriction base="xs:string">
+      <xs:pattern value ="\d{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IIC030SortCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value ="\d{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IIC040Account">
+    <xs:restriction base="xs:string">
+      <xs:pattern value ="\d{8}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IIC060Amount">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="17"/>
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>  
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Serial" type="IIC010Serial"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="SortCode" type="IIC030SortCode"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="Account" type="IIC040Account"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Amount" type="IIC060Amount"/>
+    </xs:sequence>
+  </xs:complexType>  
+  <xs:complexType name="Items">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="Item" type="Item" />
+    </xs:sequence>
+  </xs:complexType>  
+  <xs:complexType name="RepresentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Items" type="Items">
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>  
+  <!--Actual XML Schema body-->
+  <xs:element name="RepresentRequest" type="RepresentRequest"/>  
+</xs:schema>

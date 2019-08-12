@@ -1,0 +1,12 @@
+﻿CREATE TYPE [Base].[tv_RepairedItem_native] AS TABLE
+(
+	BkCdRprdInd VARCHAR(MAX)	NULL
+	,AcctNbRrdInd VARCHAR(MAX) NULL
+	,AmtRprdInd VARCHAR(MAX) NULL
+	,SrlNbRprdInd VARCHAR(MAX) NULL
+	,RefNbRprdInd VARCHAR(MAX) NULL
+	,Crditm_Id BIGINT null
+	,DbtItem_Id BIGINT NULL
+	INDEX [IX_DbtItem_Id] NONCLUSTERED HASH ([DbtItem_Id]) WITH (BUCKET_COUNT = 8) 
+)WITH(MEMORY_OPTIMIZED = ON);
+GO

@@ -1,0 +1,8 @@
+﻿CREATE TYPE [Base].[tv_CreditItemFraudData_Native] AS TABLE
+(
+	BenificiaryName VARCHAR(MAX) NULL	
+	,VrtlCreditInd VARCHAR(MAX)	 NULL
+	,RefData VARCHAR(MAX)		 NULL
+	,CrdItm_Id INT PRIMARY KEY NONCLUSTERED
+)WITH (MEMORY_OPTIMIZED = ON);
+GO

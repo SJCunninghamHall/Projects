@@ -1,0 +1,9 @@
+﻿CREATE TYPE [Base].[tv_ItemImageData_native] AS TABLE
+(
+	Img VARCHAR(MAX)			NULL
+	--,ImgHash VARBINARY(MAX)
+	,FrntImgQltyIndctnInd VARCHAR(MAX) NULL
+	,BckImgQltyIndctnInd VARCHAR(MAX) NULL
+	,DbtItem_Id BIGINT PRIMARY KEY NONCLUSTERED
+)WITH(MEMORY_OPTIMIZED = ON);
+GO
