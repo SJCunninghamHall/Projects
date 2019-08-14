@@ -21,6 +21,11 @@ CREATE NONCLUSTERED INDEX [FK_Application_Cities_StateProvinceID]
 
 
 GO
+CREATE NONCLUSTERED INDEX [FK_Application_Cities_StateProvinceID_SJC]
+    ON [Application].[Cities]([StateProvinceID] ASC, [LastEditedBy] ASC);
+
+
+GO
 EXECUTE sp_addextendedproperty @name = N'Description', @value = 'Auto-created to support a foreign key', @level0type = N'SCHEMA', @level0name = N'Application', @level1type = N'TABLE', @level1name = N'Cities', @level2type = N'INDEX', @level2name = N'FK_Application_Cities_StateProvinceID';
 
 

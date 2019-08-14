@@ -582,4 +582,7 @@
     <Build Include="Sequences\Sequences\PurchaseOrderID.sql" />
     <Build Include="Security\FilterCustomersBySalesTerritoryRole.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="WWImpWIP.publish.xml" />
+  </ItemGroup>
 </Project>
