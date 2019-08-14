@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFUT", "MFUT\MFUT.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCL", "MFCL\MFCL.csproj", "{165624D3-54A8-4A8F-BDD9-C0C422A15B2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSCL", "MSCL\MSCL.csproj", "{AB2E15A5-48CC-43F3-BD3E-8F78B182F6D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{165624D3-54A8-4A8F-BDD9-C0C422A15B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{165624D3-54A8-4A8F-BDD9-C0C422A15B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{165624D3-54A8-4A8F-BDD9-C0C422A15B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB2E15A5-48CC-43F3-BD3E-8F78B182F6D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB2E15A5-48CC-43F3-BD3E-8F78B182F6D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB2E15A5-48CC-43F3-BD3E-8F78B182F6D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB2E15A5-48CC-43F3-BD3E-8F78B182F6D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
