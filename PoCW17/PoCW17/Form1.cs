@@ -28,15 +28,50 @@ namespace PoCW17
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;
+            int fullN = list.Count;
+            int skip = 0;
+            int skipWords = 0;
 
+            List<List> listOfLists;
+            List<T> scratchList = new List<T>;
+
+            // Work the list from start to finish
             while (n > 1)
             {
                 n--;
-                int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
 
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
+                // Shall we bother?
+                if (fullN >= 4 && skipWords == 0)
+                {
+                    skip = ThreadSafeRandom.ThisThreadsRandom.Next(0, 10);
+
+                    if (skip == 5)
+                    {
+                        // Skip this many words
+                        skipWords = ThreadSafeRandom.ThisThreadsRandom.Next(2, fullN / 2);
+                    }
+                }
+
+                if (skipWords == 0)
+                {
+
+                    // Shuffle everything - works
+                    //int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
+
+                    //T value = list[k];
+                    //list[k] = list[n];
+                    //list[n] = value;
+                    // Shuffle everything - works
+
+                    scratchList.Add(list[n]);
+
+
+
+                }
+                else
+                {
+                    skipWords--;
+                }
             }
         }
     }
