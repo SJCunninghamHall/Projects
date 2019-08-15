@@ -41,6 +41,7 @@
             this.btnChop.TabIndex = 0;
             this.btnChop.Text = "&Chop";
             this.btnChop.UseVisualStyleBackColor = true;
+            this.btnChop.Click += new System.EventHandler(this.btnChop_Click);
             // 
             // txtOrig
             // 
