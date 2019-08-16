@@ -13,70 +13,6 @@ using System.Windows.Forms;
 namespace PoCW17
 {
 
-    public static class ThreadSafeRandom
-    {
-        [ThreadStatic] private static Random Local;
-
-        public static Random ThisThreadsRandom
-        {
-            get { return Local ?? (Local = new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId))); }
-        }
-    }
-
-    static class MyExtensions
-    {
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            int n = list.Count;
-            int fullN = list.Count;
-            int skip = 0;
-            int skipWords = 0;
-
-            List<List> listOfLists;
-            List<T> scratchList = new List<T>;
-
-            // Work the list from start to finish
-            while (n > 1)
-            {
-                n--;
-
-                // Shall we bother?
-                if (fullN >= 4 && skipWords == 0)
-                {
-                    skip = ThreadSafeRandom.ThisThreadsRandom.Next(0, 10);
-
-                    if (skip == 5)
-                    {
-                        // Skip this many words
-                        skipWords = ThreadSafeRandom.ThisThreadsRandom.Next(2, fullN / 2);
-                    }
-                }
-
-                if (skipWords == 0)
-                {
-
-                    // Shuffle everything - works
-                    //int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
-
-                    //T value = list[k];
-                    //list[k] = list[n];
-                    //list[n] = value;
-                    // Shuffle everything - works
-
-                    scratchList.Add(list[n]);
-
-
-
-                }
-                else
-                {
-                    skipWords--;
-                }
-            }
-        }
-    }
-
-
 
     public partial class Form1 : Form
     {
@@ -132,4 +68,107 @@ namespace PoCW17
 
         //}
     }
+
+
+
+
+    public static class ThreadSafeRandom
+    {
+        [ThreadStatic] private static Random Local;
+
+        public static Random ThisThreadsRandom
+        {
+            get { return Local ?? (Local = new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId))); }
+        }
+    }
+
+    static class MyExtensions
+    {
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            int n = list.Count;
+            int fullN = n;
+            int skip = 0;
+            int chunkProgress = 0;
+            int maxChunk;
+
+            // Work out the maximum number of words to keep together in the event of that decision being reached
+            if (fullN >= 2)
+            {
+                maxChunk = fullN / 2;
+            }
+            else
+            {
+                maxChunk = 1;
+            }
+
+            // Create storage for temp work lists and collection of those lists
+            List<List<T>> listOfLists = new List<List<T>>();
+            List<T> scratchList = new List<T>();
+
+            // Work the master list from start to finish
+            while (n > 1)
+            {
+                // n--;
+
+                // Shall we bother?
+                if (fullN >= 2 && chunkProgress == 0)
+                {
+                    skip = ThreadSafeRandom.ThisThreadsRandom.Next(0, 10); // Roll the dice - 1 in 10 chance of keeping more than one word together
+
+                    if (skip == 5)
+                    {
+                        // Skip this many words
+                        chunkProgress = ThreadSafeRandom.ThisThreadsRandom.Next(1, maxChunk);
+                    }
+                }
+
+                if (chunkProgress == 0)
+                {
+
+                    // Either a chunk pass has ended or never existed in the first place. Either way a new list
+                    // is required.
+
+                    // Shuffle everything - works
+                    //int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
+
+                    //T value = list[k];
+                    //list[k] = list[n];
+                    //list[n] = value;
+                    // Shuffle everything - works
+
+                    scratchList.Add(list[n]); // Add current word in the master list to its own list
+
+                    // Add this list to the list of lists
+                    listOfLists.Add(scratchList);
+
+                    // Clear the scratch list ready for the next 
+                }
+                else
+                {
+                    chunkProgress--;
+                }
+
+                // Move to next word in the master list
+                n--;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

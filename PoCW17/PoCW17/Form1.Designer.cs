@@ -51,6 +51,7 @@
             this.txtOrig.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtOrig.Size = new System.Drawing.Size(776, 177);
             this.txtOrig.TabIndex = 1;
+            this.txtOrig.Text = "The quick brown fox jumps over the lazy dog";
             // 
             // txtChopped
             // 
