@@ -35,7 +35,7 @@ namespace Chops
 
             breakDown.CutUp();
 
-            breakDown.Shuffle();
+            // breakDown.Shuffle();
 
             txtChopped.Clear();
 
@@ -125,26 +125,42 @@ namespace Chops
             // It's possible we have reached the last word in the list and dropped out of the loop
             // before adding the final scratch list to the master list. Check and add
 
-            //while (n > 1)
-            //{
+            if (scratchList.Count != 0)
+            {
+                listOfLists.Add(new List<T>(scratchList));
+                scratchList.Clear();
+            }
 
-            //    // Determine how many words to add to the current list
+            // Shuffle the master list
 
-            //    // Skip this many words
-            //    chunkProgress = ThreadSafeRandom.ThisThreadsRandom.Next(1, maxChunk);
-            //    scratchList.Add(list[n]);
-            //    if (chunkProgress > 0)
-            //    {
-            //        chunkProgress--;
-            //    }
-            //    else
-            //    {
-            //        listOfLists.Add(scratchList);
-            //        scratchList.Clear();
-            //    }
+            int mln = listOfLists.Count;
+            // int fullN = n;
 
-            //    n--;
-            //}
+            // Work the master list from start to finish
+            while (mln > 1)
+            {
+                mln--;
+
+                int k = ThreadSafeRandom.ThisThreadsRandom.Next(mln + 1);
+
+                List<T> value = listOfLists[k];
+                listOfLists[k] = listOfLists[mln];
+                listOfLists[mln] = value;
+
+                //mln--;
+            }
+
+            // Reconstruct into a form the same as that passed in so the the transition is seamless
+
+            List<T> reconList = new List<T>();
+
+            foreach (var outer in listOfLists)
+            {
+                reconList.AddRange(outer);
+            }
+
+            list.Clear();
+            reconList.ForEach(lb => { list.Add(lb); } );
 
         }
         public static void Shuffle<T>(this IList<T> list)
