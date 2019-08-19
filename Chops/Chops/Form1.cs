@@ -41,7 +41,8 @@ namespace Chops
                 return;
             }
 
-            List<string> breakDown = toBeChopped.Split(' ').ToList();
+            // List<string> breakDown = toBeChopped.Split(' ').ToList();
+            List<string> breakDown = toBeChopped.Split(new string[] {"\r", "\n", "\r\n", " "}, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             int numberOfWords = breakDown.Count();
 
@@ -56,19 +57,6 @@ namespace Chops
             return;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static class ThreadSafeRandom
     {
@@ -99,7 +87,7 @@ namespace Chops
             int maxChunk;
             int chunkProgress = 0;
 
-            maxChunk = Decimal.ToInt32(maxChunkIn);
+            maxChunk = (Decimal.ToInt32(maxChunkIn)) + 1; // Increase by one as upper value is exclusive not inclusive
 
             foreach (var word in list)
             {
@@ -187,7 +175,5 @@ namespace Chops
             }
         }
     }
-
-
 
 }
