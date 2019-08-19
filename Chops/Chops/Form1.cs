@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Chops
 {
-    public partial class Form1 : Form
+    public partial class frmCUT : Form
     {
-        public Form1()
+        public frmCUT()
         {
             InitializeComponent();
         }

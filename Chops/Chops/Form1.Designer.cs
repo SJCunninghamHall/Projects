@@ -1,6 +1,6 @@
 ﻿namespace Chops
 {
-    partial class Form1
+    partial class frmCUT
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCUT));
             this.txtOrig = new System.Windows.Forms.TextBox();
             this.txtChopped = new System.Windows.Forms.TextBox();
             this.btnChop = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.txtOrig.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtOrig.Size = new System.Drawing.Size(659, 173);
             this.txtOrig.TabIndex = 0;
-            this.txtOrig.Text = "The quick brown fox jumps over the lazy dog";
+            this.txtOrig.Text = resources.GetString("txtOrig.Text");
             // 
             // txtChopped
             // 
@@ -62,7 +63,7 @@
             this.btnChop.UseVisualStyleBackColor = true;
             this.btnChop.Click += new System.EventHandler(this.btnChop_Click);
             // 
-            // Form1
+            // frmCUT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,8 +71,9 @@
             this.Controls.Add(this.btnChop);
             this.Controls.Add(this.txtChopped);
             this.Controls.Add(this.txtOrig);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmCUT";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "C.U.T";
             this.ResumeLayout(false);
             this.PerformLayout();
 
