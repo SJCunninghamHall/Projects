@@ -17,6 +17,18 @@ namespace Chops
         public frmCUT()
         {
             InitializeComponent();
+            this.nudMaxConsec.Minimum = 1;
+            if (this.txtOrig.Text.Length > 2)
+            {
+                this.nudMaxConsec.Maximum = txtOrig.Text.Length / 2;
+                this.nudMaxConsec.Value = 10;
+            }
+            else
+            {
+                this.nudMaxConsec.Maximum = 1;
+                this.nudMaxConsec.Value = 1;
+            }
+            this.nudMaxConsec.Refresh();
         }
 
         private void btnChop_Click(object sender, EventArgs e)
@@ -33,7 +45,7 @@ namespace Chops
 
             int numberOfWords = breakDown.Count();
 
-            breakDown.CutUp();
+            breakDown.CutUp(nudMaxConsec.Value);
 
             // breakDown.Shuffle();
 
@@ -72,30 +84,22 @@ namespace Chops
     static class MyExtensions
     {
 
-        public static void CutUp<T>(this IList<T> list)
+        public static void CutUp<T>(this IList<T> list, decimal maxChunkIn)
         {
             // Create a master list consisting of one or more lists of sections of the original text
 
             // Create storage for temp work lists and collection of those lists
-            List<List<T>> listOfLists = new List<List<T>>();
-            List<T> scratchList = new List<T>();
+            List<List<T>> listOfSnippets = new List<List<T>>();
+            List<T> snippetList = new List<T>();
             
             // Work out the maximum number of words to keep together in the event of that decision being reached
 
             int n = list.Count;
-            int scanCounter = 0;
             int fullN = n;
             int maxChunk;
             int chunkProgress = 0;
 
-            if (fullN >= 2)
-            {
-                maxChunk = fullN / 2;
-            }
-            else
-            {
-                maxChunk = 1;
-            }
+            maxChunk = Decimal.ToInt32(maxChunkIn);
 
             foreach (var word in list)
             {
@@ -107,7 +111,7 @@ namespace Chops
                     chunkProgress = ThreadSafeRandom.ThisThreadsRandom.Next(1, maxChunk);
                 }
 
-                scratchList.Add(word);
+                snippetList.Add(word);
 
                 if (chunkProgress > 0)
                 {
@@ -117,23 +121,23 @@ namespace Chops
                 // Check if we're done with this chunk of words
                 if (chunkProgress == 0)
                 {
-                    listOfLists.Add(new List<T>(scratchList));
-                    scratchList.Clear();
+                    listOfSnippets.Add(new List<T>(snippetList));
+                    snippetList.Clear();
                 }
             }
 
             // It's possible we have reached the last word in the list and dropped out of the loop
             // before adding the final scratch list to the master list. Check and add
 
-            if (scratchList.Count != 0)
+            if (snippetList.Count != 0)
             {
-                listOfLists.Add(new List<T>(scratchList));
-                scratchList.Clear();
+                listOfSnippets.Add(new List<T>(snippetList));
+                snippetList.Clear();
             }
 
             // Shuffle the master list
 
-            int mln = listOfLists.Count;
+            int mln = listOfSnippets.Count;
             // int fullN = n;
 
             // Work the master list from start to finish
@@ -143,9 +147,9 @@ namespace Chops
 
                 int k = ThreadSafeRandom.ThisThreadsRandom.Next(mln + 1);
 
-                List<T> value = listOfLists[k];
-                listOfLists[k] = listOfLists[mln];
-                listOfLists[mln] = value;
+                List<T> value = listOfSnippets[k];
+                listOfSnippets[k] = listOfSnippets[mln];
+                listOfSnippets[mln] = value;
 
                 //mln--;
             }
@@ -154,7 +158,7 @@ namespace Chops
 
             List<T> reconList = new List<T>();
 
-            foreach (var outer in listOfLists)
+            foreach (var outer in listOfSnippets)
             {
                 reconList.AddRange(outer);
             }
