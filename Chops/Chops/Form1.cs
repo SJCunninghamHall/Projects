@@ -19,9 +19,9 @@ namespace Chops
         {
             InitializeComponent();
             this.nudMaxConsec.Minimum = 1;
-            if (this.txtOrig.Text.Length > 2)
+            if (this.txtSource.Text.Length > 2)
             {
-                this.nudMaxConsec.Maximum = txtOrig.Text.Length / 2;
+                this.nudMaxConsec.Maximum = txtSource.Text.Length / 2;
                 this.nudMaxConsec.Value = 3;
             }
             else
@@ -34,7 +34,7 @@ namespace Chops
 
         private void btnChop_Click(object sender, EventArgs e)
         {
-            string toBeChopped = txtOrig.Text;
+            string toBeChopped = txtSource.Text;
 
             if (toBeChopped.Trim() == string.Empty)
             {
@@ -55,20 +55,41 @@ namespace Chops
 
             // breakDown.Shuffle();
 
-            txtChopped.Clear();
+            txtChoppeds.Clear();
 
-            txtChopped.AppendText(string.Join(" ", breakDown.GetRange(0, numberOfWords)));
+            txtChoppeds.AppendText(string.Join(" ", breakDown.GetRange(0, numberOfWords)));
 
             return;
         }
 
 
+        private void txtSource_LostFocus(object sender, EventArgs e)
+        {
+            if (this.txtSource.Text.Length > 2)
+            {
+                this.nudMaxConsec.Maximum = txtSource.Text.Length / 2;
+                if (this.txtSource.Text.Length >= 3)
+                {
+                    this.nudMaxConsec.Value = 3;
+                }
+                else
+                {
+                    this.nudMaxConsec.Value = 1;
+                }
+            }
+            else
+            {
+                this.nudMaxConsec.Maximum = 1;
+                this.nudMaxConsec.Value = 1;
+            }
+        }
+
         private void txtOrig_LostFocus(object sender, EventArgs e)
         {
-            if (this.txtOrig.Text.Length > 2)
+            if (this.txtSource.Text.Length > 2)
             {
-                this.nudMaxConsec.Maximum = txtOrig.Text.Length / 2;
-                if (this.txtOrig.Text.Length >= 3)
+                this.nudMaxConsec.Maximum = txtSource.Text.Length / 2;
+                if (this.txtSource.Text.Length >= 3)
                 {
                     this.nudMaxConsec.Value = 3;
                 }
