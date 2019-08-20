@@ -45,6 +45,7 @@
             this.txtOrig.Size = new System.Drawing.Size(659, 173);
             this.txtOrig.TabIndex = 0;
             this.txtOrig.Text = resources.GetString("txtOrig.Text");
+            this.txtOrig.Leave += new System.EventHandler(this.txtOrig_LostFocus);
             // 
             // txtChopped
             // 

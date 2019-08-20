@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace Chops
             if (this.txtOrig.Text.Length > 2)
             {
                 this.nudMaxConsec.Maximum = txtOrig.Text.Length / 2;
-                this.nudMaxConsec.Value = 10;
+                this.nudMaxConsec.Value = 3;
             }
             else
             {
@@ -42,7 +43,11 @@ namespace Chops
             }
 
             // List<string> breakDown = toBeChopped.Split(' ').ToList();
-            List<string> breakDown = toBeChopped.Split(new string[] {"\r", "\n", "\r\n", " "}, StringSplitOptions.RemoveEmptyEntries).ToList();
+            // List<string> breakDown = toBeChopped.Split(new string[] { "\r", "\n", "\r\n", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            //List<string> breakDown = toBeChopped.Split(new string[] { "\r", "\n", "\r\n", " ", "\t" }, StringSplitOptions.None).ToList();
+            List<string> breakDown = toBeChopped.Split(new char[0], StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            //List<string> rt = Regex.Split(toBeChopped, "\r", "\n", "\r\n");
 
             int numberOfWords = breakDown.Count();
 
@@ -56,6 +61,29 @@ namespace Chops
 
             return;
         }
+
+
+        private void txtOrig_LostFocus(object sender, EventArgs e)
+        {
+            if (this.txtOrig.Text.Length > 2)
+            {
+                this.nudMaxConsec.Maximum = txtOrig.Text.Length / 2;
+                if (this.txtOrig.Text.Length >= 3)
+                {
+                    this.nudMaxConsec.Value = 3;
+                }
+                else
+                {
+                    this.nudMaxConsec.Value = 1;
+                }
+            }
+            else
+            {
+                this.nudMaxConsec.Maximum = 1;
+                this.nudMaxConsec.Value = 1;
+            }
+        }
+
     }
 
     public static class ThreadSafeRandom
