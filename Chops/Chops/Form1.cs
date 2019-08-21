@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -18,10 +19,10 @@ namespace Chops
         {
             InitializeComponent();
             this.nudMaxConsec.Minimum = 1;
-            if (this.txtOrig.Text.Length > 2)
+            if (this.txtSource.Text.Split(null).Count() > 2)
             {
-                this.nudMaxConsec.Maximum = txtOrig.Text.Length / 2;
-                this.nudMaxConsec.Value = 10;
+                this.nudMaxConsec.Maximum = this.txtSource.Text.Split(null).Count() / 2;
+                this.nudMaxConsec.Value = 3;
             }
             else
             {
@@ -33,7 +34,7 @@ namespace Chops
 
         private void btnChop_Click(object sender, EventArgs e)
         {
-            string toBeChopped = txtOrig.Text;
+            string toBeChopped = txtSource.Text;
 
             if (toBeChopped.Trim() == string.Empty)
             {
@@ -42,7 +43,11 @@ namespace Chops
             }
 
             // List<string> breakDown = toBeChopped.Split(' ').ToList();
-            List<string> breakDown = toBeChopped.Split(new string[] {"\r", "\n", "\r\n", " "}, StringSplitOptions.RemoveEmptyEntries).ToList();
+            // List<string> breakDown = toBeChopped.Split(new string[] { "\r", "\n", "\r\n", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            //List<string> breakDown = toBeChopped.Split(new string[] { "\r", "\n", "\r\n", " ", "\t" }, StringSplitOptions.None).ToList();
+            List<string> breakDown = toBeChopped.Split(new char[0], StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            //List<string> rt = Regex.Split(toBeChopped, "\r", "\n", "\r\n");
 
             int numberOfWords = breakDown.Count();
 
@@ -50,12 +55,35 @@ namespace Chops
 
             // breakDown.Shuffle();
 
-            txtChopped.Clear();
+            txtChoppeds.Clear();
 
-            txtChopped.AppendText(string.Join(" ", breakDown.GetRange(0, numberOfWords)));
+            txtChoppeds.AppendText(string.Join(" ", breakDown.GetRange(0, numberOfWords)));
 
             return;
         }
+
+
+        private void txtSource_LostFocus(object sender, EventArgs e)
+        {
+            if (txtSource.Text.Split(null).Count() > 2)
+            {
+                nudMaxConsec.Maximum = this.txtSource.Text.Split(null).Count() / 2;
+                if (txtSource.Text.Split(null).Count() / 2 >= 3)
+                {
+                    nudMaxConsec.Value = 3;
+                }
+                else
+                {
+                    nudMaxConsec.Value = 1;
+                }
+            }
+            else
+            {
+                nudMaxConsec.Maximum = 1;
+                nudMaxConsec.Value = 1;
+            }
+        }
+
     }
 
     public static class ThreadSafeRandom
