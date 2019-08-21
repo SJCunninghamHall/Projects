@@ -65,22 +65,22 @@ namespace Chops
 
         private void txtSource_LostFocus(object sender, EventArgs e)
         {
-            if (this.txtSource.Text.Split(null).Count() > 2)
+            if (txtSource.Text.Split(null).Count() > 2)
             {
-                this.nudMaxConsec.Maximum = this.txtSource.Text.Split(null).Count() / 2;
-                if (this.txtSource.Text.Split(null).Count() >= 3)
+                nudMaxConsec.Maximum = this.txtSource.Text.Split(null).Count() / 2;
+                if (txtSource.Text.Split(null).Count() / 2 >= 3)
                 {
-                    this.nudMaxConsec.Value = 3;
+                    nudMaxConsec.Value = 3;
                 }
                 else
                 {
-                    this.nudMaxConsec.Value = 1;
+                    nudMaxConsec.Value = 1;
                 }
             }
             else
             {
-                this.nudMaxConsec.Maximum = 1;
-                this.nudMaxConsec.Value = 1;
+                nudMaxConsec.Maximum = 1;
+                nudMaxConsec.Value = 1;
             }
         }
 
