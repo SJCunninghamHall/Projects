@@ -60,6 +60,7 @@
             this.txtSource.Size = new System.Drawing.Size(659, 173);
             this.txtSource.TabIndex = 4;
             this.txtSource.Text = resources.GetString("txtSource.Text");
+            this.txtSource.Leave += new System.EventHandler(this.txtSource_LostFocus);
             // 
             // txtChoppeds
             // 
