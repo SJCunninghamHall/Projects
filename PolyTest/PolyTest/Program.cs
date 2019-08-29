@@ -2,6 +2,22 @@
 
 namespace PolymorphismApplication
 {
+
+    public class Bird
+    {
+        public Bird(int value)
+        {
+            Console.WriteLine($"Bird() called with {value}");
+        }
+    }
+
+    public class Parrot : Bird
+    {
+        public Parrot(int value) : base(value)
+        {
+            Console.WriteLine($"Parrot called with {value}");
+        }
+    }
     class Shape
     {
         protected int width, height;
@@ -98,6 +114,7 @@ namespace PolymorphismApplication
             Square s = new Square(6, 6);
             Parallelagram p = new Parallelagram(31415, 66261);
 
+            Parrot parrot = new Parrot(450);
 
             c.CallArea(r);
             c.CallArea(t);
