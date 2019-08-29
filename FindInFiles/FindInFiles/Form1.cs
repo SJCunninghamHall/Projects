@@ -30,11 +30,12 @@ namespace FindInFiles
                 {
                     this.cmbRegEx.Items.Add(line);
                 }
+
+                this.cmbRegEx.SelectedIndex = 0;
+
+                // Add a delegate to handle form closure
+
             }
-
-            this.cmbRegEx.SelectedIndex = 0;
-
-            // Add a delegate to handle form closure
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 

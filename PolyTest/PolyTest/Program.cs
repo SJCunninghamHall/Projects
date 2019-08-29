@@ -29,6 +29,19 @@ namespace PolymorphismApplication
             return (width * height);
         }
     }
+
+    class Square : Shape
+    {
+        public Square(int a = 0, int b = 0) : base(a, b)
+        {
+        }
+
+        public override int area()
+        {
+            Console.WriteLine("Square class area :");
+            return (width * height);
+        }
+    }
     class Triangle : Shape
     {
         public Triangle(int a = 0, int b = 0) : base(a, b)
@@ -56,9 +69,11 @@ namespace PolymorphismApplication
             Caller c = new Caller();
             Rectangle r = new Rectangle(10, 7);
             Triangle t = new Triangle(10, 5);
+            Square s = new Square(6, 6);
 
             c.CallArea(r);
             c.CallArea(t);
+            c.CallArea(s);
             Console.ReadKey();
         }
     }
