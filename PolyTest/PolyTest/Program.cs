@@ -2,38 +2,29 @@
 
 namespace PolymorphismApplication
 {
-
-    public class Bird
+    class Spaniel : PolyTest.Dog
     {
-        public Bird(int value)
+        public Spaniel(int a = 0) : base(a)
         {
-            Console.WriteLine($"Bird() called with {value}");
+            Console.WriteLine($"Spaniel constructor called with value: {a}");
+        }
+
+        public override void Bark()
+        {
+            Console.WriteLine($"Spainel goes woof {valueToUse}!");
         }
     }
 
-    public class Parrot : Bird
+    class Parrot : PolyTest.Bird
     {
         public Parrot(int value) : base(value)
         {
             Console.WriteLine($"Parrot called with {value}");
         }
     }
-    class Shape
-    {
-        protected int width, height;
 
-        public Shape(int a = 0, int b = 0)
-        {
-            width = a;
-            height = b;
-        }
-        public virtual int area()
-        {
-            Console.WriteLine("Parent class area :");
-            return 0;
-        }
-    }
-    class Rectangle : Shape
+
+    class Rectangle : PolyTest.Shape
     {
         public Rectangle(int a = 0, int b = 0) : base(a, b)
         {
@@ -46,7 +37,7 @@ namespace PolymorphismApplication
         }
     }
 
-    class Square : Shape
+    class Square : PolyTest.Shape
     {
         public Square(int a = 0, int b = 0) : base(a, b)
         {
@@ -59,7 +50,7 @@ namespace PolymorphismApplication
         }
     }
 
-    class Parallelagram : Shape
+    class Parallelagram : PolyTest.Shape
     {
         public Parallelagram(int a = 0, int b = 0) : base(a, b)
         {
@@ -73,7 +64,8 @@ namespace PolymorphismApplication
             return (width * height);
         }
     }
-    class Triangle : Shape
+
+    class Triangle : PolyTest.Shape
     {
         public Triangle(int a = 0, int b = 0) : base(a, b)
         {
@@ -84,9 +76,10 @@ namespace PolymorphismApplication
             return (width * height / 2);
         }
     }
+
     class Caller
     {
-        public void CallArea(Shape sh)
+        public void CallArea(PolyTest.Shape sh)
         {
             int a;
             a = sh.area();
@@ -103,6 +96,7 @@ namespace PolymorphismApplication
             Console.WriteLine("Parallelagram area: {0}", pa);
         }
     }
+
     class Tester
     {
         static void Main(string[] args)
@@ -115,6 +109,9 @@ namespace PolymorphismApplication
             Parallelagram p = new Parallelagram(31415, 66261);
 
             Parrot parrot = new Parrot(450);
+
+            Spaniel spaniel = new Spaniel(662);
+            spaniel.Bark();
 
             c.CallArea(r);
             c.CallArea(t);
