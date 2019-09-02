@@ -1,0 +1,7 @@
+[\s]*;[\s]*(?i)WITH[\s]*[\[\]a-zA-Z0-9]*[\s]*(\([a-zA-Z0-9_ ,\t\r\n]*\))?[\s]*AS(?-i)
+[\s]*(?i)where[\s]*?[A-Za-z0-9= \r\n\t]+?[\(][A-Za-z0-9=(), \r\n\t]+?[\)][ \t]*?=
+[\s]*(?i)WHERE[\s]*[A-Za-z0-9=\s]*RIGHT[\s]*\((?-i)
+[\s]*(?i)WHERE[\s]*[A-Za-z0-9=\s]*LEFT[\s]*\((?-i)
+[\s]*(?i)ROWS FETCH NEXT[\s]*(?-i)
+[\s]*(?i)LIKE[\s]*('%)(?-i)
+[\s]?(?i)where[\s]*[\s\S]*\([A-Za-z0-9,\s]*\)[\s]?(?-i)=
