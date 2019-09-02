@@ -54,7 +54,6 @@ namespace PolyTest15
 
     }
 
-
     class Rectangle : PolyTest15.Shape
     {
 
