@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
@@ -20,13 +22,14 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: "Hello, world!", message: "This is my first app!", preferredStyle: .alert)
  
         let action = UIAlertAction(title: "Awesome!", style: .default, handler: nil)
+        //let action2 = UIAlertAction(title: "Here's another thing to do", style: .default, handler: nil)
         
         alert.addAction(action)
+        //alert.addAction(action2)
         
         present(alert, animated: true, completion: nil)
         
-    
     }
-
+    
 }
 
