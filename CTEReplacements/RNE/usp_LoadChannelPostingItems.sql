@@ -11,7 +11,7 @@ CREATE PROCEDURE [Report].[usp_LoadChannelPostingItems]
 AS
 	BEGIN
 
-		DECLARE @FlipFlopNPAAccount VARCHAR(8);
+		DECLARE @FlipFlopNPAAccount VARCHAR(8); 
 
 		SET NOCOUNT ON;
 

@@ -6,7 +6,7 @@ CREATE PROCEDURE [RNE].[usp_GetBranchRealTimeReport]
 	)
 /*****************************************************************************************************************
 * Stored Procedure	: [RnEWareHouseReports].[usp_GetBranchRealTimeReport]
-* Author			: Hamid Narikkoden
+* Author			: Hamid Narikkoden 
 * Description		: Generates Branch Real Time Report
 * Creation Date		: 22/06/2018
 * Last Modified		: 

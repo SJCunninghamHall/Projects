@@ -29,7 +29,7 @@
 * 015			14/09/2017		Byamakesh Mohapatra		('00' + SettlementBank) replaced with DebitAgencySortCode
 * 016			15/09/2017		Champika B				Number of Deadlock  retry value to config table
 * 017			02/11/2017		Subrat					Brand master changes
-* 018			09/11/2017		Subrat					Status <> 'D' changes
+* 018			09/11/2017		Subrat					Status <> 'D' changes 
 * 019			13/02/2018		Champika B				Temporal logic and  @Environment added
 * 020		    27/02/2018		Champika B				Get @Environment from ConfigSettings   
 ******************************************************************************************************/

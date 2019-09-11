@@ -29,7 +29,7 @@
 * 016			11/09/2017		Champika B				BrandName logic changed
 * 017			14/09/2017		Byamakesh Mohapatra		('00' + SettlementBank) replaced with DebitAgencySortCode
 * 018			15/09/2017		Champika B				Number of Deadlock  retry value to config table
-* 019			02/11/2017		Subrat					Brand master changes
+* 019			02/11/2017		Subrat					Brand master changes 
 * 020			09/11/2017		Subrat					Status <> 'D' changes
 * 021		    12/02/2018 	    Champika				Added Temporal table logic
 * 022			13/02/2018		Champika B			    @Environment added

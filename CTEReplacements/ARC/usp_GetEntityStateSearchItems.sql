@@ -14,7 +14,7 @@ CREATE PROCEDURE [Web].[usp_GetEntityStateSearchItems]
                       all the items that have received a default decision by Switch or DEW for a given business date 
 					  based on input parameters.Results will be filtered further by any additional parameter value supplied.
 * Type of Procedure : Interpreted stored procedure
-* Author			: Mahesh Kumar Suragani
+* Author			: Mahesh Kumar Suragani 
 * Creation Date		: 12/04/2018
 * Last Modified		: N/A
 *********************************************************************************************************************/

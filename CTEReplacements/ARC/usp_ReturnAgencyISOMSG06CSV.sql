@@ -87,7 +87,7 @@ AS
 					AND FD.PayingParticipantId = @AgencyId
 					AND FD.ItemId
 					BETWEEN @BusinessDateFrom AND @BusinessDateTo
-				) AS EligibleTransactionSets
+				) AS EligibleTransactionSets 
 			WHERE
 				[EligibleTransactionSets].[RKD] = 1;
 

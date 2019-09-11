@@ -5,7 +5,7 @@ CREATE PROCEDURE [Posting].[usp_UpdateResponsePaidItems]
 	)
 /*****************************************************************************************************
 * Name				: [Posting].[usp_UpdateResponsePaidItems]
-* Description		: Update SUM file aggregates from Response file
+* Description		: Update SUM file aggregates from Response file 
 * Called By			: 
 * Type of Procedure : Interpreted stored procedure
 * Author			: Akuri Reddy

@@ -4,7 +4,7 @@ CREATE PROCEDURE [DataImport].[usp_UpdateCollectingReconciliationDebits]
 		@PrevBusinessDate	DATE
 	)
 /*****************************************************************************************************
-* Name				: [DataImport].[usp_UpdateCollectingReconciliationDebits]
+* Name				: [DataImport].[usp_UpdateCollectingReconciliationDebits] 
 * Description		: This stored procedure UPDATEs Collecting reconcilation reports data for Debit items
 * Type of Procedure : Interpreted stored procedure
 * Author			: Reddy Akuri

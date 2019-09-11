@@ -8,7 +8,7 @@ CREATE PROCEDURE [Staging].[usp_GetAgencyISOExtractXML]
 * Name				: [Staging].[usp_GetAgencyISOExtractXML]
 * Description		: Extract Agency ISO Message XML data
 * Called By			: iPSL.RNE.AgencyISOExtracts.dtsx
-* Type of Procedure : Interpreted stored procedure
+* Type of Procedure : Interpreted stored procedure 
 * Author			: Akuri Reddy
 * Creation Date		: 04/11/2017
 * Last Modified		: 

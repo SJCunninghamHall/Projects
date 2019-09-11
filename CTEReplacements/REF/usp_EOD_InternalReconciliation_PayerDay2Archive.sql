@@ -6,7 +6,7 @@ CREATE PROCEDURE [Base].[usp_EOD_InternalReconciliation_PayerDay2Archive]
 		@BusinessDateAttribute	VARCHAR(255),
 		@UserName				VARCHAR(50),
 		@Source					VARCHAR(100),
-		@Result					INT				OUTPUT,
+		@Result					INT				OUTPUT, 
 		@SysOut					VARCHAR(4000)	OUTPUT
 	)
 /*****************************************************************************************************

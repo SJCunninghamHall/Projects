@@ -2,7 +2,7 @@ CREATE PROCEDURE [Base].[usp_EOD_PayerBenReconPostingExtract]
 	(
 		@ActivityID				VARCHAR(60),
 		@ReconStage				VARCHAR(100),
-		@BusinessDateEntity		VARCHAR(10),
+		@BusinessDateEntity		VARCHAR(10), 
 		@BusinessDateAttribute	VARCHAR(5),
 		@UserName				VARCHAR(50),
 		@Source					VARCHAR(100),

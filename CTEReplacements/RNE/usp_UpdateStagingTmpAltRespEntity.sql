@@ -7,7 +7,7 @@ CREATE PROCEDURE [Excep].[usp_UpdateStagingTmpAltRespEntity]
 /*****************************************************************************************************
 * Name				: [Excep].[UpdateStagingTmpAltRespEntity]
 * Description		: ?
-* Called By			: IPSL.RNE.ImportAlternateResponse.dtsx
+* Called By			: IPSL.RNE.ImportAlternateResponse.dtsx 
 * Type of Procedure : Interpreted stored procedure
 * Author			: Asish Murali
 * Creation Date		: 16/06/2017

@@ -15,7 +15,7 @@
 * 002			21/07/2017		Shiju					Added ExpiryDate Condition
 * 003			24/07/2017		Divya Singh				Code Review Action remove unused Parameter 
 * 004			27/07/2017		Champika B				Code Review Action Deadlock Proof Changes
-* 005			01/08/2017		Champika B				SQL code alignment
+* 005			01/08/2017		Champika B				SQL code alignment 
 * 006			02/08/2017		Shiju					Added AccountNumber as new column  Replaced StartAccountNumber and EndAccountNumber
 * 007			04/09/2017		Champika B				Code Review Action remove version number
 * 008			15/09/2017		Champika B				Number of Deadlock  retry value to config table

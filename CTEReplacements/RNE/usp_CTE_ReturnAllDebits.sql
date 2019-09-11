@@ -5,7 +5,7 @@ CREATE PROCEDURE [RNE].[usp_CTE_ReturnAllDebits]
 
 /*****************************************************************************************************
 * Name				: [Base].[usp_CTE_ReturnAllDebits]
-* Description		: This stored procedure returns final set of Debits for CTE.
+* Description		: This stored procedure returns final set of Debits for CTE. 
 * Type of Procedure : Interpreted stored procedure
 * Author			: Pavan manneru
 * Creation Date		: 15/07/2018

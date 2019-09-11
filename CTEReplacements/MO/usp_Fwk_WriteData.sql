@@ -21,7 +21,7 @@ CREATE PROCEDURE [Base].[usp_Fwk_WriteData]
 						Upsert SourceTracker stored procedure is invoked to track the saved document.  
 * Type of Procedure :   User-defined stored procedure  
 * Author   :            Gaurav Choudhary  
-* Creation Date  :      28-Dec-2016  
+* Creation Date  :      28-Dec-2016   
 * Last Modified  :      Abhishek Pandey  
 * Parameters  :  
 *******************************************************************************************************  

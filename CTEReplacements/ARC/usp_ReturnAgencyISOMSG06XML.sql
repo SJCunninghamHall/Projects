@@ -27,7 +27,7 @@ AS
 			DECLARE @EncodedSignature VARCHAR(MAX)	= CAST(N'' AS XML).value('xs:base64Binary(sql:variable("@InputSignature"))', 'VARCHAR(MAX)');
 
 			SELECT
-				ETSET.TransactionSetIdWithVersion,
+				ETSET.TransactionSetIdWithVersion, 
 				ETSET.ItemId,
 				TX.TransactionSetId									AS TxSetId,
 				RIGHT('00' + CAST(TX.[Version] AS VARCHAR(2)), 2) AS TxSetVrsn,

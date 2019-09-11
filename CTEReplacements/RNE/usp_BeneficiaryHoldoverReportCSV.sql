@@ -4,7 +4,7 @@ CREATE PROCEDURE [RnEWareHouseReports].[usp_BeneficiaryHoldoverReportCSV]
 * Description		: Create Beneficiary Items which are all HolOver for Day One.
 * Type of Procedure : Interpreted stored procedure
 * Author			: Asish
-* Creation Date		: 05/10/2018
+* Creation Date		: 05/10/2018 
 * Last Modified		: N/A
 *******************************************************************************************************/
 AS

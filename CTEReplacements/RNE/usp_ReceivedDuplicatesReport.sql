@@ -4,7 +4,7 @@
 *				No pay reason as Duplicate Cheque
 * Sort Order : ParticipantName
 * Amendment History
-*****************************************************************************************
+***************************************************************************************** 
 * Version		Name						Date               Reason
 * 1.3.0			Mazar Shaik				    14 Aug 2017        Create No Pays Duplicate Cheque Report
 *****************************************************************************************/

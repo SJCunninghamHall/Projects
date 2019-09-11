@@ -17,7 +17,7 @@
 * 004			12/05/2017		Divya Singh				Changed the LogExecption sp name to SqlErrorLog
 * 005			27/06/2017		Shiju					Added FileSource Condition <> 'IFCA'
 * 006			03/07/2017		Bhaskar Reddy			Removed the table [Base].[StopsTravellerDetail] in sp
-* 007			24/07/2017		Divya Singh				Code Review Action remove unused Parameter 
+* 007			24/07/2017		Divya Singh				Code Review Action remove unused Parameter  
 * 008			27/07/2017		Champika B				Code Review Action Deadlock Proof Changes
 * 009			01/08/2017		Champika B				SQL code alignment
 * 010			04/09/2017 		Nisha Merline			Code review action remove NOT functionality

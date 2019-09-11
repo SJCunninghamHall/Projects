@@ -129,7 +129,7 @@ AS
 
 				----------------------------------[CFG].[CustomerSegment]---------------------------------------------------------
 				INSERT INTO
-					[CFG].[CustomerSegment]
+					[CFG].[CustomerSegment] 
 					(
 						[CustomerSegmentId],
 						[Name],

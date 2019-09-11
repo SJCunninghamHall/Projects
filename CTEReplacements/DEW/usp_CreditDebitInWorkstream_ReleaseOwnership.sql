@@ -30,7 +30,7 @@ AS
 				(
 					[DebitInWorkstreamAuditSeq],
 					[DebitInWorkstreamSeq],
-					[StateSeq],
+					[StateSeq], 
 					[UserSeq],
 					[DateTime]
 				)

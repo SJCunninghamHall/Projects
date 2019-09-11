@@ -8,7 +8,7 @@ CREATE PROCEDURE [Excep].[usp_UpdateResponseException]
 * Name				: [Excep].[usp_UpdateResponseException]
 * Description		: Updates the response entity
 * Called By			: IPSL.RNE.ImportPostingResponseXML.dtsx
-* Type of Procedure : Interpreted stored procedure
+* Type of Procedure : Interpreted stored procedure 
 * Author			: Asish Murali
 * Creation Date		: 15/06/2017
 * Last Modified		: 

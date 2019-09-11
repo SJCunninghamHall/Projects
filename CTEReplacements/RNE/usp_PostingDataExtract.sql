@@ -9,7 +9,7 @@ CREATE PROCEDURE [Outclearing].[usp_PostingDataExtract]
 * Description					: Extract posting data from [Outclearing].[PostingPattern]
 * Called By						: IPSL.RNE.OutclearingLoadPostingData.dtsx
 * Type of Procedure				: Interpreted stored procedure
-* Author						: Akuri Reddy
+* Author						: Akuri Reddy 
 * Creation Date					: 15/06/2018
 *******************************************************************************************************/
 AS

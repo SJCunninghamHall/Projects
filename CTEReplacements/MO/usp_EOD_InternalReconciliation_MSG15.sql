@@ -3,7 +3,7 @@ CREATE PROCEDURE [Base].[usp_EOD_InternalReconciliation_MSG15]
 		@ActivityID				VARCHAR(60),
 		@ReconStage				VARCHAR(100),
 		@BusinessDateEntity		VARCHAR(10),
-		@BusinessDateAttribute	VARCHAR(5),
+		@BusinessDateAttribute	VARCHAR(5), 
 		@UserName				VARCHAR(50),
 		@Source					VARCHAR(100),
 		@Result					INT				OUTPUT,

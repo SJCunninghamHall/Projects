@@ -18,7 +18,7 @@ SET NOCOUNT ON;
 
 			SELECT
 				EntityState
-			INTO
+			INTO 
 				#MSG08AckRcvd
 			FROM
 				Report.dimReportEntityState AS ES

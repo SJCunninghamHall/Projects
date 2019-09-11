@@ -12,7 +12,7 @@ CREATE PROCEDURE [DataImport].[usp_InsertFinalDimCreditInformation]
 ******************************************************************************************************************
 *Parameter Name				Type			Description
 *-----------------------------------------------------------------------------------------------------------------
- @BusinessDateRangeStart	BIGINT			Business date start range
+ @BusinessDateRangeStart	BIGINT			Business date start range 
  @BusinessDateRangeEnd		BIGINT			Business date end range
 ******************************************************************************************************************
 * Returns 			: 

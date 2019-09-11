@@ -15,7 +15,7 @@ AS
 				ROW_NUMBER() OVER (PARTITION BY
 									[TVDIW].[DebitSeq]
 									ORDER BY
-									[TVDIW].[Priority] DESC
+									[TVDIW].[Priority] DESC 
 								) AS PriorityNumDESC
 			INTO
 				#DebitInWorkStream

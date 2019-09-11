@@ -6,7 +6,7 @@ CREATE PROCEDURE [RNEReport].[usp_getMSG07DebitsWithDocumentsHistory]
 * Name				: [RNEReport].[usp_getMSG07DebitsWithDocumentsHistory]
 * Description		: This stored procedure exports the data for Debits and corresponding Documents	history from STAR to RnEReportDataWarehouse.
 * Type of Procedure : Natively compiled stored procedure
-* Author			: Nageswara Rao
+* Author			: Nageswara Rao 
 * Creation Date		: 29/12/2017
 * Last Modified		: N/A
 *******************************************************************************************************/

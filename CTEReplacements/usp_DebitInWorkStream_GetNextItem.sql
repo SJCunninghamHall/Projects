@@ -12,7 +12,7 @@ CREATE PROCEDURE [DataAccess].[usp_DebitInWorkStream_GetNextItem]
    @WorkstreamId BIGINT,
    @SubWorkstreamId BIGINT ,
    @ProcessId BIGINT,
-   @CustomerSegmentId BIGINT,
+   @CustomerSegmentId BIGINT, 
    @Process_WorkstreamStateId TINYINT,
    @Process_DecisionId TINYINT,
    @WorkItemId BIGINT OUTPUT,

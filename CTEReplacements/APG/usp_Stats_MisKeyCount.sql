@@ -11,7 +11,7 @@
 CREATE PROCEDURE [dbo].[usp_Stats_MisKeyCount]
 AS
 	BEGIN
-		SET NOCOUNT ON;
+		SET NOCOUNT ON; 
 
 		BEGIN TRY
 

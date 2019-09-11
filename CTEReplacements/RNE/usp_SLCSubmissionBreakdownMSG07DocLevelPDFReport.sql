@@ -1,6 +1,6 @@
 CREATE PROCEDURE [RnEWareHouseReports].[usp_SLCSubmissionBreakdownMSG07DocLevelPDFReport]
 /*****************************************************************************************************
-* Name				: [RnEWareHouseReports].[usp_SLCSubmissionBreakdownMSG07DocLevelPDFReport]
+* Name				: [RnEWareHouseReports].[usp_SLCSubmissionBreakdownMSG07DocLevelPDFReport] 
 * Description		: Create Submission Breakdown PDF Report -Contains File level details of the MSG07 Sent to switch to track the SLC.
 * Type of Procedure : Interpreted stored procedure
 * Author			: Nageswara Rao

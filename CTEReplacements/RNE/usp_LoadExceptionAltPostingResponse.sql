@@ -4,7 +4,7 @@ CREATE PROCEDURE [Excep].[usp_LoadExceptionAltPostingResponse]
 		@RneMoID	BIGINT
 	)
 /*****************************************************************************************************
-* Name				: [Excep].[usp_LoadExceptionAltPostingResponse]
+* Name				: [Excep].[usp_LoadExceptionAltPostingResponse] 
 * Description		: Loads response data to Excep.PostingResponse for validation
 * Called By			: IPSL.RNE.ImportPostingResponseXML.dtsx
 * Type of Procedure : Interpreted stored procedure

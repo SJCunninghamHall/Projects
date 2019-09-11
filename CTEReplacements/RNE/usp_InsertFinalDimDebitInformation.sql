@@ -4,7 +4,7 @@ CREATE PROCEDURE [DataImport].[usp_InsertFinalDimDebitInformation]
 /******************************************************************************************************************
 * Name				: [DataImport].[usp_InsertFinalDimDebitInformation]
 * Description		: This stored procedure INSERTs the final details of the Debits into the FinalEntityStates table available in the DebitEntityStateHistory table.
-* Type of Procedure : Interpreted stored procedure
+* Type of Procedure : Interpreted stored procedure 
 * Author			: Pavan Kumar Manneru
 * Creation Date		: 24/08/2017
 * Last Modified		: N/A

@@ -22,7 +22,7 @@
 * 009		    12/05/2017		Shiju                   Renamed HSBC and LBG Schema to REFOUT
 * 010			12/05/2017		Divya Singh				Changed the LogExecption sp name to SqlErrorLog
 * 011			24/07/2017		Divya Singh				Code Review Action remove unused Parameter 
-* 012			27/07/2017		Champika B				Code Review Action Deadlock Proof Changes
+* 012			27/07/2017		Champika B				Code Review Action Deadlock Proof Changes 
 * 013			01/08/2017		Champika B				SQL code alignment
 * 014			02/08/2017		Shiju					Added AccountNumber as new column  Replaced StartAccountNumber and EndAccountNumber
 * 015			04/09/2017		Champika B				Code Review Action remove version number

@@ -6,7 +6,7 @@ CREATE PROCEDURE [RNEReport].[usp_getDimCreditEntityStateHistory_Item]
 * Description		: This stored procedure exports the data for dimCreditEntityStateHistory from STAR to RnEReportDataWarehouse.
 * Type of Procedure : Interpreted stored procedure
 * Author			: Mahesh Kumar Suragani
-* Creation Date		: 13/07/2018
+* Creation Date		: 13/07/2018 
 * Last Modified		: N/A
 *******************************************************************************************************/
 AS

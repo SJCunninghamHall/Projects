@@ -4,7 +4,7 @@ CREATE PROCEDURE [Posting].[usp_UpdateSUMItemValues]
 * Description		: Update SUm Debit and Credit Entries for final Extract
 * Called By			: IPSL.RNE.SUMExtractXML.dtsx
 * Type of Procedure : Interpreted stored procedure
-* Author			: Asish
+* Author			: Asish 
 * Creation Date		: 20/11/2017
 * Last Modified		:  
 *******************************************************************************************************

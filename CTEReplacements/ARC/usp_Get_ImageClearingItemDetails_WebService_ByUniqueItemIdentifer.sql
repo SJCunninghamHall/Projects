@@ -31,7 +31,7 @@ AS
 			IF @RoleName IS NOT NULL
 				BEGIN
 					EXECUTE AS USER = @RoleName;
-				END;
+				END; 
 
 			SET NOCOUNT ON;
 

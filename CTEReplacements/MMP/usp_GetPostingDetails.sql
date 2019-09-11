@@ -16,7 +16,7 @@ AS
 		SET XACT_ABORT ON;
 		DECLARE @ErrorMessage VARCHAR(4000);
 		DECLARE @ErrorNumber INT;
-		DECLARE @ErrorState INT;
+		DECLARE @ErrorState INT; 
 		DECLARE @ErrorProcedure VARCHAR(50);
 		DECLARE @ErrorLine INT;
 		DECLARE @ErrorSeverity INT;

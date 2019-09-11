@@ -27,7 +27,7 @@ AS
 			DECLARE @PrevBusinessDateFrom BIGINT;
 			DECLARE @PrevBusinessDateTo BIGINT;
 			--Table varible to calculate the number of TSets available for extraction for a given AgencyId
-			DECLARE @HeaderBusinessDate VARCHAR(10);
+			DECLARE @HeaderBusinessDate VARCHAR(10); 
 			DECLARE @NumPaid INT;
 			DECLARE @ValuePaid NUMERIC(13, 2);
 			DECLARE @NumNoPay INT;

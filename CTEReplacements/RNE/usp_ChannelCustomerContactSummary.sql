@@ -5,7 +5,7 @@ CREATE PROCEDURE [RnEWareHouseReports].[usp_ChannelCustomerContactSummary]
 /*****************************************************************************************************************
 * Stored Procedure	: [RnEWareHouseReports].[usp_ChannelCustomerContactSummary]
 * Author					: Akuri Reddy
-* Description			: Extracts credits belongs to configured channels
+* Description			: Extracts credits belongs to configured channels 
 * Creation Date		: 25/05/2018
 * Last Modified		:
 ******************************************************************************************************************/

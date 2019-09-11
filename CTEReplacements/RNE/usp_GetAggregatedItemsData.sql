@@ -7,7 +7,7 @@ CREATE PROCEDURE [Posting].[usp_GetAggregatedItemsData]
 * Name				: [Posting].[usp_GetAggregatedItemsData]
 * Description		: Loads Aggregation items to Aggregation table for validation
 * Called By			: IPSL.RNE.LoadAndExtractArchive.dtsx
-* Type of Procedure : Interpreted stored procedure
+* Type of Procedure : Interpreted stored procedure 
 * Author			: Anush
 * Creation Date		: 30/10/2017
 * Last Modified		: 

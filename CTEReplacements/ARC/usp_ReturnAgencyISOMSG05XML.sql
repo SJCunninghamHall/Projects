@@ -31,7 +31,7 @@ AS
 
 			SELECT
 				TXSETS	.TransactionSetIdWithVersion,
-				TXSETS.TxSetId,
+				TXSETS.TxSetId, 
 				[TXSETS].[TxSetVrsn],
 				TXSETS.ColltngPtcptId,
 				TXSETS.CaptrdDtTm,

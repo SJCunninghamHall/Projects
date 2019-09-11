@@ -24,7 +24,7 @@ Returns success code(configured) if reconciliation is success else failure code.
 *******************************************************************************************************
 *Parameter Name				Type							Description
 *------------------------------------------------------------------------------------------------------
- @ActivityID				VARCHAR(40)						Activity Id for logging table
+ @ActivityID				VARCHAR(40)						Activity Id for logging table 
 ,@ReconStage				VARCHAR(100)					recon stage to get parameters from EODParams
 ,@BusinessDateEntity		VARCHAR(255)					Business Date entity to get value from config
 ,@BusinessDateAttribute		VARCHAR(255)					Business Date attribute to get value from config.

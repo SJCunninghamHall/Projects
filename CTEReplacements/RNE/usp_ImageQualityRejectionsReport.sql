@@ -6,7 +6,7 @@
 * Amendment History
 *****************************************************************************************
 * Version		  Name							 Date           Reason
-* 1.3.0			Mazar Shaik				     02 Aug 2017        Create ImageQuality Rejections Report
+* 1.3.0			Mazar Shaik				     02 Aug 2017        Create ImageQuality Rejections Report 
 *****************************************************************************************/
 CREATE PROCEDURE [WAR].[usp_ImageQualityRejectionsReport]
 	@BusinessDate	VARCHAR(8)

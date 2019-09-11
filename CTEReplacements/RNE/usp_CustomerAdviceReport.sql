@@ -3,7 +3,7 @@ CREATE PROCEDURE [RnEWareHouseReports].usp_CustomerAdviceReport
 * Stored Procedure					: [RnEWareHouseReports].[usp_CustomerAdviceReport]
 * Author									: Hamid Narikkoden
 * Description							: Generates Customer Advice Report
-* Creation Date						: 10/05/2018
+* Creation Date						: 10/05/2018 
 * Last Modified						: 18/05/2018
 ******************************************************************************************************************/
 AS

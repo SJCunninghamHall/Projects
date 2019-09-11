@@ -6,7 +6,7 @@ CREATE PROCEDURE [Excep].[usp_LoadExceptionPostingResponse]
 /*****************************************************************************************************
 * Name				: [Excep].[usp_LoadExceptionPostingResponse]
 * Description		: Loads response data to Excep.PostingResponse for validation
-* Called By			: IPSL.RNE.ImportPostingResponseXML.dtsx
+* Called By			: IPSL.RNE.ImportPostingResponseXML.dtsx 
 * Type of Procedure : Interpreted stored procedure
 * Author			: Asish Murali
 * Creation Date		: 15/06/2017

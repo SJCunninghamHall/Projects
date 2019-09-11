@@ -9,7 +9,7 @@ CREATE PROCEDURE [StarGalaxyExport].[usp_Export_StarGalaxyExport_Day2XMLMessageI
 /*****************************************************************************************************
 * Name				: [StarGalaxyExport].[usp_Export_StarGalaxyExport_Day2XMLMessageIDs]
 * Description		: This Stored Procedure finds the list of XMLMessage IDs for the entities 
-						whose day2 data is not archived. It will load the eligible MessageIDs
+						whose day2 data is not archived. It will load the eligible MessageIDs 
 						into ImportDay2XMLMessageIds table
 * Type of Procedure : Stored procedure
 * Author			: Sabarish Jayaraman

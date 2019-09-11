@@ -2,7 +2,7 @@
 * Name              : [Posting].[usp_PRRM01AltRespSendToMO]
 * Description       : This stored proc send the alternate response XML back to MO.
 *					  It reads posting data from [Staging].[ResponseEntityAltResponse].
-* Author  			: Nick Allbury
+* Author  			: Nick Allbury 
 *******************************************************************************************************
 *Parameter Name				Type							   Description
 *------------------------------------------------------------------------------------------------------

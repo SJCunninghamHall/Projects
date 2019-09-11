@@ -4,7 +4,7 @@
                have applied Default Sortcode for the item and APG operator will amend and input the correct codeline detail for the item.
 * Sort Order : Collecting Participant
 * Amendment History
-*****************************************************************************************
+***************************************************************************************** 
 * Version		Name						Date               Reason
 * 1.3.0			Mazar Shaik				    02 Aug 2017        Create Received Default Items
 *****************************************************************************************/

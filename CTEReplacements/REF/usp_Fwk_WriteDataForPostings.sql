@@ -7,7 +7,7 @@ CREATE PROCEDURE [Base].[usp_Fwk_WriteDataForPostings]
 		@TransactionSetState	[Base].[udt_TransactionSetState]	READONLY,	--Not to be used
 		@ItemState				[Base].[udt_ItemState]				READONLY,	--Not to be used
 		@PreviousState			[Base].[udt_WithTwoStringColumns]	READONLY,
-		@postingEntryState		[Base].[udt_PostingEntryState]		READONLY,
+		@postingEntryState		[Base].[udt_PostingEntryState]		READONLY, 
 		@PostingEntry			[Base].[udt_PostingEntry]			READONLY
 	)
 /*****************************************************************************************************

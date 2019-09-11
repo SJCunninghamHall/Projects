@@ -8,7 +8,7 @@ CREATE PROCEDURE [Web].[usp_GetEntityStateSearchItems]
 	@TranCode		CHAR(2)			= NULL,
 	@RoleName		VARCHAR(400)	= NULL
 /********************************************************************************************************************
-    * Name    : [Web].[usp_GetEntityStateSearchItems]
+    * Name    : [Web].[usp_GetEntityStateSearchItems] 
     * Description  : This Stored Procedure will be used by web service method ICS EntityStateSearch Query to fetch
     all the items that have received a default decision by Switch or DEW for a given business date
     based on input parameters.Results will be filtered further by any additional parameter value supplied.

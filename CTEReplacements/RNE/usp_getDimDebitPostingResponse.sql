@@ -6,7 +6,7 @@ CREATE PROCEDURE [RNEReport].[usp_getDimDebitPostingResponse]
 * Description		: This stored procedure exports the data for DimDebitPostingResponse from STAR to RnEReportDataWarehouse.
 * Type of Procedure : Interpreted stored procedure
 * Author			: Pavan Kumar Manneru
-* Creation Date		: 29/08/2017
+* Creation Date		: 29/08/2017 
 * Last Modified		: N/A
 *******************************************************************************************************/
 AS

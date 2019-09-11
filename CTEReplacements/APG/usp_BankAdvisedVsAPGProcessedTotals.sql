@@ -27,7 +27,7 @@ AS
 
 			BEGIN
 
-				SELECT
+				SELECT 
 					SCC.Channel					AS Source,
 					SUM(APG.ChannelCreditCount) AS ProcessedCreditCount,
 					SUM(APG.ChannelCreditTotal) AS ProcessedCreditTotal,

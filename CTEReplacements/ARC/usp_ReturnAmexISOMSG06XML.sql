@@ -36,7 +36,7 @@ AS
 				[TX].[CollectingBranchLocation]							AS [ColltngBrnchLctn],
 				[TX].[CollectingLocation]								AS [ColltngLctn],
 				[TX].[ChannelRiskType]									AS [ChanlRskTp],
-				[TX].[ChannelDescription]								AS [ChanlDesc],
+				[TX].[ChannelDescription]								AS [ChanlDesc], 
 				[TX].[CollectionPoint]									AS [ColltnPt],
 				[TX].[CollectionBranchRef]								AS [ColltngBrnchRef],
 				[TX].[NumberOfItems]									AS [NbOfItms],

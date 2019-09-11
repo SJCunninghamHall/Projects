@@ -32,7 +32,7 @@ AS
 					[import].[WorkGroup_HSBC]
 				SET
 				[AmountTo]	= '999999999.99'
-				WHERE
+				WHERE 
 					[AmountTo]	= '1000000000';
 
 				-----------------------------[CFG].[DecisionFunction]------------------------------------------------			

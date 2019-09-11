@@ -16,7 +16,7 @@ AS
 	BEGIN
 
 		SET NOCOUNT ON;
-
+ 
 		BEGIN TRY
 
 			DECLARE @BusinessDate DATE;

@@ -4,7 +4,7 @@ CREATE PROCEDURE [Web].[usp_GetDebitFraudDetails]
 	@RoleName				VARCHAR(400)	= NULL
 /*****************************************************************************************************
 * Name				: [Web].[usp_GetDebitFraudDetails]
-* Description		: Stored Procedure to get the Debit Fraud Details
+* Description		: Stored Procedure to get the Debit Fraud Details 
 * Type of Procedure : Interpreted stored procedure
 * Author			: Stephen Birdsall
 * Creation Date		:	/04/2017

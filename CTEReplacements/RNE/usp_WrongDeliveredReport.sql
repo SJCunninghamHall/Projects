@@ -1,7 +1,7 @@
 /****************************************************************************************
 * Stored Procedure:[WAR].[usp_WrongDeliveredReport]
 * Description: Create No Pays Wrongly Delivered Report - Contains items that we have received in MSG06(For Debits) and MSG05(for credits) where  
-*		       an APG operator has assigned a No Pay Reason as Wrongly Delivered
+*		       an APG operator has assigned a No Pay Reason as Wrongly Delivered 
 * Sort Order : Collecting Participant,Collecting Location
 * Amendment History
 *****************************************************************************************

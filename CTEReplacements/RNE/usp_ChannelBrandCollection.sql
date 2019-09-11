@@ -5,7 +5,7 @@ CREATE PROCEDURE [RnEWareHouseReports].[usp_ChannelBrandCollection]
 /*****************************************************************************************************************
 * Stored Procedure	: [RnEWareHouseReports].[usp_ChannelBrandCollection]
 * Author			: Arushi pabla
-* Description		: Extracts credits for each brand collected and the corresponding Paying Bank
+* Description		: Extracts credits for each brand collected and the corresponding Paying Bank 
 * Creation Date		: 205/06/2018
 * Last Modified		:
 ******************************************************************************************************************/

@@ -2,7 +2,7 @@
 * Stored Procedure:[WAR].[usp_WronglyClaimedReport]
 * Description: Create Default Wrongly Claimed Report -Contains items that have been flagged in APG and the APG operator has amended the amount.
 * Amendment History
-*****************************************************************************************
+***************************************************************************************** 
 * Version		Name						Date               Reason
 * 1.3.0			Bhaskar Reddy			    02 Aug 2017        Create Default Wrangly Claimed Report
 *****************************************************************************************/
