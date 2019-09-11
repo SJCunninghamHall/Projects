@@ -12,10 +12,11 @@ class ViewController: UIViewController
 {
 
     var currentValue: Int = 0
+    var targetValue: Int = 0
     
     @IBOutlet weak var slider: UISlider!
     
-    
+    @IBOutlet weak var targetLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -25,13 +26,31 @@ class ViewController: UIViewController
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
 
+        startNewRound()
         
     }
 
     @IBAction func showAlert()
     {
         
-        let message = "The value of the slider is now: \(currentValue)"
+        var difference: Int
+        
+        if currentValue > targetValue
+        {
+            difference = currentValue - targetValue
+        }
+        else if targetValue > currentValue
+        {
+            difference = targetValue = currentValue
+        }
+        else
+        {
+            difference = 0
+        }
+        
+        let message = "The value of the slider is now: \(currentValue)" +
+                        "\nThe target value is \(targetValue)" +
+                        "\nThe difference is \(difference)"
         
         let alert = UIAlertController(title: "Hello, world!", message: message, preferredStyle: .alert)
  
@@ -43,12 +62,31 @@ class ViewController: UIViewController
         
         present(alert, animated: true, completion: nil)
         
+        startNewRound()
     }
     
     @IBAction func sliderMoved(_ slider: UISlider)
     {
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
+    }
+    
+    func startNewRound()
+    {
+        targetValue = Int.random(in: 1...100)
+        
+        //targetLabel.text = "\(targetValue)"
+        
+        currentValue = 50
+        slider.value = Float(currentValue)
+        
+        updateLabels()
+        
+    }
+    
+    func updateLabels()
+    {
+        targetLabel.text = String(targetValue)
     }
     
 }
