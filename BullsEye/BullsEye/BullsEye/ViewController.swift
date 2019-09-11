@@ -11,12 +11,15 @@ import UIKit
 class ViewController: UIViewController
 {
 
-    var currentValue: Int = 0
-    var targetValue: Int = 0
+    var currentValue = 0
+    var targetValue = 0
+    var score = 0
+    var round = 0
     
     @IBOutlet weak var slider: UISlider!
-    
     @IBOutlet weak var targetLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var roundLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -33,27 +36,34 @@ class ViewController: UIViewController
     @IBAction func showAlert()
     {
         
-        var difference: Int
+        let difference = abs(currentValue - targetValue)
+        var points = 100 - difference
         
-        if currentValue > targetValue
+        let title: String
+        
+        if difference == 0
         {
-            difference = currentValue - targetValue
-        }
-        else if targetValue > currentValue
+            title = "Perfect!"
+            points += 100
+        } else if difference < 5
         {
-            difference = targetValue = currentValue
-        }
-        else
+            title = "You almost had it!"
+            if difference == 1
+            {
+                points += 50
+            }
+        } else if difference < 10
         {
-            difference = 0
+            title = "Pretty good!"
+        } else
+        {
+            title = "Not even close!"
         }
         
-        let message = "The value of the slider is now: \(currentValue)" +
-                        "\nThe target value is \(targetValue)" +
-                        "\nThe difference is \(difference)"
-        
-        let alert = UIAlertController(title: "Hello, world!", message: message, preferredStyle: .alert)
- 
+        score += points
+
+        let message = "You guessed \(currentValue) \nYou scored \(points) points"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         //let action2 = UIAlertAction(title: "Here's another thing to do", style: .default, handler: nil)
         
@@ -73,6 +83,7 @@ class ViewController: UIViewController
     
     func startNewRound()
     {
+        round += 1
         targetValue = Int.random(in: 1...100)
         
         //targetLabel.text = "\(targetValue)"
@@ -87,6 +98,8 @@ class ViewController: UIViewController
     func updateLabels()
     {
         targetLabel.text = String(targetValue)
+        scoreLabel.text = String(score)
+        roundLabel.text = String(round)
     }
     
 }
