@@ -21,6 +21,15 @@ class ViewController: UIViewController
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
     
+    @IBAction func startOver()
+    {
+        score = 0
+        round = 0
+        targetValue = 0
+        
+        startNewRound()
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -29,7 +38,7 @@ class ViewController: UIViewController
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
 
-        startNewRound()
+        startOver()
         
     }
 
@@ -38,7 +47,6 @@ class ViewController: UIViewController
         
         let difference = abs(currentValue - targetValue)
         var points = 100 - difference
-        
         let title: String
         
         if difference == 0
@@ -64,15 +72,15 @@ class ViewController: UIViewController
 
         let message = "You guessed \(currentValue) \nYou scored \(points) points"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        //let action2 = UIAlertAction(title: "Here's another thing to do", style: .default, handler: nil)
-        
+        let action = UIAlertAction(title: "OK", style: .default, handler: {
+            action in
+            self.startNewRound()
+        })
+ 
         alert.addAction(action)
-        //alert.addAction(action2)
         
         present(alert, animated: true, completion: nil)
         
-        startNewRound()
     }
     
     @IBAction func sliderMoved(_ slider: UISlider)
