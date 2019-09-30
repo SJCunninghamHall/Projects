@@ -15,7 +15,7 @@ namespace PolyTest15
 
         public override void Bark()
         {
-            Console.WriteLine($"Spaniel goes woof {valueToUse}");
+            Console.WriteLine($"Padstow the Cavachon goes woof!! {valueToUse}");
         }
     }
 }
