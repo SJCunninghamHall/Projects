@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtFilePattern = new System.Windows.Forms.TextBox();
             this.txtDirectoryPattern = new System.Windows.Forms.TextBox();
             this.btnDirSel = new System.Windows.Forms.Button();
@@ -97,6 +97,7 @@
             // 
             // lblCTECount
             // 
+            this.lblCTECount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCTECount.AutoSize = true;
             this.lblCTECount.Location = new System.Drawing.Point(1111, 46);
             this.lblCTECount.Name = "lblCTECount";
@@ -106,6 +107,7 @@
             // 
             // lblCTEsFound
             // 
+            this.lblCTEsFound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCTEsFound.AutoSize = true;
             this.lblCTEsFound.Location = new System.Drawing.Point(978, 46);
             this.lblCTEsFound.Name = "lblCTEsFound";
@@ -230,8 +232,8 @@
             // 
             // dgvHits
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dgvHits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dgvHits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -265,6 +267,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(991, 67);
             this.label8.Name = "label8";
@@ -274,6 +277,7 @@
             // 
             // lblItemCountTotal
             // 
+            this.lblItemCountTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItemCountTotal.AutoSize = true;
             this.lblItemCountTotal.Location = new System.Drawing.Point(1111, 67);
             this.lblItemCountTotal.Name = "lblItemCountTotal";
@@ -283,6 +287,8 @@
             // 
             // cmbRegEx
             // 
+            this.cmbRegEx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbRegEx.FormattingEnabled = true;
             this.cmbRegEx.Location = new System.Drawing.Point(75, 15);
             this.cmbRegEx.Name = "cmbRegEx";
@@ -329,6 +335,7 @@
             this.Controls.Add(this.btnDirSel);
             this.Controls.Add(this.txtDirectoryPattern);
             this.Controls.Add(this.txtFilePattern);
+            this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "frmFiF";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Find In Files";
