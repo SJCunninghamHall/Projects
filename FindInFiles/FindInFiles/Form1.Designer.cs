@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtFilePattern = new System.Windows.Forms.TextBox();
             this.txtDirectoryPattern = new System.Windows.Forms.TextBox();
             this.btnDirSel = new System.Windows.Forms.Button();
@@ -115,6 +115,8 @@
             // 
             // txtSearched
             // 
+            this.txtSearched.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearched.Location = new System.Drawing.Point(75, 431);
             this.txtSearched.Multiline = true;
             this.txtSearched.Name = "txtSearched";
@@ -228,8 +230,11 @@
             // 
             // dgvHits
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dgvHits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dgvHits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvHits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHits.Location = new System.Drawing.Point(75, 121);
             this.dgvHits.Name = "dgvHits";
@@ -239,6 +244,8 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 121);
             this.label6.Name = "label6";
@@ -248,6 +255,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 431);
             this.label7.Name = "label7";
@@ -283,6 +291,7 @@
             // 
             // lblProgess
             // 
+            this.lblProgess.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblProgess.AutoSize = true;
             this.lblProgess.Location = new System.Drawing.Point(589, 610);
             this.lblProgess.Name = "lblProgess";
