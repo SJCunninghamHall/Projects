@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtFilePattern = new System.Windows.Forms.TextBox();
             this.txtDirectoryPattern = new System.Windows.Forms.TextBox();
             this.btnDirSel = new System.Windows.Forms.Button();
@@ -72,7 +72,7 @@
             this.txtDirectoryPattern.Name = "txtDirectoryPattern";
             this.txtDirectoryPattern.Size = new System.Drawing.Size(613, 20);
             this.txtDirectoryPattern.TabIndex = 1;
-            this.txtDirectoryPattern.Text = "C:\\TFS-New\\Cross Client\\ICE";
+            this.txtDirectoryPattern.Text = "C:\\Users\\cunnings\\source\\repos";
             // 
             // btnDirSel
             // 
@@ -139,7 +139,7 @@
             this.txtDirPattern.Name = "txtDirPattern";
             this.txtDirPattern.Size = new System.Drawing.Size(249, 20);
             this.txtDirPattern.TabIndex = 9;
-            this.txtDirPattern.Text = "Main";
+            this.txtDirPattern.Text = "iCE";
             // 
             // label2
             // 
@@ -230,8 +230,8 @@
             // 
             // dgvHits
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dgvHits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dgvHits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvHits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
