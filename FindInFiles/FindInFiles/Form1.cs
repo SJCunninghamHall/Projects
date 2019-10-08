@@ -197,42 +197,65 @@ namespace FindInFiles
 
             var prodCountListSt = new List<ProductCountSt>();
 
+
+
+
+            // var test = Directory.GetFiles(allDirs, "*.*", SearchOption.AllDirectories)
+
+
+            var fileMask = @"[A-Z]";
+
+            Regex sp = new Regex(fileMask);
+
             foreach (string dir in allDirs)
             {
-
-                listForNow = dir.Split(Path.DirectorySeparatorChar);
-
-                // Store the product
-                prodNew = listForNow[4];
-
-                // Check for a change of product.
-                // If a change is found, store the old product and the CTE count.
-                // Issue - if only one product is inspected, this will not work!
-                if (prodNew != prod)
-                {
-                    if (prod != "" && prod != null)
-                    {
-
-                        prodCountListSt.Add(new ProductCountSt
-                            {
-                                product = prod,
-                                count = itemsFoundProduct
-                            }
-                                            );
-
-                        itemsFoundProduct = 0;
-                    }
-
-                    prod = prodNew;
-                }
 
                 // Main has been found
                 // Look in all subs
 
-                allSubDirs = Directory.GetDirectories(dir, "*", SearchOption.AllDirectories);
+                // allSubDirs = Directory.GetDirectories(dir, fileMask, SearchOption.AllDirectories);
+                allSubDirs = Directory.GetDirectories(dir).Where(f => sp.IsMatch(f)).ToArray();
 
                 foreach (string subDir in allSubDirs)
                 {
+
+
+                    //Ignore Git repos
+                    // Hidden attribute is used for expeciency. More thorough check may be required if
+                    // any sub dirs to check are also hidden
+                    DirectoryInfo di = new DirectoryInfo(subDir);
+
+                    if ((di.Attributes & FileAttributes.Hidden) != 0)
+                    {
+                        continue;
+                    }
+                    
+                    listForNow = subDir.Split(Path.DirectorySeparatorChar);
+
+                    // Store the product
+                    prodNew = listForNow[6];
+
+                    // Check for a change of product.
+                    // If a change is found, store the old product and the CTE count.
+                    // Issue - if only one product is inspected, this will not work!
+                    if (prodNew != prod)
+                    {
+                        if (prod != "" && prod != null)
+                        {
+
+                            prodCountListSt.Add(new ProductCountSt
+                            {
+                                product = prod,
+                                count = itemsFoundProduct
+                            }
+                                                );
+
+                            itemsFoundProduct = 0;
+                        }
+
+                        prod = prodNew;
+                    }
+
 
                     // Find all files matching our pattern
 
