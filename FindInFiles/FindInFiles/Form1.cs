@@ -144,8 +144,6 @@ namespace FindInFiles
         private void btnFind_Click(object sender, EventArgs e)
         {
 
-        //    this.dgvHits.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvHits_RowPrePaint);
-
             txtSearched.Clear();
             lblProgess.Text = "Searching...";
             lblProgess.Refresh();
@@ -157,13 +155,13 @@ namespace FindInFiles
 
             string dirPattern = txtDirPattern.Text;
 
-            string[] allDirs = Directory.GetDirectories(txtDirectoryPattern.Text, dirPattern, SearchOption.AllDirectories);
+            //string[] allDirs = Directory.GetDirectories(txtDirectoryPattern.Text, dirPattern, SearchOption.AllDirectories);
             string[] allSubDirs;
             string fileName = string.Format("{0}.csv", string.Format("{0}{1}", "SearchResults_", DateTime.Now.ToString("yyyyMMddHHmmss")));
-            string filePattern = txtFilePattern.Text;
+            //string filePattern = txtFilePattern.Text;
             string itemPath;
             string itemFilename;
-            string[] listForNow;
+            //string[] listForNow;
             string prod = string.Empty;
             string prodNew = string.Empty;
             string regEx = "";
@@ -226,7 +224,6 @@ namespace FindInFiles
 
             }
 
-
             string[] dirElements;
 
             foreach (string dir in cleanHeaderDirList)
@@ -238,6 +235,11 @@ namespace FindInFiles
 
                 dirElements = dir.Split('\\');
                 prod = dirElements[6]; // Hard coded for expedience, could change, needs more flex
+
+                if (prodNew != prod)
+                {
+                    prodNew = prod;
+                }
 
                 // Get all files for the specified mask - we may be able to just traverse that
                 List<string> allFilesInTheSub = new List<string>();
@@ -300,8 +302,16 @@ namespace FindInFiles
                     }
 
                 }
-                
 
+                prodCountListSt.Add(new ProductCountSt
+                {
+                    product = prod,
+                    count = itemsFoundProduct
+                }
+                    );
+
+                itemsFoundTotal += itemsFoundProduct;
+                itemsFoundProduct = 0;
             }
 
             // Reassign the last item count in case this was a single-pass only
@@ -358,7 +368,7 @@ namespace FindInFiles
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            // txtFindResults.Clear();
+
             txtSearched.Clear();
 
             dgvResults.DataSource = null;
@@ -392,15 +402,10 @@ namespace FindInFiles
         private void dgvHits_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            //var nppDir = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Notepad++", null, null);
-            //var nppExePath = Path.Combine(nppDir, "Notepad++.exe");
-
             string fileToOpen = string.Empty;
 
             try
             {
-
-                System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
 
                 fileToOpen = dgvHits.Rows[e.RowIndex].Cells[1].Value.ToString();
 
