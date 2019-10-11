@@ -1,12 +1,10 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -196,7 +194,7 @@ namespace FindInFiles
             // Get the header list of directores - this will allow us to filter out any undesirable folders, such as Git folders
             // =================================================================================================================
 
-            List<string> headerDirList = new List<string>();
+            List<string> headerDirList; 
             List<string> cleanHeaderDirList = new List<string>();
 
             int index = 0;
@@ -228,8 +226,6 @@ namespace FindInFiles
 
                 // Look in all subs
 
-                // allSubDirs = Directory.GetDirectories(dir, "*", SearchOption.AllDirectories);
-
                 dirElements = dir.Split('\\');
                 prod = dirElements[6]; // Hard coded for expedience, could change, needs more flex
 
@@ -239,7 +235,7 @@ namespace FindInFiles
                 }
 
                 // Get all files for the specified mask - we may be able to just traverse that
-                List<string> allFilesInTheSub; // = new List<string>();
+                List<string> allFilesInTheSub;
 
                 allFilesInTheSub = Directory.GetFiles(dir, txtFilePattern.Text, SearchOption.AllDirectories).ToList();
 
@@ -442,5 +438,7 @@ namespace FindInFiles
                 MessageBox.Show(ex.Message);
             }
         }
+
+
     }
 }
