@@ -153,15 +153,12 @@ namespace FindInFiles
             int itemsFoundProduct = 0;
             int itemsFoundTotal = 0;
 
-            string dirPattern = txtDirPattern.Text;
-
-            //string[] allDirs = Directory.GetDirectories(txtDirectoryPattern.Text, dirPattern, SearchOption.AllDirectories);
             string[] allSubDirs;
             string fileName = string.Format("{0}.csv", string.Format("{0}{1}", "SearchResults_", DateTime.Now.ToString("yyyyMMddHHmmss")));
-            //string filePattern = txtFilePattern.Text;
+
             string itemPath;
             string itemFilename;
-            //string[] listForNow;
+
             string prod = string.Empty;
             string prodNew = string.Empty;
             string regEx = "";
@@ -231,7 +228,7 @@ namespace FindInFiles
 
                 // Look in all subs
 
-                allSubDirs = Directory.GetDirectories(dir, "*", SearchOption.AllDirectories);
+                // allSubDirs = Directory.GetDirectories(dir, "*", SearchOption.AllDirectories);
 
                 dirElements = dir.Split('\\');
                 prod = dirElements[6]; // Hard coded for expedience, could change, needs more flex
@@ -242,7 +239,7 @@ namespace FindInFiles
                 }
 
                 // Get all files for the specified mask - we may be able to just traverse that
-                List<string> allFilesInTheSub = new List<string>();
+                List<string> allFilesInTheSub; // = new List<string>();
 
                 allFilesInTheSub = Directory.GetFiles(dir, txtFilePattern.Text, SearchOption.AllDirectories).ToList();
 
