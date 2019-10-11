@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfExecutable>
+  <Executable Port="8044">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.IAService\iPSL.ICS.MO.IAService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.IAService\iPSL.ICS.MO.IAService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8052">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.UpdateStateService\iPSL.ICS.MO.UpdateStateService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.UpdateStateService\iPSL.ICS.MO.UpdateStateService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8042">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.DEW.ReceiveService\iPSL.ICS.MO.DEW.ReceiveService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.DEW.ReceiveService\iPSL.ICS.MO.DEW.ReceiveService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8048">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.DEW.SendService\iPSL.ICS.MO.DEW.SendService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.DEW.SendService\iPSL.ICS.MO.DEW.SendService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8040">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.FRED.ReceiveService\iPSL.ICS.MO.FRED.ReceiveService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.FRED.ReceiveService\iPSL.ICS.MO.FRED.ReceiveService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8041">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.FRED.SendService\iPSL.ICS.MO.FRED.SendService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.FRED.SendService\iPSL.ICS.MO.FRED.SendService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8047">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.KAPPA.ReceiveService\iPSL.ICS.MO.KAPPA.ReceiveService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.KAPPA.ReceiveService\iPSL.ICS.MO.KAPPA.ReceiveService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8045">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.KAPPA.SendService\iPSL.ICS.MO.KAPPA.SendService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.KAPPA.SendService\iPSL.ICS.MO.KAPPASendService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8050">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.RNE.ReceiveService\iPSL.ICS.MO.RNE.ReceiveService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.RNE.ReceiveService\iPSL.ICS.MO.RNE.ReceiveService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8049">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.RNE.SendService\iPSL.ICS.MO.RNE.SendService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.RNE.SendService\iPSL.ICS.MO.RNE.SendService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8057">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.CM.ReceiveService\iPSL.ICS.MO.CM.ReceiveService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.CM.ReceiveService\iPSL.ICS.MO.CM.ReceiveService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8058">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.CM.SendService\iPSL.ICS.MO.CM.SendService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.CM.SendService\iPSL.ICS.MO.CM.SendService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8043">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.Switch.ReceiveService\iPSL.ICS.MO.Switch.ReceiveService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.Switch.ReceiveService\iPSL.ICS.MO.Switch.ReceiveService.sln</SolutionFolder>
+  </Executable>
+  <Executable Port="8046">
+    <ProgramLocation>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.Switch.SendService\iPSL.ICS.MO.Switch.SendService</ProgramLocation>
+    <SolutionFolder>C:\SourceCode\iCE\MO\Web\Source\iPSL.ICS.MO.Switch.SendService\iPSL.ICS.MO.Switch.SendService.sln</SolutionFolder>
+  </Executable>
+</ArrayOfExecutable>
