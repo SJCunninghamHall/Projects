@@ -198,8 +198,15 @@ namespace FindInFiles
             List<string> cleanHeaderDirList = new List<string>();
 
             int index = 0;
-
-            headerDirList = Directory.GetDirectories(string.Format("{0}\\{1}", txtDirectoryPattern.Text, txtDirPattern.Text), "*", SearchOption.TopDirectoryOnly).ToList();
+            try
+            {
+                headerDirList = Directory.GetDirectories(string.Format("{0}\\{1}", txtDirectoryPattern.Text, txtDirPattern.Text), "*", SearchOption.TopDirectoryOnly).ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Source directory not found");
+                return;
+            }
 
             foreach (string dir in headerDirList)
             {
@@ -396,22 +403,28 @@ namespace FindInFiles
         {
 
             string fileToOpen = string.Empty;
+            string position = "";
+            int positionVal = 0;
 
             try
             {
 
                 fileToOpen = dgvHits.Rows[e.RowIndex].Cells[1].Value.ToString();
+                position = dgvHits.Rows[e.RowIndex].Cells["OffSet"].Value.ToString();
+
+                Int32.TryParse(position, out positionVal);
 
                 using (Process np = new Process())
                 {
                     np.StartInfo.FileName = "C:\\Program Files\\Notepad++\\notepad++.exe";
-                    np.StartInfo.Arguments = "\"" + fileToOpen + "\"";
+                    np.StartInfo.Arguments = string.Format(@" ""{0}"" -p{1}", fileToOpen, positionVal); 
                     np.Start();
                 }
             }
             catch
             {
-
+                MessageBox.Show("Error opening file.");
+                throw;
             }
         }
 
