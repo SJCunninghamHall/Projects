@@ -45,6 +45,7 @@ namespace Chops
             // List<string> breakDown = toBeChopped.Split(' ').ToList();
             // List<string> breakDown = toBeChopped.Split(new string[] { "\r", "\n", "\r\n", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
             //List<string> breakDown = toBeChopped.Split(new string[] { "\r", "\n", "\r\n", " ", "\t" }, StringSplitOptions.None).ToList();
+
             List<string> breakDown = toBeChopped.Split(new char[0], StringSplitOptions.RemoveEmptyEntries).ToList();
 
             //List<string> rt = Regex.Split(toBeChopped, "\r", "\n", "\r\n");

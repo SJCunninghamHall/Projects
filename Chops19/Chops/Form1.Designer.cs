@@ -29,61 +29,62 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCUT));
-            this.btnChop = new System.Windows.Forms.Button();
-            this.nudMaxConsec = new System.Windows.Forms.NumericUpDown();
-            this.txtSource = new System.Windows.Forms.RichTextBox();
-            this.txtChoppeds = new System.Windows.Forms.RichTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConsec)).BeginInit();
-            this.SuspendLayout();
+            frmCUT frmCUT = this;
+            frmCUT.btnChop = new System.Windows.Forms.Button();
+            frmCUT.nudMaxConsec = new System.Windows.Forms.NumericUpDown();
+            frmCUT.txtSource = new System.Windows.Forms.RichTextBox();
+            frmCUT.txtChoppeds = new System.Windows.Forms.RichTextBox();
+            ((System.ComponentModel.ISupportInitialize)frmCUT.nudMaxConsec).BeginInit();
+            frmCUT.SuspendLayout();
             // 
             // btnChop
             // 
-            this.btnChop.Location = new System.Drawing.Point(305, 371);
-            this.btnChop.Name = "btnChop";
-            this.btnChop.Size = new System.Drawing.Size(75, 23);
-            this.btnChop.TabIndex = 2;
-            this.btnChop.Text = "&Chop";
-            this.btnChop.UseVisualStyleBackColor = true;
-            this.btnChop.Click += new System.EventHandler(this.btnChop_Click);
+            frmCUT.btnChop.Location = new System.Drawing.Point(305, 371);
+            frmCUT.btnChop.Name = "btnChop";
+            frmCUT.btnChop.Size = new System.Drawing.Size(75, 23);
+            frmCUT.btnChop.TabIndex = 2;
+            frmCUT.btnChop.Text = "&Chop";
+            frmCUT.btnChop.UseVisualStyleBackColor = true;
+            frmCUT.btnChop.Click += new System.EventHandler(frmCUT.btnChop_Click);
             // 
             // nudMaxConsec
             // 
-            this.nudMaxConsec.Location = new System.Drawing.Point(679, 192);
-            this.nudMaxConsec.Name = "nudMaxConsec";
-            this.nudMaxConsec.Size = new System.Drawing.Size(54, 20);
-            this.nudMaxConsec.TabIndex = 3;
+            frmCUT.nudMaxConsec.Location = new System.Drawing.Point(679, 192);
+            frmCUT.nudMaxConsec.Name = "nudMaxConsec";
+            frmCUT.nudMaxConsec.Size = new System.Drawing.Size(54, 20);
+            frmCUT.nudMaxConsec.TabIndex = 3;
             // 
             // txtSource
             // 
-            this.txtSource.Location = new System.Drawing.Point(13, 13);
-            this.txtSource.Name = "txtSource";
-            this.txtSource.Size = new System.Drawing.Size(659, 173);
-            this.txtSource.TabIndex = 4;
-            this.txtSource.Text = resources.GetString("txtSource.Text");
-            this.txtSource.Leave += new System.EventHandler(this.txtSource_LostFocus);
+            frmCUT.txtSource.Location = new System.Drawing.Point(13, 13);
+            frmCUT.txtSource.Name = "txtSource";
+            frmCUT.txtSource.Size = new System.Drawing.Size(659, 173);
+            frmCUT.txtSource.TabIndex = 4;
+            frmCUT.txtSource.Text = resources.GetString("txtSource.Text");
+            frmCUT.txtSource.Leave += new System.EventHandler(frmCUT.txtSource_LostFocus);
             // 
             // txtChoppeds
             // 
-            this.txtChoppeds.Location = new System.Drawing.Point(13, 192);
-            this.txtChoppeds.Name = "txtChoppeds";
-            this.txtChoppeds.Size = new System.Drawing.Size(659, 173);
-            this.txtChoppeds.TabIndex = 5;
-            this.txtChoppeds.Text = "";
+            frmCUT.txtChoppeds.Location = new System.Drawing.Point(13, 192);
+            frmCUT.txtChoppeds.Name = "txtChoppeds";
+            frmCUT.txtChoppeds.Size = new System.Drawing.Size(659, 173);
+            frmCUT.txtChoppeds.TabIndex = 5;
+            frmCUT.txtChoppeds.Text = "";
             // 
             // frmCUT
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 405);
-            this.Controls.Add(this.txtChoppeds);
-            this.Controls.Add(this.txtSource);
-            this.Controls.Add(this.nudMaxConsec);
-            this.Controls.Add(this.btnChop);
-            this.Name = "frmCUT";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "C.U.T";
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConsec)).EndInit();
-            this.ResumeLayout(false);
+            frmCUT.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            frmCUT.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            frmCUT.ClientSize = new System.Drawing.Size(738, 405);
+            frmCUT.Controls.Add(frmCUT.txtChoppeds);
+            frmCUT.Controls.Add(frmCUT.txtSource);
+            frmCUT.Controls.Add(frmCUT.nudMaxConsec);
+            frmCUT.Controls.Add(frmCUT.btnChop);
+            frmCUT.Name = "frmCUT";
+            frmCUT.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            frmCUT.Text = "C.U.T";
+            ((System.ComponentModel.ISupportInitialize)frmCUT.nudMaxConsec).EndInit();
+            frmCUT.ResumeLayout(false);
 
         }
 
