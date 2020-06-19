@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9ED13A601321376900A04A44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED13A5F1321376900A04A44 /* UIKit.framework */; };
+		9ED13A621321376900A04A44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED13A611321376900A04A44 /* Foundation.framework */; };
+		9ED13A641321376900A04A44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED13A631321376900A04A44 /* CoreGraphics.framework */; };
+		9ED13A6A1321376900A04A44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9ED13A681321376900A04A44 /* InfoPlist.strings */; };
+		9ED13A6D1321376900A04A44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A6C1321376900A04A44 /* main.m */; };
+		9ED13A731321376900A04A44 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ED13A711321376900A04A44 /* MainWindow.xib */; };
+		9ED13A831321378C00A04A44 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A791321378C00A04A44 /* ListViewController.m */; };
+		9ED13A841321378C00A04A44 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A7A1321378C00A04A44 /* WebViewController.m */; };
+		9ED13A851321378C00A04A44 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A7C1321378C00A04A44 /* RSSItem.m */; };
+		9ED13A861321378C00A04A44 /* RSSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A7E1321378C00A04A44 /* RSSChannel.m */; };
+		9ED13A871321378C00A04A44 /* NerdfeedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A811321378C00A04A44 /* NerdfeedAppDelegate.m */; };
+		9ED13A8A13213C4B00A04A44 /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED13A8913213C4A00A04A44 /* ChannelViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9ED13A5B1321376900A04A44 /* Nerdfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nerdfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ED13A5F1321376900A04A44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9ED13A611321376900A04A44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9ED13A631321376900A04A44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9ED13A671321376900A04A44 /* Nerdfeed-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Nerdfeed-Info.plist"; sourceTree = "<group>"; };
+		9ED13A691321376900A04A44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9ED13A6B1321376900A04A44 /* Nerdfeed-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nerdfeed-Prefix.pch"; sourceTree = "<group>"; };
+		9ED13A6C1321376900A04A44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9ED13A721321376900A04A44 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		9ED13A791321378C00A04A44 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		9ED13A7A1321378C00A04A44 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		9ED13A7B1321378C00A04A44 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		9ED13A7C1321378C00A04A44 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
+		9ED13A7D1321378C00A04A44 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItem.h; sourceTree = "<group>"; };
+		9ED13A7E1321378C00A04A44 /* RSSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSChannel.m; sourceTree = "<group>"; };
+		9ED13A7F1321378C00A04A44 /* RSSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSChannel.h; sourceTree = "<group>"; };
+		9ED13A801321378C00A04A44 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		9ED13A811321378C00A04A44 /* NerdfeedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NerdfeedAppDelegate.m; sourceTree = "<group>"; };
+		9ED13A821321378C00A04A44 /* NerdfeedAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NerdfeedAppDelegate.h; sourceTree = "<group>"; };
+		9ED13A8813213C4900A04A44 /* ChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelViewController.h; sourceTree = "<group>"; };
+		9ED13A8913213C4A00A04A44 /* ChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9ED13A581321376900A04A44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ED13A601321376900A04A44 /* UIKit.framework in Frameworks */,
+				9ED13A621321376900A04A44 /* Foundation.framework in Frameworks */,
+				9ED13A641321376900A04A44 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9ED13A501321376900A04A44 = {
+			isa = PBXGroup;
+			children = (
+				9ED13A651321376900A04A44 /* Nerdfeed */,
+				9ED13A5E1321376900A04A44 /* Frameworks */,
+				9ED13A5C1321376900A04A44 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9ED13A5C1321376900A04A44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9ED13A5B1321376900A04A44 /* Nerdfeed.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9ED13A5E1321376900A04A44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9ED13A5F1321376900A04A44 /* UIKit.framework */,
+				9ED13A611321376900A04A44 /* Foundation.framework */,
+				9ED13A631321376900A04A44 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9ED13A651321376900A04A44 /* Nerdfeed */ = {
+			isa = PBXGroup;
+			children = (
+				9ED13A801321378C00A04A44 /* ListViewController.h */,
+				9ED13A791321378C00A04A44 /* ListViewController.m */,
+				9ED13A7B1321378C00A04A44 /* WebViewController.h */,
+				9ED13A7A1321378C00A04A44 /* WebViewController.m */,
+				9ED13A7D1321378C00A04A44 /* RSSItem.h */,
+				9ED13A7C1321378C00A04A44 /* RSSItem.m */,
+				9ED13A7F1321378C00A04A44 /* RSSChannel.h */,
+				9ED13A7E1321378C00A04A44 /* RSSChannel.m */,
+				9ED13A821321378C00A04A44 /* NerdfeedAppDelegate.h */,
+				9ED13A811321378C00A04A44 /* NerdfeedAppDelegate.m */,
+				9ED13A711321376900A04A44 /* MainWindow.xib */,
+				9ED13A8813213C4900A04A44 /* ChannelViewController.h */,
+				9ED13A8913213C4A00A04A44 /* ChannelViewController.m */,
+				9ED13A661321376900A04A44 /* Supporting Files */,
+			);
+			path = Nerdfeed;
+			sourceTree = "<group>";
+		};
+		9ED13A661321376900A04A44 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9ED13A671321376900A04A44 /* Nerdfeed-Info.plist */,
+				9ED13A681321376900A04A44 /* InfoPlist.strings */,
+				9ED13A6B1321376900A04A44 /* Nerdfeed-Prefix.pch */,
+				9ED13A6C1321376900A04A44 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9ED13A5A1321376900A04A44 /* Nerdfeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9ED13A761321376900A04A44 /* Build configuration list for PBXNativeTarget "Nerdfeed" */;
+			buildPhases = (
+				9ED13A571321376900A04A44 /* Sources */,
+				9ED13A581321376900A04A44 /* Frameworks */,
+				9ED13A591321376900A04A44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nerdfeed;
+			productName = Nerdfeed;
+			productReference = 9ED13A5B1321376900A04A44 /* Nerdfeed.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9ED13A521321376900A04A44 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 9ED13A551321376900A04A44 /* Build configuration list for PBXProject "Nerdfeed" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9ED13A501321376900A04A44;
+			productRefGroup = 9ED13A5C1321376900A04A44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9ED13A5A1321376900A04A44 /* Nerdfeed */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9ED13A591321376900A04A44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ED13A6A1321376900A04A44 /* InfoPlist.strings in Resources */,
+				9ED13A731321376900A04A44 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9ED13A571321376900A04A44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ED13A6D1321376900A04A44 /* main.m in Sources */,
+				9ED13A831321378C00A04A44 /* ListViewController.m in Sources */,
+				9ED13A841321378C00A04A44 /* WebViewController.m in Sources */,
+				9ED13A851321378C00A04A44 /* RSSItem.m in Sources */,
+				9ED13A861321378C00A04A44 /* RSSChannel.m in Sources */,
+				9ED13A871321378C00A04A44 /* NerdfeedAppDelegate.m in Sources */,
+				9ED13A8A13213C4B00A04A44 /* ChannelViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9ED13A681321376900A04A44 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9ED13A691321376900A04A44 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9ED13A711321376900A04A44 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9ED13A721321376900A04A44 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9ED13A741321376900A04A44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		9ED13A751321376900A04A44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		9ED13A771321376900A04A44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nerdfeed/Nerdfeed-Prefix.pch";
+				INFOPLIST_FILE = "Nerdfeed/Nerdfeed-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9ED13A781321376900A04A44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nerdfeed/Nerdfeed-Prefix.pch";
+				INFOPLIST_FILE = "Nerdfeed/Nerdfeed-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9ED13A551321376900A04A44 /* Build configuration list for PBXProject "Nerdfeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9ED13A741321376900A04A44 /* Debug */,
+				9ED13A751321376900A04A44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9ED13A761321376900A04A44 /* Build configuration list for PBXNativeTarget "Nerdfeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9ED13A771321376900A04A44 /* Debug */,
+				9ED13A781321376900A04A44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9ED13A521321376900A04A44 /* Project object */;
+}

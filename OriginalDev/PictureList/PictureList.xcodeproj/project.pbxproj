@@ -1,0 +1,336 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F406CADC148F85AB00561605 /* PictureListDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F406CADB148F85AB00561605 /* PictureListDetail.m */; };
+		F431A67A1490D11F0000AE2E /* Pictures.m in Sources */ = {isa = PBXBuildFile; fileRef = F431A6791490D11F0000AE2E /* Pictures.m */; };
+		F453138A148C1E5A00F5F3E7 /* PictureListMainTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F4531389148C1E5A00F5F3E7 /* PictureListMainTable.m */; };
+		F4E02C1C14893A2C00908E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E02C1B14893A2C00908E86 /* UIKit.framework */; };
+		F4E02C1E14893A2C00908E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E02C1D14893A2C00908E86 /* Foundation.framework */; };
+		F4E02C2014893A2C00908E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E02C1F14893A2C00908E86 /* CoreGraphics.framework */; };
+		F4E02C2214893A2C00908E86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E02C2114893A2C00908E86 /* CoreData.framework */; };
+		F4E02C2814893A2C00908E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4E02C2614893A2C00908E86 /* InfoPlist.strings */; };
+		F4E02C2A14893A2C00908E86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E02C2914893A2C00908E86 /* main.m */; };
+		F4E02C2E14893A2C00908E86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E02C2D14893A2C00908E86 /* AppDelegate.m */; };
+		F4E02C3114893A2C00908E86 /* PictureList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4E02C2F14893A2C00908E86 /* PictureList.xcdatamodeld */; };
+		F4F83E28148AB79200831878 /* PictureListStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F83E27148AB79200831878 /* PictureListStoryboard.storyboard */; };
+		F4F83E2C148AB9AD00831878 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F83E2B148AB9AD00831878 /* CoreDataHelper.m */; };
+		F4F83E36148AC35D00831878 /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F83E35148AC35D00831878 /* Users.m */; };
+		F4F83E40148AC61900831878 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F83E3F148AC61900831878 /* LoginViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F406CADA148F85AB00561605 /* PictureListDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureListDetail.h; sourceTree = "<group>"; };
+		F406CADB148F85AB00561605 /* PictureListDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureListDetail.m; sourceTree = "<group>"; };
+		F431A6781490D11F0000AE2E /* Pictures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pictures.h; sourceTree = "<group>"; };
+		F431A6791490D11F0000AE2E /* Pictures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pictures.m; sourceTree = "<group>"; };
+		F4531388148C1E5A00F5F3E7 /* PictureListMainTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureListMainTable.h; sourceTree = "<group>"; };
+		F4531389148C1E5A00F5F3E7 /* PictureListMainTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureListMainTable.m; sourceTree = "<group>"; };
+		F4E02C1714893A2C00908E86 /* PictureList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4E02C1B14893A2C00908E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F4E02C1D14893A2C00908E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F4E02C1F14893A2C00908E86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F4E02C2114893A2C00908E86 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F4E02C2514893A2C00908E86 /* PictureList-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PictureList-Info.plist"; sourceTree = "<group>"; };
+		F4E02C2714893A2C00908E86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F4E02C2914893A2C00908E86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F4E02C2B14893A2C00908E86 /* PictureList-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PictureList-Prefix.pch"; sourceTree = "<group>"; };
+		F4E02C2C14893A2C00908E86 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F4E02C2D14893A2C00908E86 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F4E02C3014893A2C00908E86 /* PictureList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureList.xcdatamodel; sourceTree = "<group>"; };
+		F4F83E27148AB79200831878 /* PictureListStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PictureListStoryboard.storyboard; sourceTree = "<group>"; };
+		F4F83E2A148AB9AD00831878 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		F4F83E2B148AB9AD00831878 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		F4F83E34148AC35D00831878 /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		F4F83E35148AC35D00831878 /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		F4F83E3E148AC61900831878 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		F4F83E3F148AC61900831878 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4E02C1414893A2C00908E86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4E02C1C14893A2C00908E86 /* UIKit.framework in Frameworks */,
+				F4E02C1E14893A2C00908E86 /* Foundation.framework in Frameworks */,
+				F4E02C2014893A2C00908E86 /* CoreGraphics.framework in Frameworks */,
+				F4E02C2214893A2C00908E86 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4E02C0C14893A2C00908E86 = {
+			isa = PBXGroup;
+			children = (
+				F4E02C2314893A2C00908E86 /* PictureList */,
+				F4E02C3714893A7600908E86 /* Core data */,
+				F4E02C2414893A2C00908E86 /* Supporting Files */,
+				F4E02C1A14893A2C00908E86 /* Frameworks */,
+				F4E02C1814893A2C00908E86 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4E02C1814893A2C00908E86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4E02C1714893A2C00908E86 /* PictureList.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4E02C1A14893A2C00908E86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4E02C1B14893A2C00908E86 /* UIKit.framework */,
+				F4E02C1D14893A2C00908E86 /* Foundation.framework */,
+				F4E02C1F14893A2C00908E86 /* CoreGraphics.framework */,
+				F4E02C2114893A2C00908E86 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4E02C2314893A2C00908E86 /* PictureList */ = {
+			isa = PBXGroup;
+			children = (
+				F4E02C2C14893A2C00908E86 /* AppDelegate.h */,
+				F4E02C2D14893A2C00908E86 /* AppDelegate.m */,
+				F4F83E3E148AC61900831878 /* LoginViewController.h */,
+				F4F83E3F148AC61900831878 /* LoginViewController.m */,
+				F4531388148C1E5A00F5F3E7 /* PictureListMainTable.h */,
+				F4531389148C1E5A00F5F3E7 /* PictureListMainTable.m */,
+				F406CADA148F85AB00561605 /* PictureListDetail.h */,
+				F406CADB148F85AB00561605 /* PictureListDetail.m */,
+			);
+			path = PictureList;
+			sourceTree = "<group>";
+		};
+		F4E02C2414893A2C00908E86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4E02C2514893A2C00908E86 /* PictureList-Info.plist */,
+				F4E02C2614893A2C00908E86 /* InfoPlist.strings */,
+				F4E02C2914893A2C00908E86 /* main.m */,
+				F4E02C2B14893A2C00908E86 /* PictureList-Prefix.pch */,
+				F4F83E27148AB79200831878 /* PictureListStoryboard.storyboard */,
+			);
+			name = "Supporting Files";
+			path = PictureList;
+			sourceTree = "<group>";
+		};
+		F4E02C3714893A7600908E86 /* Core data */ = {
+			isa = PBXGroup;
+			children = (
+				F4E02C2F14893A2C00908E86 /* PictureList.xcdatamodeld */,
+				F431A6781490D11F0000AE2E /* Pictures.h */,
+				F431A6791490D11F0000AE2E /* Pictures.m */,
+				F4F83E34148AC35D00831878 /* Users.h */,
+				F4F83E35148AC35D00831878 /* Users.m */,
+				F4F83E2A148AB9AD00831878 /* CoreDataHelper.h */,
+				F4F83E2B148AB9AD00831878 /* CoreDataHelper.m */,
+			);
+			name = "Core data";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4E02C1614893A2C00908E86 /* PictureList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4E02C3414893A2C00908E86 /* Build configuration list for PBXNativeTarget "PictureList" */;
+			buildPhases = (
+				F4E02C1314893A2C00908E86 /* Sources */,
+				F4E02C1414893A2C00908E86 /* Frameworks */,
+				F4E02C1514893A2C00908E86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PictureList;
+			productName = PictureList;
+			productReference = F4E02C1714893A2C00908E86 /* PictureList.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4E02C0E14893A2C00908E86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "SiJack Software Ltd.";
+			};
+			buildConfigurationList = F4E02C1114893A2C00908E86 /* Build configuration list for PBXProject "PictureList" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F4E02C0C14893A2C00908E86;
+			productRefGroup = F4E02C1814893A2C00908E86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4E02C1614893A2C00908E86 /* PictureList */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4E02C1514893A2C00908E86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4E02C2814893A2C00908E86 /* InfoPlist.strings in Resources */,
+				F4F83E28148AB79200831878 /* PictureListStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4E02C1314893A2C00908E86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4E02C2A14893A2C00908E86 /* main.m in Sources */,
+				F4E02C2E14893A2C00908E86 /* AppDelegate.m in Sources */,
+				F4E02C3114893A2C00908E86 /* PictureList.xcdatamodeld in Sources */,
+				F4F83E2C148AB9AD00831878 /* CoreDataHelper.m in Sources */,
+				F4F83E36148AC35D00831878 /* Users.m in Sources */,
+				F4F83E40148AC61900831878 /* LoginViewController.m in Sources */,
+				F453138A148C1E5A00F5F3E7 /* PictureListMainTable.m in Sources */,
+				F406CADC148F85AB00561605 /* PictureListDetail.m in Sources */,
+				F431A67A1490D11F0000AE2E /* Pictures.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F4E02C2614893A2C00908E86 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4E02C2714893A2C00908E86 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4E02C3214893A2C00908E86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F4E02C3314893A2C00908E86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4E02C3514893A2C00908E86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PictureList/PictureList-Prefix.pch";
+				INFOPLIST_FILE = "PictureList/PictureList-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F4E02C3614893A2C00908E86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PictureList/PictureList-Prefix.pch";
+				INFOPLIST_FILE = "PictureList/PictureList-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4E02C1114893A2C00908E86 /* Build configuration list for PBXProject "PictureList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4E02C3214893A2C00908E86 /* Debug */,
+				F4E02C3314893A2C00908E86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4E02C3414893A2C00908E86 /* Build configuration list for PBXNativeTarget "PictureList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4E02C3514893A2C00908E86 /* Debug */,
+				F4E02C3614893A2C00908E86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F4E02C2F14893A2C00908E86 /* PictureList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F4E02C3014893A2C00908E86 /* PictureList.xcdatamodel */,
+			);
+			currentVersion = F4E02C3014893A2C00908E86 /* PictureList.xcdatamodel */;
+			name = PictureList.xcdatamodeld;
+			path = PictureList/PictureList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F4E02C0E14893A2C00908E86 /* Project object */;
+}

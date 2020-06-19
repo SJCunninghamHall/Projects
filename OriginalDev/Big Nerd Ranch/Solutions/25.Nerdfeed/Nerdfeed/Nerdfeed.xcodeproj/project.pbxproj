@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9E8522861317209A0061F748 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8522851317209A0061F748 /* UIKit.framework */; };
+		9E8522881317209A0061F748 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8522871317209A0061F748 /* Foundation.framework */; };
+		9E85228A1317209A0061F748 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8522891317209A0061F748 /* CoreGraphics.framework */; };
+		9E8522901317209A0061F748 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E85228E1317209A0061F748 /* InfoPlist.strings */; };
+		9E8522931317209B0061F748 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8522921317209B0061F748 /* main.m */; };
+		9E8522961317209B0061F748 /* NerdfeedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8522951317209B0061F748 /* NerdfeedAppDelegate.m */; };
+		9E8522991317209B0061F748 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E8522971317209B0061F748 /* MainWindow.xib */; };
+		9E8522A1131720E30061F748 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8522A0131720E30061F748 /* ListViewController.m */; };
+		9E8522A4131725CB0061F748 /* RSSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8522A3131725CB0061F748 /* RSSChannel.m */; };
+		9E8522A713172B8D0061F748 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8522A613172B8D0061F748 /* RSSItem.m */; };
+		9E8522AA13172E020061F748 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8522A913172E020061F748 /* WebViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9E8522811317209A0061F748 /* Nerdfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nerdfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E8522851317209A0061F748 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9E8522871317209A0061F748 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9E8522891317209A0061F748 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9E85228D1317209A0061F748 /* Nerdfeed-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Nerdfeed-Info.plist"; sourceTree = "<group>"; };
+		9E85228F1317209A0061F748 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9E8522911317209A0061F748 /* Nerdfeed-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nerdfeed-Prefix.pch"; sourceTree = "<group>"; };
+		9E8522921317209B0061F748 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E8522941317209B0061F748 /* NerdfeedAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NerdfeedAppDelegate.h; sourceTree = "<group>"; };
+		9E8522951317209B0061F748 /* NerdfeedAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NerdfeedAppDelegate.m; sourceTree = "<group>"; };
+		9E8522981317209B0061F748 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		9E85229F131720E30061F748 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		9E8522A0131720E30061F748 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		9E8522A2131725CB0061F748 /* RSSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSChannel.h; sourceTree = "<group>"; };
+		9E8522A3131725CB0061F748 /* RSSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSChannel.m; sourceTree = "<group>"; };
+		9E8522A513172B8D0061F748 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItem.h; sourceTree = "<group>"; };
+		9E8522A613172B8D0061F748 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
+		9E8522A813172E020061F748 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		9E8522A913172E020061F748 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E85227E1317209A0061F748 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E8522861317209A0061F748 /* UIKit.framework in Frameworks */,
+				9E8522881317209A0061F748 /* Foundation.framework in Frameworks */,
+				9E85228A1317209A0061F748 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E8522761317209A0061F748 = {
+			isa = PBXGroup;
+			children = (
+				9E85228B1317209A0061F748 /* Nerdfeed */,
+				9E8522841317209A0061F748 /* Frameworks */,
+				9E8522821317209A0061F748 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9E8522821317209A0061F748 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E8522811317209A0061F748 /* Nerdfeed.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E8522841317209A0061F748 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E8522851317209A0061F748 /* UIKit.framework */,
+				9E8522871317209A0061F748 /* Foundation.framework */,
+				9E8522891317209A0061F748 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E85228B1317209A0061F748 /* Nerdfeed */ = {
+			isa = PBXGroup;
+			children = (
+				9E8522941317209B0061F748 /* NerdfeedAppDelegate.h */,
+				9E8522951317209B0061F748 /* NerdfeedAppDelegate.m */,
+				9E8522971317209B0061F748 /* MainWindow.xib */,
+				9E85229F131720E30061F748 /* ListViewController.h */,
+				9E8522A0131720E30061F748 /* ListViewController.m */,
+				9E8522A2131725CB0061F748 /* RSSChannel.h */,
+				9E8522A3131725CB0061F748 /* RSSChannel.m */,
+				9E8522A513172B8D0061F748 /* RSSItem.h */,
+				9E8522A613172B8D0061F748 /* RSSItem.m */,
+				9E8522A813172E020061F748 /* WebViewController.h */,
+				9E8522A913172E020061F748 /* WebViewController.m */,
+				9E85228C1317209A0061F748 /* Supporting Files */,
+			);
+			path = Nerdfeed;
+			sourceTree = "<group>";
+		};
+		9E85228C1317209A0061F748 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E85228D1317209A0061F748 /* Nerdfeed-Info.plist */,
+				9E85228E1317209A0061F748 /* InfoPlist.strings */,
+				9E8522911317209A0061F748 /* Nerdfeed-Prefix.pch */,
+				9E8522921317209B0061F748 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E8522801317209A0061F748 /* Nerdfeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E85229C1317209B0061F748 /* Build configuration list for PBXNativeTarget "Nerdfeed" */;
+			buildPhases = (
+				9E85227D1317209A0061F748 /* Sources */,
+				9E85227E1317209A0061F748 /* Frameworks */,
+				9E85227F1317209A0061F748 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nerdfeed;
+			productName = Nerdfeed;
+			productReference = 9E8522811317209A0061F748 /* Nerdfeed.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E8522781317209A0061F748 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 9E85227B1317209A0061F748 /* Build configuration list for PBXProject "Nerdfeed" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9E8522761317209A0061F748;
+			productRefGroup = 9E8522821317209A0061F748 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E8522801317209A0061F748 /* Nerdfeed */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E85227F1317209A0061F748 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E8522901317209A0061F748 /* InfoPlist.strings in Resources */,
+				9E8522991317209B0061F748 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E85227D1317209A0061F748 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E8522931317209B0061F748 /* main.m in Sources */,
+				9E8522961317209B0061F748 /* NerdfeedAppDelegate.m in Sources */,
+				9E8522A1131720E30061F748 /* ListViewController.m in Sources */,
+				9E8522A4131725CB0061F748 /* RSSChannel.m in Sources */,
+				9E8522A713172B8D0061F748 /* RSSItem.m in Sources */,
+				9E8522AA13172E020061F748 /* WebViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9E85228E1317209A0061F748 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E85228F1317209A0061F748 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9E8522971317209B0061F748 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E8522981317209B0061F748 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9E85229A1317209B0061F748 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		9E85229B1317209B0061F748 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		9E85229D1317209B0061F748 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nerdfeed/Nerdfeed-Prefix.pch";
+				INFOPLIST_FILE = "Nerdfeed/Nerdfeed-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9E85229E1317209B0061F748 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nerdfeed/Nerdfeed-Prefix.pch";
+				INFOPLIST_FILE = "Nerdfeed/Nerdfeed-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E85227B1317209A0061F748 /* Build configuration list for PBXProject "Nerdfeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E85229A1317209B0061F748 /* Debug */,
+				9E85229B1317209B0061F748 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E85229C1317209B0061F748 /* Build configuration list for PBXNativeTarget "Nerdfeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E85229D1317209B0061F748 /* Debug */,
+				9E85229E1317209B0061F748 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9E8522781317209A0061F748 /* Project object */;
+}

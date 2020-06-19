@@ -1,0 +1,129 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 9CB65C30130DD10900F3E3A5 /* My First App */;
+		activeTarget = 8DD76F960486AA7600D96B5E /* My First App */;
+		addToTargets = (
+			8DD76F960486AA7600D96B5E /* My First App */,
+		);
+		codeSenseManager = 9CB65C37130DD12800F3E3A5 /* Code sense */;
+		executables = (
+			9CB65C30130DD10900F3E3A5 /* My First App */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					442,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 319672585;
+			PBXWorkspaceStateSaveDate = 319672585;
+		};
+		sourceControlManager = 9CB65C36130DD12800F3E3A5 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* My First App.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {621, 525}}";
+			sepNavSelRange = "{334, 0}";
+			sepNavVisRange = "{0, 595}";
+		};
+	};
+	8DD76F960486AA7600D96B5E /* My First App */ = {
+		activeExec = 0;
+		executables = (
+			9CB65C30130DD10900F3E3A5 /* My First App */,
+		);
+	};
+	9CB65C30130DD10900F3E3A5 /* My First App */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "My First App";
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	9CB65C36130DD12800F3E3A5 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	9CB65C37130DD12800F3E3A5 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	9CB65C38130DD23200F3E3A5 /* HelloWorld.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {620, 525}}";
+			sepNavSelRange = "{236, 0}";
+			sepNavVisRange = "{0, 243}";
+		};
+	};
+	9CB65C39130DD23200F3E3A5 /* HelloWorld.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {620, 525}}";
+			sepNavSelRange = "{235, 11}";
+			sepNavVisRange = "{0, 259}";
+		};
+	};
+	9CB65C4C130DD54400F3E3A5 /* GreetingsProfessorFalken.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {620, 525}}";
+			sepNavSelRange = "{282, 46}";
+			sepNavVisRange = "{0, 335}";
+		};
+	};
+	9CB65C4D130DD54400F3E3A5 /* GreetingsProfessorFalken.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {620, 525}}";
+			sepNavSelRange = "{431, 0}";
+			sepNavVisRange = "{0, 440}";
+		};
+	};
+}

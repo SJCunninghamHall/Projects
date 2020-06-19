@@ -1,0 +1,230 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9EE48D51130D99A6005491E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE48D50130D99A6005491E1 /* Foundation.framework */; };
+		9EE48D54130D99A6005491E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE48D53130D99A6005491E1 /* main.m */; };
+		9EE48D5F130D9CDC005491E1 /* Possession.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE48D5E130D9CDC005491E1 /* Possession.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9EE48D4A130D99A6005491E1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9EE48D4C130D99A6005491E1 /* RandomPossessions */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RandomPossessions; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE48D50130D99A6005491E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9EE48D53130D99A6005491E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9EE48D56130D99A6005491E1 /* RandomPossessions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RandomPossessions-Prefix.pch"; sourceTree = "<group>"; };
+		9EE48D5D130D9CDC005491E1 /* Possession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Possession.h; sourceTree = "<group>"; };
+		9EE48D5E130D9CDC005491E1 /* Possession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Possession.m; sourceTree = "<group>"; };
+		C0D4783A13C93D150048F1AD /* RandomPossessions.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = RandomPossessions.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9EE48D49130D99A6005491E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EE48D51130D99A6005491E1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9EE48D41130D99A6005491E1 = {
+			isa = PBXGroup;
+			children = (
+				9EE48D52130D99A6005491E1 /* RandomPossessions */,
+				9EE48D4F130D99A6005491E1 /* Frameworks */,
+				9EE48D4D130D99A6005491E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9EE48D4D130D99A6005491E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9EE48D4C130D99A6005491E1 /* RandomPossessions */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9EE48D4F130D99A6005491E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9EE48D50130D99A6005491E1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EE48D52130D99A6005491E1 /* RandomPossessions */ = {
+			isa = PBXGroup;
+			children = (
+				9EE48D53130D99A6005491E1 /* main.m */,
+				9EE48D5D130D9CDC005491E1 /* Possession.h */,
+				9EE48D5E130D9CDC005491E1 /* Possession.m */,
+				C0D4783A13C93D150048F1AD /* RandomPossessions.1 */,
+				9EE48D55130D99A6005491E1 /* Supporting Files */,
+			);
+			path = RandomPossessions;
+			sourceTree = "<group>";
+		};
+		9EE48D55130D99A6005491E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9EE48D56130D99A6005491E1 /* RandomPossessions-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9EE48D4B130D99A6005491E1 /* RandomPossessions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9EE48D5A130D99A6005491E1 /* Build configuration list for PBXNativeTarget "RandomPossessions" */;
+			buildPhases = (
+				9EE48D48130D99A6005491E1 /* Sources */,
+				9EE48D49130D99A6005491E1 /* Frameworks */,
+				9EE48D4A130D99A6005491E1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RandomPossessions;
+			productName = RandomPossessions;
+			productReference = 9EE48D4C130D99A6005491E1 /* RandomPossessions */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9EE48D43130D99A6005491E1 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 9EE48D46130D99A6005491E1 /* Build configuration list for PBXProject "RandomPossessions" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9EE48D41130D99A6005491E1;
+			productRefGroup = 9EE48D4D130D99A6005491E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9EE48D4B130D99A6005491E1 /* RandomPossessions */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9EE48D48130D99A6005491E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EE48D54130D99A6005491E1 /* main.m in Sources */,
+				9EE48D5F130D9CDC005491E1 /* Possession.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9EE48D58130D99A6005491E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9EE48D59130D99A6005491E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9EE48D5B130D99A6005491E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RandomPossessions/RandomPossessions-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9EE48D5C130D99A6005491E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RandomPossessions/RandomPossessions-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9EE48D46130D99A6005491E1 /* Build configuration list for PBXProject "RandomPossessions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EE48D58130D99A6005491E1 /* Debug */,
+				9EE48D59130D99A6005491E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9EE48D5A130D99A6005491E1 /* Build configuration list for PBXNativeTarget "RandomPossessions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EE48D5B130D99A6005491E1 /* Debug */,
+				9EE48D5C130D99A6005491E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9EE48D43130D99A6005491E1 /* Project object */;
+}
