@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		58820625249930AB007E40D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58820624249930AB007E40D5 /* Assets.xcassets */; };
 		58820628249930AB007E40D5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58820627249930AB007E40D5 /* Preview Assets.xcassets */; };
 		5882062B249930AB007E40D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58820629249930AB007E40D5 /* LaunchScreen.storyboard */; };
+		58C623BF249E1FFA004C9161 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 58C623BE249E1FFA004C9161 /* URLImage */; };
+		58C623C1249FE1D0004C9161 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C623C0249FE1D0004C9161 /* NewsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		58820627249930AB007E40D5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5882062A249930AB007E40D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5882062C249930AB007E40D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58C623C0249FE1D0004C9161 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58C623BF249E1FFA004C9161 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +67,7 @@
 				58820629249930AB007E40D5 /* LaunchScreen.storyboard */,
 				5882062C249930AB007E40D5 /* Info.plist */,
 				58820626249930AB007E40D5 /* Preview Content */,
+				58C623C0249FE1D0004C9161 /* NewsView.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
@@ -91,6 +96,9 @@
 			dependencies = (
 			);
 			name = NewsReader;
+			packageProductDependencies = (
+				58C623BE249E1FFA004C9161 /* URLImage */,
+			);
 			productName = NewsReader;
 			productReference = 5882061B249930A6007E40D5 /* NewsReader.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 58820612249930A6007E40D5;
+			packageReferences = (
+				58C623BD249E1FFA004C9161 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 5882061C249930A6007E40D5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -147,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5882061F249930A6007E40D5 /* AppDelegate.swift in Sources */,
+				58C623C1249FE1D0004C9161 /* NewsView.swift in Sources */,
 				58820621249930A6007E40D5 /* SceneDelegate.swift in Sources */,
 				58820623249930A6007E40D5 /* ContentView.swift in Sources */,
 			);
@@ -342,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		58C623BD249E1FFA004C9161 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.15;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		58C623BE249E1FFA004C9161 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58C623BD249E1FFA004C9161 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 58820613249930A6007E40D5 /* Project object */;
 }
