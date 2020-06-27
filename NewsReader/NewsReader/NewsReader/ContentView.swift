@@ -55,49 +55,31 @@ struct ContentView: View {
     }
     
     var body: some View {
-        
         List(articles, id: \.url) {
-            item in NavigationLink(destination: NewsView(url: item.url)
-            )
-            {
-        
-        //NavigationView {
-        
-        //List(articles, id: \.url) { item in
-            
-            HStack(alignment: .top){
-            
-                URLImage(((URL(string:item.urlToImage ?? "https://picsum.photos/100") ?? nil
-                
-                )!),
-                         
-                         delay: 0.25,
-                         processors:
-                    [Resize(size: CGSize(width:100.0, height: 100.0), scale: UIScreen.main.scale)],
-                         content:
-                    {
-                        $0.image
-                            .resizable()
-                            .aspectRatio(contentMode:.fit)
-                        .clipped()
-                        }
-                    ).frame(width: 100.0, height: 100.0)
-                         
-                         
+            item in NavigationLink(destination: NewsView(url:item.url)
+          ) {
+            HStack(alignment: .top) {
+              URLImage((( URL(string:item.urlToImage ?? "https://picsum.photos/100") ?? nil
+              )!),
+                delay: 0.25,
+                processors:
+                  [Resize(size: CGSize(width: 100.0, height: 100.0), scale: UIScreen.main.scale)],
+                content: {
+                  $0.image
+                  .resizable()
+                  .aspectRatio(contentMode:.fit)
+                  .clipped()
+                }
+              ).frame(width: 100.0, height: 100.0)
             }
-            
-        
-            
-            VStack(alignment: .leading)
-            {
-                Text(item.title).font(.headline)
-                Text(item.description ?? "").font(.footnote)
+
+            VStack(alignment: .leading) {
+              Text(item.title).font(.headline)
+              Text(item.description ?? "").font(.footnote)
             }
-            }
-        }.onAppear(perform: fetchData) //.navigationBarTitle("News Headlines", displayMode: .inline)
-            
-        
-        }
+          }
+        }.onAppear(perform: fetchData)
+      }
     }
 
 
