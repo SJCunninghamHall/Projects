@@ -55,6 +55,10 @@ struct ContentView: View {
     }
     
     var body: some View {
+        
+        NavigationView{
+        
+        
         List(articles, id: \.url) {
             item in NavigationLink(destination: NewsView(url:item.url)
           ) {
@@ -63,7 +67,7 @@ struct ContentView: View {
               )!),
                 delay: 0.25,
                 processors:
-                  [Resize(size: CGSize(width: 100.0, height: 100.0), scale: UIScreen.main.scale)],
+                    [Resize(size: CGSize(width: 100.0, height: 100.0), scale: UIScreen.main.scale)],
                 content: {
                   $0.image
                   .resizable()
@@ -78,14 +82,16 @@ struct ContentView: View {
               Text(item.description ?? "").font(.footnote)
             }
           }
-        }.onAppear(perform: fetchData)
+        }.onAppear(perform: fetchData).navigationBarTitle("News Headlines", displayMode: .inline)
       }
     }
 
-
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+        }
     }
 }

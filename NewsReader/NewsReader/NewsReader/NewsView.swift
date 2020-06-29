@@ -25,7 +25,7 @@ struct NewsView: View {
   let url: String
 
   var body: some View {
-    WebView(request: URLRequest(url: URL(string:url)!))
+    WebView(request: URLRequest(url: URL(string:url)!)).navigationBarTitle("Detail", displayMode: .inline)
   }
 }
 
