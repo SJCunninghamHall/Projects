@@ -22,7 +22,11 @@ struct Article: Codable {
 
 struct ContentView: View {
     
-    private let url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=69cef9c1922f4442a8435323915c5f22"
+    private let url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=69cef9c1922f4442a8435323915c5f22" // Works
+    
+    // private let url = "http://newsapi.org/v2/everything?q=apple&from=2020-06-28&to=2020-06-28&sortBy=popularity&apiKey=69cef9c1922f4442a8435323915c5f22"
+    
+    
     // private let url = "https://www.apple.com"
     
         @State private var articles = [Article]()
