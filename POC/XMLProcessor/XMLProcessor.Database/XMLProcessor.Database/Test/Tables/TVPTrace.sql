@@ -1,9 +1,0 @@
-﻿CREATE TABLE [Test].[TVPTrace] (
-    [TVPTrace]  INT             IDENTITY (1, 1) NOT NULL,
-    [Procedure] NVARCHAR (255)  NULL,
-    [Step]      NVARCHAR (255)  NULL,
-    [Results]   NVARCHAR (4000) NULL,
-    CONSTRAINT [PK_TVPTrace] PRIMARY KEY NONCLUSTERED ([TVPTrace] ASC)
-)
-WITH (DURABILITY = SCHEMA_ONLY, MEMORY_OPTIMIZED = ON);
-

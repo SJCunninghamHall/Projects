@@ -1,1 +1,0 @@
-.\deploy.ps1 -subscriptionId e262bc47-dee1-4da6-b241-547fe9c6b84d -resourceGroupName devRG -deploymentName devDeploy -resourceGroupLocation eastus
