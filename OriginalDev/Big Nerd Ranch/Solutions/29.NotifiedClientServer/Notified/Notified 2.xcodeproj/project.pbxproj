@@ -1,0 +1,266 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BEC1E0251370F92000056DC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC1E0241370F92000056DC6 /* UIKit.framework */; };
+		BEC1E0271370F92000056DC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC1E0261370F92000056DC6 /* Foundation.framework */; };
+		BEC1E0291370F92000056DC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC1E0281370F92000056DC6 /* CoreGraphics.framework */; };
+		BEC1E02F1370F92000056DC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEC1E02D1370F92000056DC6 /* InfoPlist.strings */; };
+		BEC1E0321370F92000056DC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC1E0311370F92000056DC6 /* main.m */; };
+		BEC1E0351370F92000056DC6 /* NotifiedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC1E0341370F92000056DC6 /* NotifiedAppDelegate.m */; };
+		BEC1E0381370F92000056DC6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC1E0361370F92000056DC6 /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BEC1E0201370F92000056DC6 /* Notified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notified.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC1E0241370F92000056DC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BEC1E0261370F92000056DC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BEC1E0281370F92000056DC6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BEC1E02C1370F92000056DC6 /* Notified-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Notified-Info.plist"; sourceTree = "<group>"; };
+		BEC1E02E1370F92000056DC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BEC1E0301370F92000056DC6 /* Notified-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Notified-Prefix.pch"; sourceTree = "<group>"; };
+		BEC1E0311370F92000056DC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BEC1E0331370F92000056DC6 /* NotifiedAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifiedAppDelegate.h; sourceTree = "<group>"; };
+		BEC1E0341370F92000056DC6 /* NotifiedAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotifiedAppDelegate.m; sourceTree = "<group>"; };
+		BEC1E0371370F92000056DC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEC1E01D1370F92000056DC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEC1E0251370F92000056DC6 /* UIKit.framework in Frameworks */,
+				BEC1E0271370F92000056DC6 /* Foundation.framework in Frameworks */,
+				BEC1E0291370F92000056DC6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BEC1E0151370F92000056DC6 = {
+			isa = PBXGroup;
+			children = (
+				BEC1E02A1370F92000056DC6 /* Notified */,
+				BEC1E0231370F92000056DC6 /* Frameworks */,
+				BEC1E0211370F92000056DC6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BEC1E0211370F92000056DC6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEC1E0201370F92000056DC6 /* Notified.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEC1E0231370F92000056DC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEC1E0241370F92000056DC6 /* UIKit.framework */,
+				BEC1E0261370F92000056DC6 /* Foundation.framework */,
+				BEC1E0281370F92000056DC6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEC1E02A1370F92000056DC6 /* Notified */ = {
+			isa = PBXGroup;
+			children = (
+				BEC1E0331370F92000056DC6 /* NotifiedAppDelegate.h */,
+				BEC1E0341370F92000056DC6 /* NotifiedAppDelegate.m */,
+				BEC1E0361370F92000056DC6 /* MainWindow.xib */,
+				BEC1E02B1370F92000056DC6 /* Supporting Files */,
+			);
+			path = Notified;
+			sourceTree = "<group>";
+		};
+		BEC1E02B1370F92000056DC6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEC1E02C1370F92000056DC6 /* Notified-Info.plist */,
+				BEC1E02D1370F92000056DC6 /* InfoPlist.strings */,
+				BEC1E0301370F92000056DC6 /* Notified-Prefix.pch */,
+				BEC1E0311370F92000056DC6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BEC1E01F1370F92000056DC6 /* Notified */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEC1E03B1370F92000056DC6 /* Build configuration list for PBXNativeTarget "Notified" */;
+			buildPhases = (
+				BEC1E01C1370F92000056DC6 /* Sources */,
+				BEC1E01D1370F92000056DC6 /* Frameworks */,
+				BEC1E01E1370F92000056DC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Notified;
+			productName = Notified;
+			productReference = BEC1E0201370F92000056DC6 /* Notified.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEC1E0171370F92000056DC6 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = BEC1E01A1370F92000056DC6 /* Build configuration list for PBXProject "Notified" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BEC1E0151370F92000056DC6;
+			productRefGroup = BEC1E0211370F92000056DC6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEC1E01F1370F92000056DC6 /* Notified */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEC1E01E1370F92000056DC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEC1E02F1370F92000056DC6 /* InfoPlist.strings in Resources */,
+				BEC1E0381370F92000056DC6 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEC1E01C1370F92000056DC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEC1E0321370F92000056DC6 /* main.m in Sources */,
+				BEC1E0351370F92000056DC6 /* NotifiedAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BEC1E02D1370F92000056DC6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEC1E02E1370F92000056DC6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BEC1E0361370F92000056DC6 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEC1E0371370F92000056DC6 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BEC1E0391370F92000056DC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BEC1E03A1370F92000056DC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		BEC1E03C1370F92000056DC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Notified/Notified-Prefix.pch";
+				INFOPLIST_FILE = "Notified/Notified-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BEC1E03D1370F92000056DC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Notified/Notified-Prefix.pch";
+				INFOPLIST_FILE = "Notified/Notified-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEC1E01A1370F92000056DC6 /* Build configuration list for PBXProject "Notified" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEC1E0391370F92000056DC6 /* Debug */,
+				BEC1E03A1370F92000056DC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEC1E03B1370F92000056DC6 /* Build configuration list for PBXNativeTarget "Notified" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEC1E03C1370F92000056DC6 /* Debug */,
+				BEC1E03D1370F92000056DC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BEC1E0171370F92000056DC6 /* Project object */;
+}

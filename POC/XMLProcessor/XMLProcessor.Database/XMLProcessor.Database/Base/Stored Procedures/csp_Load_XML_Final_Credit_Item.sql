@@ -1,0 +1,177 @@
+﻿CREATE PROCEDURE [Base].[csp_Load_XML_Final_Credit_Item]
+    @TVPCredit [Base].[tv_FinalCredit] READONLY
+
+/*****************************************************************************************************
+* Name				: [Base].[csp_Load_XML_Final_Credit_Item]
+* Description		: This stored procedure is called by All credit and Debit loaders to ensure that
+*					  the final item tables are always updated.
+* Type of Procedure : Interpreted stored procedure
+* Author			: Anton Richards
+* Creation Date		: 20/01/2017
+* Last Modified		: N/A
+*******************************************************************************************************/
+WITH NATIVE_COMPILATION,
+         SCHEMABINDING
+		 , EXECUTE AS OWNER 
+AS
+    BEGIN ATOMIC WITH ( TRANSACTION ISOLATION LEVEL = SNAPSHOT,  
+LANGUAGE = N'English' )
+
+
+        BEGIN TRY
+
+
+		INSERT INTO [Base].[FinalCredit]
+					   (
+							[ItemId]
+							,[CreditId]
+							,[ItemUpdateRevision]
+							,[ItemUpdateId]
+							,[CaptureItemId]
+							,[EntityId]
+							,[CollectingParticipantId]
+							,[AgencyPayingParticipantId]
+							,[AgencyBeneficiaryParticipantId]
+							,[Reference]
+							,[Sortcode]
+							,[AccountNumber]
+							,[Amount]
+							,[Currency]
+							,[TranCode]
+							,[AlternateSortCode]
+							,[AlternateAccount]
+							,[SwitchedSortCode]
+							,[SwitchedAccount]
+							,[ItemType]
+							,[DefaultedSortcode] 
+							,[DefaultedAccount]
+							,[DefaultedReference]
+							,[OnUs]
+							,[RepairedSortcode]
+							,[RepairedAccount]
+							,[RepairedAmount]
+							,[RepairedSerial]
+							,[RepairedReference]
+							,[InternalTxId]
+							,[AdjustmentReason]	
+							,[NoPayReason]		
+							,[ReasonCode]		
+							,[Narrative]		
+							,[ResponseDate]		
+							,[ResponseTime]
+							,[EISCDBeneficiaryParticipantId]
+							,[SettlementParticipantId]
+							,[ChargingParticipantId]
+							,[TransactionSetId]
+							,[Version]
+							,[cf_OnBank]
+							,[ICSAmount]
+							,[TSetIDWithVersion]
+							,[FinalInclearingState]
+							,[FinalOutClearingState]
+							,[FinalclearingState]
+							,[PostingDate]				
+							,[ProcessingDate]			
+							,[CaptureDate]				
+							,[ExtractID]					
+							,[MessageType]				
+							,[IntMsgType]				
+							,[Source]					
+							,[ImageIndicator]			
+							,[APGDIN]					
+							,[APGNoPayReason]			
+							,[JGAccount]					
+							,[IsAmountCorrected]			
+							,[IsAnCorrected]				
+							,[IsSortCodeCorrected]		
+							,[IsSerialCorrected]			
+							,[IsRepairedItem]			
+							,[DeletedItem]				
+							,[StoppedItem]				
+							,[FraudResult]				
+							,[FraudReason]				
+							,[DuplicateItemIndicator]	
+							,[Day1Date]					
+							,[IsEntityError]				
+					   )
+						SELECT 
+							[ItemId]
+							,[CreditId]
+							,[ItemUpdateRevision]
+							,[ItemUpdateId]
+							,[CaptureItemId]
+							,[EntityId]
+							,[CollectingParticipantId]
+							,[AgencyPayingParticipantId]
+							,[AgencyBeneficiaryParticipantId]
+							,[Reference]
+							,[Sortcode]
+							,[AccountNumber]
+							,[Amount]
+							,[Currency]
+							,[TranCode]
+							,[AlternateSortCode]
+							,[AlternateAccount]
+							,[SwitchedSortCode]
+							,[SwitchedAccount]
+							,[ItemType]
+							,[DefaultedSortcode] 
+							,[DefaultedAccount]
+							,[DefaultedReference]
+							,[OnUs]
+							,[RepairedSortcode]
+							,[RepairedAccount]
+							,[RepairedAmount]
+							,[RepairedSerial]
+							,[RepairedReference]
+							,[InternalTxId]
+							,[AdjustmentReason]	
+							,[NoPayReason]		
+							,[ReasonCode]		
+							,[Narrative]		
+							,[ResponseDate]		
+							,[ResponseTime]
+							,[EISCDBeneficiaryParticipantId]
+							,[SettlementParticipantId]
+							,[ChargingParticipantId]
+							,[TransactionSetId]
+							,[Version]
+							,[cf_OnBank]
+							,[ICSAmount]
+							,[TSetIDWithVersion]
+							,[FinalInclearingState]
+							,[FinalOutClearingState]
+							,[FinalclearingState]
+							,[PostingDate]				
+							,[ProcessingDate]			
+							,[CaptureDate]				
+							,[ExtractID]					
+							,[MessageType]				
+							,[IntMsgType]				
+							,[Source]					
+							,[ImageIndicator]			
+							,[APGDIN]					
+							,[APGNoPayReason]			
+							,[JGAccount]					
+							,[IsAmountCorrected]			
+							,[IsAnCorrected]				
+							,[IsSortCodeCorrected]		
+							,[IsSerialCorrected]			
+							,[IsRepairedItem]			
+							,[DeletedItem]				
+							,[StoppedItem]				
+							,[FraudResult]				
+							,[FraudReason]				
+							,[DuplicateItemIndicator]	
+							,[Day1Date]					
+							,[IsEntityError]
+						FROM @TVPCredit
+
+        END TRY
+	
+        BEGIN CATCH
+            THROW;
+        END CATCH;
+
+    END;
+GO

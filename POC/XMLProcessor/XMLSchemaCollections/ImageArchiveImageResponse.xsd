@@ -1,0 +1,71 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:annotation>
+    <xs:appinfo>DEW Response Schema</xs:appinfo>
+    <xs:documentation>
+       This Schema defines the structure of the Response message that are sent to the DEW      
+    </xs:documentation>
+  </xs:annotation>
+  <!--Types-->
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max2MBBinary">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="2097152" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MessageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MSG06" />
+      <xs:enumeration value="MSG13" />
+	  <xs:enumeration value="MSG01" />
+	  <xs:enumeration value="MSG03" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!--Actual XML Schema body-->
+  <xs:element name="Response" type="Response" />
+  <xs:complexType name="Response">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="Transaction">
+        <xs:annotation>
+          <xs:documentation>
+            Transaction Information
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="MessageType" type="MessageType" />
+            <xs:element minOccurs="1" maxOccurs="1" name="TransactionId">
+              <xs:annotation>
+                <xs:documentation>
+                  Credit or Debit TransactionId
+                  Transaction Identifier (CRI010,DBI010)
+                  Transaction (Debit or Credit) reference
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="Max35Text">
+                  <xs:pattern value="[A-Z0-9]{6}[0-9]{2}[0-3][0-9]{2}[0-9]{4}[0-9a-zA-Z]{10}" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="Image" type="Max2MBBinary">
+              <xs:annotation>
+                <xs:documentation>
+                  The image file (ITI010)
+                  Contains the TIFF file with the front and back images of the credit slip or cheque
+                  (depending on transaction type) – if it is present in the Image Archive.
+                  The Image is a a Base64 stream.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

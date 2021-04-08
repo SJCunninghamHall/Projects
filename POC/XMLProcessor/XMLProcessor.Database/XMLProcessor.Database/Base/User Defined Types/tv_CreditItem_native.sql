@@ -1,0 +1,17 @@
+﻿CREATE TYPE [Base].[tv_CreditItem_native] AS TABLE
+(
+	CreditItemId VARCHAR(35)	NULL
+	,CreditItemTp VARCHAR(4)	NULL
+	,CreditItem_Id BIGINT		NULL
+	,BkCd INT					NULL
+	,AccountNo INT				NULL
+	,RefNo VARCHAR(18)			NULL
+	--,Amt NUMERIC				NULL
+	--,AcctNb VARCHAR(MAX)		NULL
+	--,CdtItmTxCd VARCHAR(MAX)	NULL
+	--,XtrnlDataRef VARCHAR(MAX)	NULL
+	--,OnUsItmInd VARCHAR(MAX)	NULL
+	,TxSet_id INT PRIMARY KEY NONCLUSTERED
+	 
+) WITH (MEMORY_OPTIMIZED = ON);
+GO
