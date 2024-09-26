@@ -1,12 +1,10 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -144,8 +142,6 @@ namespace FindInFiles
         private void btnFind_Click(object sender, EventArgs e)
         {
 
-        //    this.dgvHits.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvHits_RowPrePaint);
-
             txtSearched.Clear();
             lblProgess.Text = "Searching...";
             lblProgess.Refresh();
@@ -155,15 +151,12 @@ namespace FindInFiles
             int itemsFoundProduct = 0;
             int itemsFoundTotal = 0;
 
-            string dirPattern = txtDirPattern.Text;
-
-            string[] allDirs = Directory.GetDirectories(txtDirectoryPattern.Text, dirPattern, SearchOption.AllDirectories);
             string[] allSubDirs;
             string fileName = string.Format("{0}.csv", string.Format("{0}{1}", "SearchResults_", DateTime.Now.ToString("yyyyMMddHHmmss")));
-            string filePattern = txtFilePattern.Text;
+
             string itemPath;
             string itemFilename;
-            string[] listForNow;
+
             string prod = string.Empty;
             string prodNew = string.Empty;
             string regEx = "";
@@ -197,105 +190,128 @@ namespace FindInFiles
 
             var prodCountListSt = new List<ProductCountSt>();
 
-            foreach (string dir in allDirs)
+            // =================================================================================================================
+            // Get the header list of directores - this will allow us to filter out any undesirable folders, such as Git folders
+            // =================================================================================================================
+
+            List<string> headerDirList; 
+            List<string> cleanHeaderDirList = new List<string>();
+
+            int index = 0;
+            try
+            {
+                headerDirList = Directory.GetDirectories(string.Format("{0}\\{1}", txtDirectoryPattern.Text, txtDirPattern.Text), "*", SearchOption.TopDirectoryOnly).ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Source directory not found");
+                return;
+            }
+
+            foreach (string dir in headerDirList)
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+
+                if ((di.Attributes & FileAttributes.Hidden) != 0)
+                {
+                    index++;
+                    continue;
+                }
+                else
+                {
+                    cleanHeaderDirList.Add(headerDirList.ElementAt(index));
+                }
+
+                index++;
+
+            }
+
+            string[] dirElements;
+
+            foreach (string dir in cleanHeaderDirList)
             {
 
-                listForNow = dir.Split(Path.DirectorySeparatorChar);
-
-                // Store the product
-                prodNew = listForNow[4];
-
-                // Check for a change of product.
-                // If a change is found, store the old product and the CTE count.
-                // Issue - if only one product is inspected, this will not work!
-                if (prodNew != prod)
-                {
-                    if (prod != "" && prod != null)
-                    {
-
-                        prodCountListSt.Add(new ProductCountSt
-                            {
-                                product = prod,
-                                count = itemsFoundProduct
-                            }
-                                            );
-
-                        itemsFoundProduct = 0;
-                    }
-
-                    prod = prodNew;
-                }
-
-                // Main has been found
                 // Look in all subs
 
-                allSubDirs = Directory.GetDirectories(dir, "*", SearchOption.AllDirectories);
+                dirElements = dir.Split('\\');
+                prod = dirElements[6]; // Hard coded for expedience, could change, needs more flex
 
-                foreach (string subDir in allSubDirs)
+                if (prodNew != prod)
                 {
-
-                    // Find all files matching our pattern
-
-                    string[] filesinDir = Directory.GetFiles(subDir, filePattern, SearchOption.TopDirectoryOnly);
-
-                    foreach (string file in filesinDir)
-                    {
-
-                        txtSearched.AppendText(string.Format("{0}{1}", file, ""));
-                        txtSearched.AppendText(Environment.NewLine);
-
-                        // Look for the search term in the file
-
-                        Regex re = new Regex(regEx);
-
-                        string wholeFile = File.ReadAllText(file);
-
-                        Match m = re.Match(wholeFile);
-
-                        if (m.Success)
-                        {
-
-                            // Write to log if required
-                            if (chkWrite.Checked)
-                            {
-                                using (StreamWriter swLog = File.AppendText(string.Format(@"{0}\{1}", txtWriteTo.Text, fileName)))
-                                {
-                                    if (firstTime)
-                                    {
-                                        swLog.WriteLine(@"Full,Path,Filename,Product,Count");
-                                        firstTime = false;
-                                    }
-
-                                    itemPath = Path.GetDirectoryName(file);
-                                    itemFilename = Path.GetFileName(file);
-
-                                    swLog.WriteLine( string.Format("{0},{1},{2},{3},{4}", file, itemPath, itemFilename, prod, Regex.Matches(wholeFile, regEx).Count));
-                                }
-                            }
-
-                            var hitRow = dtHits.NewRow();
-
-                            hitRow["Product"] = string.Format("{0}", prod);
-                            hitRow["File"] = string.Format("{0}", file);
-                            hitRow["Offset"] = string.Format("{0}", m.Index);
-                            hitRow["Text"] = string.Format("Found '{0}' at position {1}", m.Value, m.Index);
-
-                            dtHits.Rows.Add(hitRow);
-                            
-                            dgvHits.Refresh();
-
-                            itemsFoundProduct = itemsFoundProduct + Regex.Matches(wholeFile, regEx).Count;
-                            itemsFoundTotal = itemsFoundTotal + itemsFoundProduct;
-
-                            lblCTECount.Text = itemsFoundProduct.ToString();
-                            lblCTECount.Refresh();
-                            lblItemCountTotal.Text = itemsFoundTotal.ToString();
-                            lblItemCountTotal.Refresh();
-                        }
-                        
-                    }
+                    prodNew = prod;
                 }
 
+                // Get all files for the specified mask - we may be able to just traverse that
+                List<string> allFilesInTheSub;
+
+                allFilesInTheSub = Directory.GetFiles(dir, txtFilePattern.Text, SearchOption.AllDirectories).ToList();
+
+                foreach (string file in allFilesInTheSub)
+                {
+
+                    txtSearched.AppendText(string.Format("{0}{1}", file, ""));
+                    txtSearched.AppendText(Environment.NewLine);
+
+                    // Look for the search term in the file
+
+                    Regex re = new Regex(regEx);
+
+                    string wholeFile = File.ReadAllText(file);
+
+                    Match m = re.Match(wholeFile);
+
+                    if (m.Success)
+                    {
+
+                        // Write to log if required
+                        if (chkWrite.Checked)
+                        {
+                            using (StreamWriter swLog = File.AppendText(string.Format(@"{0}\{1}", txtWriteTo.Text, fileName)))
+                            {
+                                if (firstTime)
+                                {
+                                    swLog.WriteLine(@"Full,Path,Filename,Product,Count");
+                                    firstTime = false;
+                                }
+
+                                itemPath = Path.GetDirectoryName(file);
+                                itemFilename = Path.GetFileName(file);
+
+                                swLog.WriteLine(string.Format("{0},{1},{2},{3},{4}", file, itemPath, itemFilename, prod, Regex.Matches(wholeFile, regEx).Count));
+                            }
+                        }
+
+                        var hitRow = dtHits.NewRow();
+
+                        hitRow["Product"] = string.Format("{0}", prod);
+                        hitRow["File"] = string.Format("{0}", file);
+                        hitRow["Offset"] = string.Format("{0}", m.Index);
+                        hitRow["Text"] = string.Format("Found '{0}' at position {1}", m.Value, m.Index);
+
+                        dtHits.Rows.Add(hitRow);
+
+                        dgvHits.Refresh();
+
+                        itemsFoundProduct = itemsFoundProduct + Regex.Matches(wholeFile, regEx).Count;
+                        itemsFoundTotal = itemsFoundTotal + itemsFoundProduct;
+
+                        lblCTECount.Text = itemsFoundProduct.ToString();
+                        lblCTECount.Refresh();
+                        lblItemCountTotal.Text = itemsFoundTotal.ToString();
+                        lblItemCountTotal.Refresh();
+                    }
+
+                }
+
+                prodCountListSt.Add(new ProductCountSt
+                {
+                    product = prod,
+                    count = itemsFoundProduct
+                }
+                    );
+
+                itemsFoundTotal += itemsFoundProduct;
+                itemsFoundProduct = 0;
             }
 
             // Reassign the last item count in case this was a single-pass only
@@ -352,7 +368,7 @@ namespace FindInFiles
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            // txtFindResults.Clear();
+
             txtSearched.Clear();
 
             dgvResults.DataSource = null;
@@ -386,28 +402,29 @@ namespace FindInFiles
         private void dgvHits_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            //var nppDir = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Notepad++", null, null);
-            //var nppExePath = Path.Combine(nppDir, "Notepad++.exe");
-
             string fileToOpen = string.Empty;
+            string position = "";
+            int positionVal = 0;
 
             try
             {
 
-                System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-
                 fileToOpen = dgvHits.Rows[e.RowIndex].Cells[1].Value.ToString();
+                position = dgvHits.Rows[e.RowIndex].Cells["OffSet"].Value.ToString();
+
+                Int32.TryParse(position, out positionVal);
 
                 using (Process np = new Process())
                 {
                     np.StartInfo.FileName = "C:\\Program Files\\Notepad++\\notepad++.exe";
-                    np.StartInfo.Arguments = "\"" + fileToOpen + "\"";
+                    np.StartInfo.Arguments = string.Format(@" ""{0}"" -p{1}", fileToOpen, positionVal); 
                     np.Start();
                 }
             }
             catch
             {
-
+                MessageBox.Show("Error opening file.");
+                throw;
             }
         }
 
@@ -434,5 +451,7 @@ namespace FindInFiles
                 MessageBox.Show(ex.Message);
             }
         }
+
+
     }
 }
